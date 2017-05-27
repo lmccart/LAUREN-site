@@ -1,4 +1,4 @@
-var phrase = 'Hi, I\'m Lauren and I want to be your smart home.';
+var phrase = 'Hi, I\'m Lauren and I want to\nbe your smart home.';
 
 function nextChar(i){
   $('#greeting').text(phrase.substring(0, i));

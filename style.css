@@ -21,7 +21,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #c6ffff;
+  background-color: rgba(198, 255, 255, 1);
   z-index: 2;
   display: none;
 }

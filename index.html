@@ -45,7 +45,7 @@
     <a-assets>
       <img id='kristen' crossorigin='anonymous' src='img/kristen.png'>
       <img id='kristen-thumb' crossorigin='anonymous' src='img/kristen-thumb.png'>
-      <video id="kristen-video" src="vid/kristen-sms.mov" autoplay="true" loop muted>
+<!--       <video id="kristen-video" src="vid/kristen-sms.mov" autoplay="true" loop muted> -->
       <img id='cubes' crossorigin='anonymous' src='img/cubes.png'>
       <img id='cubes-thumb' crossorigin='anonymous' src='img/cubes-thumb.png'>
       <img id='sechelt' crossorigin='anonymous' src='img/sechelt.png'>
@@ -69,7 +69,7 @@
       <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
       <!-- 360-degree image. -->
 
-      <a-sky id='image-360' radius='10' src='#kristen-video' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''>
+      <a-sky id='image-360' radius='10' src='#kristen' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''>
         <a-animation attribute='rotation'
          dur='200000'
          easing='linear'
@@ -84,14 +84,14 @@
         <a-entity template='src: #link' data-src='#cubes' data-thumb='#cubes-thumb' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #cubes-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #cubes' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
-        <a-entity template='src: #link' data-src='#kristen-video' data-thumb='#kristen-thumb' position='' rotation='0 270 0' scale='' visible=''>
+        <a-entity template='src: #link' data-src='#kristen' data-thumb='#kristen-thumb' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #kristen-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #kristen' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
         <a-entity template='src: #link' data-src='#sechelt' data-thumb='#sechelt-thumb' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #sechelt-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #sechelt' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
         <a-entity template='src: #link' data-src='#passthroughVideo' data-thumb='#passthroughVideo' position='' rotation='0 270 0' scale='' visible=''>
-          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #sechelt-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #passthroughVideo' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
+          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #passthroughVideo' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #passthroughVideo' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
       </a-entity>
 

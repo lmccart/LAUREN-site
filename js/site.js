@@ -18,6 +18,15 @@ $(document).ready(function() {
   setTimeout(swap, phrase.length*100+500);
 
 
+
+  $('#lauren').mouseover(function() {
+    $('#options').stop().fadeIn();
+  });
+
+  $('nav').mouseleave(function() {
+    $('#options').stop().fadeOut();
+  });
+
   $('#lauren').click(function() {
     window.location = '/';
   });

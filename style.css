@@ -51,10 +51,21 @@ h1 {
   cursor: pointer;
 }
 
+#options {
+  display: none;
+}
+
 #learnmore, #signup {
-  float: right;
-  margin: 0.5em 2.2em 0 0;
+  float: left;
+  margin: 0.5em 0 0 0.8em;
   font-size: 1em;
+}
+
+#signup {
+  text-decoration: underline wavy;
+    -ms-transform: rotate(20deg); /* IE 9 */
+    -webkit-transform: rotate(20deg); /* Safari */
+    transform: rotate(20deg);
 }
 
 #greeting {

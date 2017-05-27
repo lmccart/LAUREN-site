@@ -2,8 +2,8 @@ function setupCanvas(videoSourceId) {
   var video = document.createElement('video');
   video.setAttribute('id', 'passthroughVideo');
   video.setAttribute('autoplay', true);
-  video.setAttribute('width', '640');
-  video.setAttribute('height', '480');
+  video.setAttribute('width', '1280');
+  video.setAttribute('height', '720');
   video.setAttribute('src', '');
 
   var assets = document.getElementsByTagName('a-assets')[0];
@@ -12,15 +12,15 @@ function setupCanvas(videoSourceId) {
   // var passthroughEl = self.el;
   // passthroughEl.setAttribute('src', '#passthroughVideo')
 
-  var phoneConfig = {
+  var mediaConfig = {
     video: {
-      optional: [{
-        sourceId: videoSourceId
-      }]
+      width: {min: 1280, ideal: 1280, max: 1920},
+      height: {min: 720, ideal: 720, max: 1080}
     }
   }
 
-  var mediaConfig = videoSourceId ? phoneConfig : {video: true};
+  if (videoSourceId) mediaConfig.video.option= [{ sourceId: videoSourceId }];
+
   var errBack = function(e) {
     console.log('An error has occurred!', e)
   };

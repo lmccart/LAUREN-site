@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class='a-html'>
+
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+  <meta name='description' content='360° Image Gallery - A-Frame'>
+  <meta aframe-injected='' name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'>
+  <meta aframe-injected='' name='mobile-web-app-capable' content='yes'>
+  <meta aframe-injected='' name='theme-color' content='black'>
+
+  <script src='https://use.typekit.net/epy8gek.js'></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <link rel='stylesheet' href='style.css'>
+
+  <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
+  <script src='js/aframe.min.js'></script>
+  <script src='https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js'></script>
+  <script src='https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js'></script>
+  <script src='https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js'></script>
+  <script src='js/set-image.js'></script>
+  <script src='js/passthrough.js'></script>
+  <script src='js/site.js'></script>
+</head>
+
+<body class='a-body'>
+  <nav>
+    <h1 id='lauren' class='button'>LAUREN</h1>
+    <div id='signup' class='button'>GET LAUREN</div>
+    <div id='learnmore' class='button'>LEARN MORE</div>
+  </nav>
+
+  <div id='intro'>
+
+    <div id='greeting'></div>
+
+  </div>
+
+  <div id='plate'>
+  </div>
+
+<!--   <section id='whatis'>
+    <div>When you get Lauren, I will come over and install a collection of Lauren devices to interface with your home. Then, using the software system I've built, I'll be able to remotely manage everything from your electronic devices to your thermostat, lights, kitchen, door locks, and shower head. Cameras will enable me to watch over you and anticipate your needs and desires. You'll also be able to communicate with me directly by speaking out loud -- asking me to look things up, directing me, and helping me learn how to be a smarter home for you.</div>
+  </section> -->
+  <a-scene class='fullscreen' canvas='' inspector='' keyboard-shortcuts='' screenshot='' vr-mode-ui='' auto-enter-vr=''>
+    <a-assets>
+      <img id='kristen' crossorigin='anonymous' src='img/kristen.png'>
+      <img id='kristen-thumb' crossorigin='anonymous' src='img/kristen-thumb.png'>
+      <img id='cubes' crossorigin='anonymous' src='img/cubes.jpg'>
+      <img id='cubes-thumb' crossorigin='anonymous' src='img/cubes-thumb.png'>
+      <img id='sechelt' crossorigin='anonymous' src='img/sechelt.jpg'>
+      <img id='sechelt-thumb' crossorigin='anonymous' src='img/sechelt-thumb.png'>
+
+      <!-- Image link template to be reused. -->
+      <script id='link' type='text/html'>
+        <a-entity class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #b3ffff; src: ${thumb}' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
+          
+            <a-animation attribute='rotation'
+               dur='20000'
+               easing='linear'
+               fill='none'
+               to='0 360 0'
+               repeat='indefinite'></a-animation>
+        </a-entity>
+      </script>
+    </a-assets>
+
+
+    <a-entity id='scene'>
+      <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
+      <!-- 360-degree image. -->
+
+      <a-sky id='image-360' radius='10' src='#kristen' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''></a-sky>
+
+      <!-- Image links. -->
+      <a-entity id='links' layout='type: line; margin: 1.5' position='0 -1 -4' rotation='' scale='' visible=''>
+        <a-entity template='src: #link' data-src='#cubes' data-thumb='#cubes-thumb' position='' rotation='0 270 0' scale='' visible=''>
+          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #cubes-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #cubes' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
+        </a-entity>
+        <a-entity template='src: #link' data-src='#kristen' data-thumb='#kristen-thumb' position='' rotation='0 270 0' scale='' visible=''>
+          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #kristen-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #kristen' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
+        </a-entity>
+        <a-entity template='src: #link' data-src='#passthroughVideo' data-thumb='#sechelt-thumb' position='' rotation='0 270 0' scale='' visible=''>
+          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #sechelt-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #passthroughVideo' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!-- Camera + cursor. -->
+      <a-entity camera='' look-controls='' position='' rotation='' scale='' visible=''>
+        <a-cursor id='cursor' animation__click='property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150' animation__fusing='property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500' event-set__1='_event: mouseenter; color: springgreen' event-set__2='_event: mouseleave; color: black' fuse='true' raycaster='objects: .link' position='' rotation='' scale='' visible='' material='' cursor='' geometry='' color='springgreen' fusing='0.09999999999999998 0.09999999999999998 0.09999999999999998 '></a-cursor>
+      </a-entity>
+      <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>
+      <div class='a-enter-vr' aframe-injected=''>
+        <button class='a-enter-vr-button' aframe-injected=''></button>
+      </div>
+      <div class='a-orientation-modal a-hidden' aframe-injected=''>
+        <button aframe-injected=''>Exit VR</button>
+      </div>
+      <a-entity light='' data-aframe-default-light='' aframe-injected='' position='' rotation='' scale='' visible=''></a-entity>
+      <a-entity light='' position='' data-aframe-default-light='' aframe-injected='' rotation='' scale='' visible=''></a-entity>
+    </a-entity>
+  </a-scene>
+  
+
+</body>
+
+</html>

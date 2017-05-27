@@ -52,14 +52,13 @@
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #b3ffff; src: ${thumb}' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
-          
-            <a-animation attribute='rotation'
-               dur='20000'
-               easing='linear'
-               fill='none'
-               to='0 360 0'
-               repeat='indefinite'></a-animation>
+        <a-entity class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #b3ffff; src: ${thumb}' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>          
+          <a-animation attribute='rotation'
+             dur='20000'
+             easing='linear'
+             fill='none'
+             to='0 360 0'
+             repeat='indefinite'></a-animation>
         </a-entity>
       </script>
     </a-assets>
@@ -69,7 +68,15 @@
       <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
       <!-- 360-degree image. -->
 
-      <a-sky id='image-360' radius='10' src='#kristen' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''></a-sky>
+      <a-sky id='image-360' radius='10' src='#kristen' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''>
+        <a-animation attribute='rotation'
+         dur='200000'
+         easing='linear'
+         fill='none'
+         to='0 360 0'
+         repeat='indefinite'></a-animation>
+
+      </a-sky>
 
       <!-- Image links. -->
       <a-entity id='links' layout='type: line; margin: 1.5' position='0 -1 -4' rotation='' scale='' visible=''>

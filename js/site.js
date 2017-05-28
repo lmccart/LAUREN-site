@@ -25,7 +25,31 @@ function blink(val) {
   }
 }
 
+function getLauren() {
+  if ($('#getlauren-content').is(':hidden')) {
+    $('#getlauren-thankyou').hide();
+    $('#learnmore-content').hide();
+    $('#getlauren-content').show();
+    $('#plate').slideDown(500, function() { $('#close').show(); });
+  } else {
+    $('#plate').slideUp(500);
+  }
+}
+
+function startRecording() {
+  $('#plate').slideUp(500);
+  var links = document.querySelector('#links');
+  links.children[3].children[0].emit('record');
+  setTimeout(function() {
+  $('#record').hide();
+  $('#submit').show();
+    $('#plate').slideDown(500);
+    links.children[1].children[0].emit('click');
+  }, 5000);
+}
+
 $(document).ready(function() {
+  startPassthrough();
   nextChar(0);
   setTimeout(exitIntro, phrase.length*100+1500);
 
@@ -46,7 +70,33 @@ $(document).ready(function() {
   });
 
   $('#learnmore').click(function() {
-    $('#plate').slideToggle(500);
+    if ($('#learnmore-content').is(':hidden')) {
+      $('#getlauren-content').hide();
+      $('#learnmore-content').show();
+      $('#plate').slideDown(500, function() { $('#close').show(); });
+    } else {
+      $('#plate').slideUp(500);
+    }
+  });
+
+  $('#getlauren').click(function() {
+    getLauren();
+  });
+
+  $('#record').click(function() {
+    startRecording();
+  });
+
+  $('#submit').click(function() {
+    $('#getlauren-content').hide();
+    $('#record').show();
+    $('#submit').hide();
+    $('#getlauren-thankyou').show();
+  });
+
+  $('#close').click(function() {
+    $('#close').hide();
+    $('#plate').slideUp(500);
   });
 });
 

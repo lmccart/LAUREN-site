@@ -1,3 +1,5 @@
+var passthroughStream;
+
 function setupCanvas(videoSourceId) {
   var video = document.createElement('video');
   video.setAttribute('id', 'passthroughVideo');
@@ -27,22 +29,26 @@ function setupCanvas(videoSourceId) {
 
   if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+      passthroughStream = stream;
       video.src = window.URL.createObjectURL(stream);
       video.play();
     });
   }
   else if(navigator.getUserMedia) { // Standard
     navigator.getUserMedia(mediaConfig, function(stream) {
+      passthroughStream = stream;
       video.src = stream;
       video.play();
     }, errBack);
   } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
     navigator.webkitGetUserMedia(mediaConfig, function(stream){
+      passthroughStream = stream;
       video.src = window.webkitURL.createObjectURL(stream);
       video.play();
     }, errBack);
   } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
     navigator.mozGetUserMedia(mediaConfig, function(stream){
+      passthroughStream = stream;
       video.src = window.URL.createObjectURL(stream);
       video.play();
     }, errBack);
@@ -68,7 +74,14 @@ function startPassthrough() {
   }
 }
 
-$(document).ready(function() {
-  startPassthrough();
-});
-
+function startRecording() {
+    var mediaRecorder = new MediaStreamRecorder(passthroughStream);
+    mediaRecorder.mimeType = 'video/webm';
+    mediaRecorder.ondataavailable = function (blob) {
+        // POST/PUT "Blob" using FormData/XHR2
+        var blobURL = URL.createObjectURL(blob);
+        document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
+        console.log(blobURL);
+    };
+    mediaRecorder.start(3000);
+}

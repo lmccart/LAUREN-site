@@ -18,7 +18,7 @@ AFRAME.registerComponent('set-image', {
 
     this.setupFadeAnimation();
 
-    el.addEventListener(data.on, function () {
+    el.addEventListener('record', function () {
       // Fade out image.
       data.target.emit('set-image-fade');
       // Wait for fade to complete.
@@ -26,6 +26,20 @@ AFRAME.registerComponent('set-image', {
         // Set image.
         data.target.setAttribute('material', 'src', data.src);
       }, data.dur);
+    });
+
+    el.addEventListener(data.on, function () {
+      if (el.id === '#passthroughVideo-sphere') {
+        getLauren();
+      } else {
+        // Fade out image.
+        data.target.emit('set-image-fade');
+        // Wait for fade to complete.
+        setTimeout(function () {
+          // Set image.
+          data.target.setAttribute('material', 'src', data.src);
+        }, data.dur);
+      }
     });
   },
 

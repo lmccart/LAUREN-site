@@ -55,24 +55,65 @@ h1 {
   display: none;
 }
 
-#learnmore, #signup {
+#learnmore, #getlauren {
   float: left;
   margin: 0.5em 0 0 0.8em;
   font-size: 1em;
 }
 
-#signup {
+#getlauren {
     -ms-transform: rotate(20deg); /* IE 9 */
     -webkit-transform: rotate(20deg); /* Safari */
     transform: rotate(20deg);
 }
 
 #greeting {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   font-size: 5em;
   color: #DBD9DE;
   margin-top: 3em;
+}
+
+#close {
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+  font-size: 4em;
+  color: #77006e;
+}
+
+
+#getlauren-content, #getlauren-thankyou  {
+  max-width: 1200px;
+  margin: 6em auto 0 auto;
+  font-size: 2em;
+  color: #77006e;
+}
+
+#getlauren-thankyou {
+  line-height: 1.5;
+}
+
+#submit, #record {
+  font-family: 'calder-dark-outline-1','calder-dark-outline-2', sans-serif;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+
+input {
+  border: 0;
+  border-bottom: 2px solid #77006e;
+  outline: 0 !important;
+  background: none;
+  width: 500px;
+  font-size: 1em;
+  font-family: 'calder-lc-1','calder-lc-2', sans-serif;
 }
 
 

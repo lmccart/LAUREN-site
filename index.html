@@ -12,11 +12,18 @@
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <link rel='stylesheet' href='style.css'>
 
+  <!-- other libraries -->
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
+  <script src="https://cdn.webrtc-experiment.com/MediaStreamRecorder.js"> </script>
+
+  <!-- aframe and components -->
   <script src='js/aframe.min.js'></script>
   <script src='https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js'></script>
   <script src='https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js'></script>
   <script src='https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js'></script>
+  <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
+
+  <!-- custom js -->
   <script src='js/set-image.js'></script>
   <script src='js/passthrough.js'></script>
   <script src='js/site.js'></script>
@@ -26,7 +33,7 @@
   <nav>
     <h1 id='lauren' class='button'>LAUREN</h1>
     <div id='options'>
-      <div id='signup' class='button'>GET LAUREN&nbsp;</div>
+      <div id='getlauren' class='button'>GET LAUREN&nbsp;</div>
       <div id='learnmore' class='button'>LEARN MORE</div>
     </div>
   </nav>
@@ -36,6 +43,18 @@
   </div>
 
   <div id='plate'>
+    <div id='learnmore-content'></div>
+    <div id='getlauren-content'>
+      <span>Name</span>&nbsp;<input type='text'><br><br>
+      <span>Email</span>&nbsp;<input type='text'><br><br>
+      <span>Where do you live?</span>&nbsp;<input type='text'><br><br>
+      <span id='record' class='button'>RECORD</span>
+      <span id='submit' class='button' style='display: none'>SUBMIT</span>
+    </div>
+    <div id='getlauren-thankyou' style='display: none'>
+    Thank you for your interest! If selected, we will follow up with you via email to schedule your Lauren installation.
+    </div>
+    <div id='close' class='button'>x</div>
   </div>
 
 <!--   <section id='whatis'>
@@ -53,10 +72,12 @@
       <img id='jennystu' crossorigin='anonymous' src='img/jennystu.png'>
       <img id='jennystu-thumb' crossorigin='anonymous' src='img/jennystu-thumb.png'>
       <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+      <a-asset-item id="calderDarkFont" src="Calder_Dark_Regular.json"></a-asset-item>
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #b3ffff; src: ${thumb}' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>          
+        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #b3ffff; src: ${thumb}' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
+          <a-entity text-geometry='value: ${text}; font: #calderDarkFont; size: 0.2;' material='color: #ff002f;' position='-1.1 0.4 0' rotation='0 0 20' visible='${text}'></a-entity>
           <a-animation attribute='rotation'
              dur='20000'
              easing='linear'
@@ -79,22 +100,21 @@
          fill='none'
          to='0 -360 0'
          repeat='indefinite'></a-animation>
-
       </a-sky>
 
       <!-- Image links. -->
       <a-entity id='links' layout='type: line; margin: 1.5' position='0 -1 -4' rotation='' scale='' visible=''>
-        <a-entity template='src: #link' data-src='#sean' data-thumb='#sean-thumb' position='' rotation='0 270 0' scale='' visible=''>
+        <a-entity template='src: #link' data-src='#sean' data-thumb='#sean-thumb' data-text='false' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #sean-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #sean' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
-        <a-entity template='src: #link' data-src='#jennystu' data-thumb='#jennystu-thumb' position='' rotation='0 270 0' scale='' visible=''>
+        <a-entity template='src: #link' data-src='#jennystu' data-thumb='#jennystu-thumb' data-text='false' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #jennystu-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #jennystu' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
-        <a-entity template='src: #link' data-src='#amber' data-thumb='#amber-thumb' position='' rotation='0 270 0' scale='' visible=''>
+        <a-entity template='src: #link' data-src='#amber' data-thumb='#amber-thumb' data-text='false' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #amber-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #amber' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
-        <a-entity template='src: #link' data-src='#passthroughVideo' data-thumb='#passthroughVideo' position='' rotation='0 270 0' scale='' visible=''>
-          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #passthroughVideo' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #passthroughVideo' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
+        <a-entity template='src: #link' data-src='#passthroughVideo' data-thumb='#passthroughVideo' data-text='GET LAUREN' position='' rotation='0 270 0' scale='' visible=''>
+          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; metalness: 1; src: #passthroughVideo' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #passthroughVideo' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
       </a-entity>
 

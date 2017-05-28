@@ -18,6 +18,7 @@
 
   <!-- aframe and components -->
   <script src='js/aframe.min.js'></script>
+  <script src='https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js'></script>
   <script src='https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js'></script>
   <script src='https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js'></script>
   <script src='https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js'></script>
@@ -119,7 +120,7 @@
       </a-entity>
 
       <!-- Camera + cursor. -->
-      <a-entity camera='' look-controls='' position='' rotation='' scale='' visible=''>
+      <a-entity camera='' look-controls='' position='' rotation='' scale='' visible=''  mouse-cursor>
         <a-cursor id='cursor' animation__click='property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150' animation__fusing='property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500' event-set__1='_event: mouseenter; color: springgreen' event-set__2='_event: mouseleave; color: black' fuse='true' raycaster='objects: .link' position='' rotation='' scale='' visible='' material='' cursor='' geometry='' color='springgreen' fusing='0.09999999999999998 0.09999999999999998 0.09999999999999998 '></a-cursor>
       </a-entity>
       <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>

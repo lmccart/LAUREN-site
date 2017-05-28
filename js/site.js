@@ -61,7 +61,7 @@ $(document).ready(function() {
   });
 
   $('#lauren').click(function() {
-    window.location = '/';
+    window.location = './';
   });
 
   $('#learnmore').click(function() {

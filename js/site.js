@@ -9,15 +9,27 @@ function blink(val) {
   }
 }
 
-function getLauren() {
-  if ($('#getlauren-content').is(':hidden')) {
-    $('#getlauren-thankyou').hide();
-    $('#learnmore-content').hide();
-    $('#getlauren-content').show();
-    $('#plate').slideDown(500, function() { $('#close').show(); });
-  } else {
-    $('#plate').slideUp(500);
+function hideHomes() {
+  var links = document.querySelector('#links').getChildren();
+  for (var i=0; i<links.length; i++) {
+    if (links[i].getAttribute('template')) {
+      links[i].getChildren()[0].emit('scaleOut');
+    }
   }
+}
+
+function getLauren() {
+  hideHomes();
+  var sky = document.querySelector('#image-360');
+  sky.setAttribute('material', 'src', '#lauren-video');
+  sky.emit('stopRotateSky');
+  document.querySelector('#camera').emit('rotateRecord');
+  document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
+  $('#closeHome').hide();
+  $('#getlauren-thankyou').hide();
+  $('#getlauren-content').show();
+  $('#plate').show();
+  $('#close').show();
 }
 
 function startRecording() {
@@ -77,6 +89,18 @@ $(document).ready(function() {
   $('#close').click(function() {
     $('#close').hide();
     $('#plate').slideUp(500);
+    document.querySelector('#passthroughVideo-sphere').emit('scaleOut');
   });
+
+  $('#closeHome').click(function() {
+    $('#closeHome').hide();
+    var links = document.querySelector('#links').getChildren();
+    for (var i=0; i<links.length; i++) {
+      links[i].getChildren()[0].emit('scaleIn');
+    }
+    var sky = document.querySelector('#image-360');
+    sky.setAttribute('material', 'src', '#lauren-video');
+  });
+
 });
 

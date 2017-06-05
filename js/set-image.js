@@ -38,6 +38,13 @@ AFRAME.registerComponent('set-image', {
         setTimeout(function () {
           // Set image.
           data.target.setAttribute('material', 'src', data.src);
+
+          // Scale out spheres
+          hideHomes();
+          
+          // Pop in close button
+          $('#closeHome').show();
+
         }, data.dur);
       }
     });

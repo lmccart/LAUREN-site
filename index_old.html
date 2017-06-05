@@ -14,7 +14,7 @@
 
   <!-- other libraries -->
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
-  <script src='https://cdn.webrtc-experiment.com/MediaStreamRecorder.js'> </script>
+  <script src="https://cdn.webrtc-experiment.com/MediaStreamRecorder.js"> </script>
 
   <!-- aframe and components -->
   <script src='js/aframe.min.js'></script>
@@ -22,7 +22,7 @@
   <script src='https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js'></script>
   <script src='https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js'></script>
   <script src='https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js'></script>
-  <script src='https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js'></script> 
+  <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
 
   <!-- custom js -->
   <script src='js/set-image.js'></script>
@@ -38,6 +38,10 @@
       <div id='learnmore' class='button'>LEARN MORE</div>
     </div>
   </nav>
+
+  <div id='intro'>
+    <div id='greeting'></div>
+  </div>
 
   <div id='plate'>
     <div id='learnmore-content'></div>
@@ -59,17 +63,17 @@
   </section> -->
   <a-scene class='fullscreen' canvas='' inspector='' keyboard-shortcuts='' screenshot='' vr-mode-ui='' auto-enter-vr=''>
     <a-assets>
-      <video id='lauren-video' src='vid/lauren-broll.mp4' autoplay='true' loop muted>
       <img id='kristen' crossorigin='anonymous' src='img/kristen.png'>
       <img id='kristen-thumb' crossorigin='anonymous' src='img/kristen-thumb.png'>
+<!--       <video id="kristen-video" src="vid/kristen-sms.mov" autoplay="true" loop muted> -->
       <img id='sean' crossorigin='anonymous' src='img/sean.png'>
       <img id='sean-thumb' crossorigin='anonymous' src='img/sean-thumb.png'>
       <img id='amber' crossorigin='anonymous' src='img/amber.png'>
       <img id='amber-thumb' crossorigin='anonymous' src='img/amber-thumb.png'>
       <img id='jennystu' crossorigin='anonymous' src='img/jennystu.png'>
       <img id='jennystu-thumb' crossorigin='anonymous' src='img/jennystu-thumb.png'>
-      <audio id='click-sound' crossorigin='anonymous' src='https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg'></audio>
-      <a-asset-item id='calderDarkFont' src='Calder_Dark_Regular.json'></a-asset-item>
+      <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+      <a-asset-item id="calderDarkFont" src="Calder_Dark_Regular.json"></a-asset-item>
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
@@ -90,7 +94,7 @@
       <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
       <!-- 360-degree image. -->
 
-      <a-sky id='image-360' radius='10' src='#lauren-video' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''>
+      <a-sky id='image-360' radius='10' src='#kristen' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''>
         <a-animation attribute='rotation'
          dur='200000'
          easing='linear'

@@ -1,16 +1,3 @@
-var phrase = 'Hi, I\'m Lauren and I want to be your smart home.';
-
-function nextChar(i){
-  $('#greeting').text(phrase.substring(0, i));
-  if(i < phrase.length){
-    setTimeout('nextChar(' + (i + 1) + ')', 100);   
-  }
-}
-
-function exitIntro() {
-  $('#intro').slideToggle(500);
-  blink(true);
-}
 
 var timeout, interval;
 function blink(val) {
@@ -47,8 +34,6 @@ function startRecording() {
 
 $(document).ready(function() {
   startPassthrough();
-  nextChar(0);
-  setTimeout(exitIntro, phrase.length*100+1500);
 
   $('#lauren').mouseover(function() {
     $('#lauren').css('font-weight', '800');

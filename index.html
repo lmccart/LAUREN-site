@@ -57,8 +57,9 @@
 
   <a-scene class='fullscreen' canvas='' inspector='' keyboard-shortcuts='' screenshot='' vr-mode-ui='' auto-enter-vr=''>
     <a-assets>
-      <video id='lauren-video' src='vid/lauren-broll.mp4' autoplay='true' loop muted>
-      <video id='kristen-video' src='vid/kristen.mp4' autoplay='true' loop muted>
+      <video id='lauren-video' src='vid/lauren-broll.mp4' autoplay loop='true' muted></video>
+      <video id='lauren-listening' src='vid/lauren-listening.mp4' autoplay loop='true' muted></video>
+      <video id='kristen-video' src='vid/kristen.mp4' autoplay loop='true' muted></video>
       <img id='kristen-thumb' crossorigin='anonymous' src='img/kristen-thumb.png'>
       <img id='sean' crossorigin='anonymous' src='img/sean.png'>
       <img id='sean-thumb' crossorigin='anonymous' src='img/sean-thumb.png'>
@@ -71,7 +72,7 @@
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #b3ffff; src: ${thumb}' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
+        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #ffffff; src: ${thumb}' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
           <a-animation attribute='rotation' dur='20000' easing='linear' fill='none' to='0 360 0' repeat='indefinite'></a-animation>
           <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
           <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1.2 1.2 1'></a-animation>
@@ -84,9 +85,11 @@
       <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
       <!-- 360-degree image. -->
 
-      <a-sky id='image-360' radius='10' src='#lauren-video' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''>
+      <a-videosphere id='image-360' radius='10' src='#lauren-video'>
+      <!--data-set-image-fade-setup='true' animation__fade=''-->
         <a-animation  begin='startRotateSky' end='stopRotateSky' attribute='rotation' dur='100000' easing='linear' fill='none' to='0 -360 0' repeat='indefinite'></a-animation>
-      </a-sky>
+        <a-animation  begin='rotateRecordSky' attribute='rotation' dur='500' easing='linear' to='0 -40 0'></a-animation>
+      </a-videosphere>
 
       <!-- Image links. -->
       <a-entity id='links' layout='type: circle; radius: 3' position='0 0 0' rotation='0 45 0' scale='' visible=''>
@@ -100,7 +103,7 @@
         <a-entity template='src: #link' data-src='#amber' data-thumb='#amber-thumb' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #amber-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #amber' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
-        <a-entity template='src: #link' data-src='#kristen-video' data-thumb='#kristen-thumb' position='' rotation='0 270 0' scale='' visible=''>
+        <a-entity template='src: #link' data-src='#kristen-video' data-thumb='#kristen-video' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #amber-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #amber' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
         </a-entity>
         <a-entity template='src: #link' data-src='#amber' data-thumb='#amber-thumb' position='' rotation='0 270 0' scale='' visible=''>
@@ -116,7 +119,7 @@
 
       <!-- Camera + cursor. -->
       <a-entity id='camera' camera='' look-controls='' position='' rotation='' scale='' visible='' mouse-cursor>
-        <a-animation begin='rotateRecord' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
+        <a-animation begin='rotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
         <a-cursor id='cursor' animation__click='property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150' animation__fusing='property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500' event-set__1='_event: mouseenter; color: springgreen' event-set__2='_event: mouseleave; color: black' fuse='true' raycaster='objects: .link' position='' rotation='' scale='' visible='' material='' cursor='' geometry='' color='springgreen' fusing='0.09999999999999998 0.09999999999999998 0.09999999999999998 '></a-cursor>
       </a-entity>
       <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>

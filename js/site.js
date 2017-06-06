@@ -12,18 +12,18 @@ function blink(val) {
 function hideHomes() {
   var links = document.querySelector('#links').getChildren();
   for (var i=0; i<links.length; i++) {
-    if (links[i].getAttribute('template')) {
-      links[i].getChildren()[0].emit('scaleOut');
-    }
+    links[i].getChildren()[0].emit('scaleOut');
   }
 }
 
 function getLauren() {
   hideHomes();
   var sky = document.querySelector('#image-360');
-  sky.setAttribute('material', 'src', '#lauren-video');
+
+  sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
   sky.emit('stopRotateSky');
-  document.querySelector('#camera').emit('rotateRecord');
+  sky.emit('rotateRecordSky');
+  document.querySelector('#camera').emit('rotateRecordCamera');
   document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
   $('#closeHome').hide();
   $('#getlauren-thankyou').hide();
@@ -99,7 +99,7 @@ $(document).ready(function() {
       links[i].getChildren()[0].emit('scaleIn');
     }
     var sky = document.querySelector('#image-360');
-    sky.setAttribute('material', 'src', '#lauren-video');
+    sky.setAttribute('material', 'shader: standard; src: #lauren-video');
   });
 
 });

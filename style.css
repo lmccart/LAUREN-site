@@ -5,18 +5,30 @@ body {
   font-family: 'calder-lc-1','calder-lc-2', sans-serif;
 }
 
+iframe {
+  z-index: 3;
+}
 
-#plate {
-  width: 45%;
-  height: 80%;
+#video {
+  z-index: 3;
   position: absolute;
-  top: 10%;
+  top: 0;
+  left: 0;
+}
+
+.plate {
+  width: 45%;
+  height: 85%;
+  position: absolute;
+  top: -100%;
   left: 5%;
   background-color: #f9f5e7;
   z-index: 3;
-  display: none;
 }
 
+#learnmore-plate {
+  width: 90%;
+}
 
 nav {
   position: absolute;
@@ -41,9 +53,9 @@ h1 {
 
 #closeHome {
   position: absolute;
-  top: 0.1em;
-  right: 0.5em;
-  font-size: 2.2em;
+  top: -0.25em;
+  right: 0.25em;
+  font-size: 4em;
   display: none;
   cursor: pointer;
 }
@@ -382,81 +394,4 @@ a-scene video {
   height: 50px;
   text-indent: -9999px;
   width: 50px
-}
-</style><style type="text/css" data-href="src/style/rStats.css">.rs-base {
-  background-color: #333;
-  color: #fafafa;
-  border-radius: 0;
-  font: 10px monospace;
-  left: 5px;
-  line-height: 1em;
-  opacity: .85;
-  overflow: hidden;
-  padding: 10px;
-  position: fixed;
-  top: 5px;
-  width: 300px;
-  z-index: 10000
-}
-.rs-base div.hidden {
-  display: none
-}
-.rs-base h1 {
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.4em;
-  font-weight: 300;
-  margin: 0 0 5px;
-  padding: 0
-}
-.rs-group {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column-reverse;
-  flex-direction: column-reverse;
-  margin-bottom: 5px
-}
-.rs-group:last-child {
-  margin-bottom: 0
-}
-.rs-counter-base {
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  height: 10px;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  margin: 2px 0
-}
-.rs-counter-base.alarm {
-  color: #b70000;
-  text-shadow: 0 0 0 #b70000, 0 0 1px #fff, 0 0 1px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 4px #fff
-}
-.rs-counter-id {
-  font-weight: 300;
-  -webkit-box-ordinal-group: 0;
-  -webkit-order: 0;
-  order: 0;
-  width: 54px
-}
-.rs-counter-value {
-  font-weight: 300;
-  -webkit-box-ordinal-group: 1;
-  -webkit-order: 1;
-  order: 1;
-  text-align: right;
-  width: 35px
-}
-.rs-canvas {
-  -webkit-box-ordinal-group: 2;
-  -webkit-order: 2;
-  order: 2
-}
-@media (min-width: 480px) {
-  .rs-base {
-      left: 20px;
-      top: 20px
-  }
 }

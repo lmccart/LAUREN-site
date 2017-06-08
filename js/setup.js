@@ -1,12 +1,14 @@
 AFRAME.registerComponent('setup', {
   schema: {},
   init: function () {
-    setTimeout(function() {
-      var sky = document.querySelector('#image-360');
-      console.log(sky)
-      sky.emit('startRotateSky');
-      var homes = document.querySelector('#links');
-      homes.emit('startRotateHomes');
-    }, 3000);
+    document.querySelector('#image-360').emit('startRotateSky');
+    var links = document.querySelector('#links');
+    console.log(links)
+    links.addEventListener('animationcomplete', function () {
+      var rot = links.getAttribute('rotation').y + 72;
+      links.setAttribute('animation', 'to', '0 '+rot+' 0');
+      setTimeout(function() { links.emit('startRotateHomes'); }, 3000);
+    });
+    links.emit('startRotateHomes');
   }
 });

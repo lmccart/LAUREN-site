@@ -27,7 +27,7 @@ AFRAME.registerComponent('set-image', {
       } else {
         // Wait for fade to complete.
         data.target.setAttribute('material', 'shader: flat; color: #ffffff; src: '+data.src);
-        hideHomes();
+        toggleHomes(false);
         // Pop in close button
         $('#closeHome').show();
         console.log(data.target)

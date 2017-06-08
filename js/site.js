@@ -1,36 +1,39 @@
+var plate = 0; // 1 - learnmore, 2 - getlauren
 
-var timeout, interval;
-function blink(val) {
-  if (val) {
-    interval = setInterval(function() { $('#lauren').css('font-weight', '800'); }, 3000);
-    timeout = setTimeout( function() { 
-      setInterval(function() { $('#lauren').css('font-weight', '300'); }, 3000);
-    }, 1500);
-  }
-}
-
-function hideHomes() {
+function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
   for (var i=0; i<links.length; i++) {
-    links[i].getChildren()[0].emit('scaleOut');
+    if(links[i].tagName === 'A-ENTITY') {
+      if (val) links[i].getChildren()[0].emit('scaleIn');
+      else links[i].getChildren()[0].emit('scaleOut');
+    }
   }
 }
 
-function getLauren() {
-  hideHomes();
-  var sky = document.querySelector('#image-360');
-
-  sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
-  sky.emit('stopRotateSky');
-  sky.emit('rotateRecordSky');
-  document.querySelector('#camera').emit('rotateRecordCamera');
-  document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
+function closeHome() {
   $('#closeHome').hide();
-  $('#getlauren-thankyou').hide();
-  $('#getlauren-content').show();
-  $('#plate').show();
-  $('#close').show();
+  toggleHomes(true);
+  var sky = document.querySelector('#image-360');
+  sky.setAttribute('material', 'shader: standard; src: #lauren-video');
 }
+
+function getLauren(val) {
+  toggleHomes(!val);
+  var sky = document.querySelector('#image-360');
+  if (val) {
+    sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
+    sky.emit('stopRotateSky');
+    sky.emit('rotateRecordSky');
+    document.querySelector('#camera').emit('rotateRecordCamera');
+    document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
+  } else {
+    sky.setAttribute('material', 'shader: flat; src: #lauren-video');
+    sky.emit('startRotateSky');
+    document.querySelector('#camera').emit('unrotateRecordCamera');
+    document.querySelector('#passthroughVideo-sphere').emit('scaleOut');
+  }
+}
+
 
 function startRecording() {
   $('#plate').slideUp(500);
@@ -47,33 +50,45 @@ function startRecording() {
 $(document).ready(function() {
   startPassthrough();
 
-  $('#lauren').mouseover(function() {
-    $('#lauren').css('font-weight', '800');
-    $('#options').stop().fadeIn();
-  });
-
-  $('nav').mouseleave(function() {
-    $('#options').stop().fadeOut();
-    var val = $('#plate').is(':hidden');
-  });
-
-  $('#lauren').click(function() {
-    window.location = './';
-  });
-
   $('#learnmore').click(function() {
-    if ($('#learnmore-content').is(':hidden')) {
+    if (plate == 1) {
+      $('#learnmore-content').hide();
+      $('#close').hide();
+      $('#plate').slideUp(500);
+      plate = 0;
+    } else {
       $('#getlauren-content').hide();
       $('#learnmore-content').show();
-      $('#plate').slideDown(500, function() { $('#close').show(); });
-    } else {
-      $('#plate').slideUp(500);
+      if (plate == 2) {
+        getLauren(false);
+        $('#plate').animate({ width:'90%' });
+      } else {
+        $('#plate').slideDown(500, function() { $('#close').show(); });
+      }
+      plate = 1;
     }
   });
 
   $('#getlauren').click(function() {
-    getLauren();
+    if (plate == 2) {
+      $('#getlauren-content').hide();
+      $('#close').hide();
+      $('#plate').slideUp(500);
+      getLauren(false);
+      plate = 0;
+    } else {
+      $('#learnmore-content').hide();
+      $('#getlauren-content').show();
+      getLauren(true);
+      if (plate == 1) {
+        $('#plate').animate({ width:'45%' });
+      } else {
+        $('#plate').slideDown(500, function() { $('#close').show(); });
+      }
+      plate = 2;
+    }
   });
+
 
   $('#record').click(function() {
     startRecording();
@@ -89,17 +104,14 @@ $(document).ready(function() {
   $('#close').click(function() {
     $('#close').hide();
     $('#plate').slideUp(500);
-    document.querySelector('#passthroughVideo-sphere').emit('scaleOut');
+    if (plate == 2) {
+      getLauren(false);
+    }
+    plate = 0;
   });
 
   $('#closeHome').click(function() {
-    $('#closeHome').hide();
-    var links = document.querySelector('#links').getChildren();
-    for (var i=0; i<links.length; i++) {
-      links[i].getChildren()[0].emit('scaleIn');
-    }
-    var sky = document.querySelector('#image-360');
-    sky.setAttribute('material', 'shader: standard; src: #lauren-video');
+    closeHome();
   });
 
 });

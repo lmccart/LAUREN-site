@@ -13,9 +13,10 @@ body {
   top: 10%;
   left: 5%;
   background-color: #f9f5e7;
-  z-index: 2;
+  z-index: 3;
   display: none;
 }
+
 
 nav {
   position: absolute;
@@ -34,6 +35,7 @@ h1 {
   padding: 0;
   font-size: 2.2em;
   font-weight: 300;
+  color: #ff002f !important;
   float: left;
 }
 
@@ -52,40 +54,36 @@ h1 {
   cursor: pointer;
 }
 
-#options {
-  display: none;
-}
-
 #learnmore, #getlauren {
   float: left;
-  margin: 0.5em 0 0 0.8em;
+  margin: 0.5em 0 0 1em;
   font-size: 1em;
 }
 
 #getlauren {
-    -ms-transform: rotate(20deg); /* IE 9 */
-    -webkit-transform: rotate(20deg); /* Safari */
-    transform: rotate(20deg);
+/*  -ms-transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  transform: rotate(20deg);*/
 }
 
 #greeting {
   max-width: 1200px;
   margin: 0 auto;
   font-size: 5em;
-  color: #DBD9DE;
+  color: black;
   margin-top: 3em;
 }
 
 #close {
   position: absolute;
-  bottom: 1em;
+  bottom: 0.25em;
   left: 0;
   width: 100%;
   text-align: center;
   font-size: 2em;
   cursor: pointer;
   font-size: 4em;
-  color: #77006e;
+  color: black;
 }
 
 
@@ -93,7 +91,7 @@ h1 {
   max-width: 1200px;
   margin: 6em auto 0 auto;
   font-size: 2em;
-  color: #77006e;
+  color: black;
 }
 
 #getlauren-thankyou {
@@ -109,7 +107,7 @@ h1 {
 
 input {
   border: 0;
-  border-bottom: 2px solid #77006e;
+  border-bottom: 2px solid black;
   outline: 0 !important;
   background: none;
   width: 500px;

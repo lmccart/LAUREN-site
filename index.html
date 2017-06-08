@@ -32,16 +32,19 @@
 
 <body class='a-body'>
   <nav>
-    <h1 id='lauren' class='button'>LAUREN</h1>
+    <a href='./' class='button'><h1 id='lauren' class='button'>LAUREN</h1></a>
     <div id='options'>
-      <div id='getlauren' class='button'>GET LAUREN&nbsp;</div>
       <div id='learnmore' class='button'>LEARN MORE</div>
+      <div id='getlauren' class='button'>GET LAUREN&nbsp;</div>
     </div>
     <div id='closeHome' class='button'>x</div>
   </nav>
 
   <div id='plate'>
-    <div id='learnmore-content'></div>
+    <div id='learnmore-content'>
+      <div id='close' class='button' style='display: none'>x</div>
+    </div>
+
     <div id='getlauren-content'>
       <span>Name</span>&nbsp;<input type='text'><br><br>
       <span>Email</span>&nbsp;<input type='text'><br><br>
@@ -49,10 +52,11 @@
       <span id='record' class='button'>RECORD</span>
       <span id='submit' class='button' style='display: none'>SUBMIT</span>
     </div>
-    <div id='getlauren-thankyou' style='display: none'>
-    Thank you for your interest! If selected, we will follow up with you via email to schedule your Lauren installation.
+<!--     <div id='getlauren-thankyou' style='display: none'>
+      Thank you for your interest! If selected, we will follow up with you via email to schedule your Lauren installation.
     </div>
-    <div id='close' class='button' style='display: none'>x</div>
+    <div id='close' class='button' style='display: none'>x</div> -->
+
   </div>
 
   <a-scene class='fullscreen' canvas='' inspector='' keyboard-shortcuts='' screenshot='' vr-mode-ui='' auto-enter-vr=''>
@@ -87,12 +91,14 @@
 
       <a-videosphere id='image-360' radius='10' src='#lauren-video'>
       <!--data-set-image-fade-setup='true' animation__fade=''-->
-        <a-animation  begin='startRotateSky' end='stopRotateSky' attribute='rotation' dur='100000' easing='linear' fill='none' to='0 -360 0' repeat='indefinite'></a-animation>
+        <a-animation  begin='startRotateSky' end='stopRotateSky' attribute='rotation' dur='80000' easing='linear' fill='none' to='0 -360 0' repeat='indefinite'></a-animation>
         <a-animation  begin='rotateRecordSky' attribute='rotation' dur='500' easing='linear' to='0 -40 0'></a-animation>
       </a-videosphere>
 
       <!-- Image links. -->
       <a-entity id='links' layout='type: circle; radius: 3' position='0 0 0' rotation='0 45 0' scale='' visible=''>
+
+        <a-animation  begin='startRotateHomes' end='stopRotateHomes' attribute='rotation' dur='1000' delay='1000' easing='linear' fill='none' to='0 -30 0' repeat='indefinite'></a-animation>
           
         <a-entity template='src: #link' data-src='#sean' data-thumb='#sean-thumb' position='' rotation='0 270 0' scale='' visible=''>
           <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #sean-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #sean' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
@@ -120,6 +126,7 @@
       <!-- Camera + cursor. -->
       <a-entity id='camera' camera='' look-controls='' position='' rotation='' scale='' visible='' mouse-cursor>
         <a-animation begin='rotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
+        <a-animation begin='unrotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 0 0'></a-animation>
         <a-cursor id='cursor' animation__click='property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150' animation__fusing='property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500' event-set__1='_event: mouseenter; color: springgreen' event-set__2='_event: mouseleave; color: black' fuse='true' raycaster='objects: .link' position='' rotation='' scale='' visible='' material='' cursor='' geometry='' color='springgreen' fusing='0.09999999999999998 0.09999999999999998 0.09999999999999998 '></a-cursor>
       </a-entity>
       <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>

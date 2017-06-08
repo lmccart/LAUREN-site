@@ -103,7 +103,7 @@ $(document).ready(function() {
     $('#getlauren-thankyou').show();
   });
 
-  $('#close').click(function() {
+  $('.close').click(function() {
     if (plate == 1) {
       $('#learnmore-plate').animate({ top: -$('#learnmore-plate').height() });
     }

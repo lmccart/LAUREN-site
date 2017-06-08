@@ -86,7 +86,7 @@ h1 {
   margin-top: 3em;
 }
 
-#close {
+.close {
   position: absolute;
   bottom: 0.25em;
   left: 0;
@@ -98,13 +98,11 @@ h1 {
   color: black;
 }
 
-
-#getlauren-content, #getlauren-thankyou  {
-  max-width: 1200px;
-  margin: 6em auto 0 auto;
-  font-size: 2em;
+.content {
+  margin: 1em;
   color: black;
 }
+
 
 #getlauren-thankyou {
   line-height: 1.5;

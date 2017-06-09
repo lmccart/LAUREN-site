@@ -10,6 +10,7 @@
 
   <script src='https://use.typekit.net/epy8gek.js'></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel='stylesheet' href='style.css'>
 
   <!-- other libraries -->
@@ -91,7 +92,7 @@
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #ffffff; src: ${thumb}' set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #FFEB85;' event-set__2='_event: mouseleave; material.color: #ffffff;' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
+        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #ffffff; src: ${thumb}' set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #FFF3A8;' event-set__2='_event: mouseleave; material.color: #ffffff;' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
           <a-animation attribute='rotation' dur='20000' easing='linear' to='0 360 0' repeat='indefinite'></a-animation>
           <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
           <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1.2 1.2 1'></a-animation>

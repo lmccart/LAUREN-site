@@ -14,6 +14,19 @@ iframe {
   position: absolute;
   top: 0;
   left: 0;
+  color: red;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f5e7;
+  opacity: 0.5;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .plate {
@@ -39,6 +52,12 @@ nav {
   z-index: 3;
   color: #ff002f;
   height: 3em;
+}
+
+#lauren-top {
+  position: absolute;
+  top: 0.5em;
+  left: 0;
 }
 
 h1 {
@@ -95,7 +114,6 @@ h1 {
   font-size: 2em;
   cursor: pointer;
   font-size: 4em;
-  color: black;
 }
 
 .content {
@@ -165,6 +183,11 @@ input {
   cursor: -webkit-grabbing
 }
 
+.blur {
+  -webkit-filter: blur(20px); /* Safari 6.0 - 9.0 */
+  filter: blur(20px);
+}
+
 a-scene.fullscreen .a-canvas {
   width: 100%!important;
   height: 100%!important;
@@ -173,7 +196,7 @@ a-scene.fullscreen .a-canvas {
   right: 0!important;
   bottom: 0!important;
   z-index: 999999!important;
-  position: fixed!important
+  position: fixed!important;
 }
 .a-inspector-loader {
   background-color: #ed3160;

@@ -42,8 +42,14 @@
   </nav>
 
   <div id='video'>
-    <iframe src="https://player.vimeo.com/video/149917476?color=ffffff&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe id='video-frame' src="https://player.vimeo.com/video/149917476?color=ffffff&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <div id='video-top'>
+      <a href='./' class='button'><h1 id='lauren-top' class='button'>LAUREN</h1></a>
+      <div class='close button'>x</div>
+    </div>
   </div>
+
+  <div id='overlay'></div>
 
   <div id='learnmore-plate' class='plate'>
     <div id='learnmore-content' class='content'>
@@ -68,7 +74,7 @@
 
   </div>
 
-  <a-scene class='fullscreen' canvas keyboard-shortcuts screenshot>
+  <a-scene class='fullscreen blur' canvas keyboard-shortcuts screenshot>
     <a-assets>
       <video id='lauren-video' src='vid/lauren-broll.mp4' autoplay loop='true' muted></video>
       <video id='lauren-listening' src='vid/lauren-listening.mp4' autoplay loop='true' muted></video>

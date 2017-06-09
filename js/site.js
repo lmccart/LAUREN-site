@@ -1,4 +1,5 @@
 var plate = 0; // 1 - learnmore, 2 - getlauren
+var h;
 
 function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
@@ -46,19 +47,30 @@ function startRecording() {
   }, 5000);
 }
 
+function hideVideo() {
+  $('#video-top').hide();
+  $('#overlay').hide();
+  $('a-scene').removeClass('blur');
+  $('#video').animate({ top: -h }, function() {
+    $('#video').remove();
+  });
+}
+
 $(document).ready(function() {
+  //$('#video-top').show(0).delay(3000).hide(0);
 
   var w = document.documentElement.clientWidth;
   $('iframe').width(w);
-  var h = w*360/640;
+  h = w*360/640;
   $('iframe').height(h);
 
-  $('a-scene').click(function() {
-    $('#video').animate({ top: -h }, function() {
-      $('#video').remove();
-    });
+  $('#video .close').click(function() {
+    hideVideo();
   });
 
+  $('#overlay').click(function() {
+    hideVideo();
+  });
 
   startPassthrough();
 

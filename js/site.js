@@ -64,8 +64,8 @@ function hideVideo() {
 
 $(document).ready(function() {
 
-  hideVideo();
-  setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
+  //hideVideo();
+  //setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
   startPassthrough();
 
   $('#lauren').click(function() { window.location = './'; });

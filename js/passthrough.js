@@ -1,6 +1,6 @@
 var passthroughStream;
 
-function setupCanvas(videoSourceId) {
+function startPassthrough() {
   var video = document.createElement('video');
   video.setAttribute('id', 'passthroughVideo');
   video.setAttribute('autoplay', true);
@@ -11,17 +11,12 @@ function setupCanvas(videoSourceId) {
   var assets = document.getElementsByTagName('a-assets')[0];
   assets.appendChild(video);
 
-  // var passthroughEl = self.el;
-  // passthroughEl.setAttribute('src', '#passthroughVideo')
-
   var mediaConfig = {
     video: {
       width: {min: 1280, ideal: 1280, max: 1920},
       height: {min: 720, ideal: 720, max: 1080}
     }
   }
-
-  if (videoSourceId) mediaConfig.video.option= [{ sourceId: videoSourceId }];
 
   var errBack = function(e) {
     console.log('An error has occurred!', e)
@@ -55,22 +50,12 @@ function setupCanvas(videoSourceId) {
   }
 }
 
-function withBackCamera(sourceInfos) {
-  var videoSourceId;
-  for (var i = 0; i != sourceInfos.length; ++i) {
-    var sourceInfo = sourceInfos[i];
-    if (sourceInfo.kind == "video" && sourceInfo.facing == "environment") {
-      videoSourceId = sourceInfo.id;
-    }
-  }
-  setupCanvas(videoSourceId);
-}
 
-function startPassthrough() {
-  if(MediaStreamTrack && MediaStreamTrack.getSources) {
-    MediaStreamTrack.getSources(withBackCamera);
-  } else {
-    setupCanvas(null);
+function endPassthrough() {
+  if (passthroughStream) {
+    var track = passthroughStream.getTracks()[0];
+    track.stop();
+    $('#video').remove();
   }
 }
 

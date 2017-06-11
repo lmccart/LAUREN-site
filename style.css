@@ -10,11 +10,16 @@ iframe {
 }
 
 #video {
-  z-index: 3;
+  z-index: 4;
   position: absolute;
   top: 0;
   left: 0;
   color: red;
+}
+
+#video-close {
+  left: 5%;
+  width: 90%;
 }
 
 #overlay {
@@ -25,8 +30,29 @@ iframe {
   height: 100%;
   background-color: #f9f5e7;
   opacity: 0.5;
-  z-index: 2;
+  z-index: 3;
   cursor: pointer;
+}
+
+#overlay-gradient {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  z-index: 2;
+  opacity: 0.85;
+
+  background: -moz-linear-gradient(90deg, rgba(249,245,231,1) 0%, rgba(249,245,231,0) 50%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, rgba(249,245,231,0)), color-stop(100%, rgba(249,245,231,1))); /* safari4+,chrome */
+  background: -webkit-linear-gradient(90deg, rgba(249,245,231,1) 0%, rgba(249,245,231,0) 50%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(90deg, rgba(249,245,231,1) 0%, rgba(249,245,231,0) 50%); /* opera 11.10+ */
+  background: -ms-linear-gradient(90deg, rgba(249,245,231,1) 0%, rgba(249,245,231,0) 50%); /* ie10+ */
+  background: linear-gradient(0deg, rgba(249,245,231,1) 0%, rgba(249,245,231,0) 50%); /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f5e7', endColorstr='#f9f5e7',GradientType=0 ); /* ie6-9 */
+
 }
 
 .plate {
@@ -41,17 +67,22 @@ iframe {
 
 #learnmore-plate {
   width: 90%;
+  max-width: 1000px;
+/*  top: 10%;*/
+
 }
 
 nav {
+  display: none;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   padding: 1em 0;
   z-index: 3;
   color: #ff002f;
   height: 3em;
+  text-align: center;
 }
 
 #lauren-top {
@@ -62,12 +93,23 @@ nav {
 
 h1 {
   font-family: 'calder-dark-outline', sans-serif;
-  margin: 0 0 0 0.5em;
+  margin: 0 0.5em;
   padding: 0;
-  font-size: 2.2em;
+  font-size: 2.5em;
   font-weight: 300;
   color: #ff002f !important;
-  float: left;
+  text-decoration: none;
+  display: inline;
+}
+
+h2 {
+  margin: 0 0 0.5em 0;
+  font-family: 'calder-lc', sans-serif;
+  font-size: 1.25em;
+}
+
+p {
+  margin: 0 0 2.5em 0;
 }
 
 #closeHome {
@@ -77,6 +119,8 @@ h1 {
   font-size: 4em;
   display: none;
   cursor: pointer;
+  z-index: 2;
+  color: #ff002f;
 }
 
 
@@ -86,16 +130,10 @@ h1 {
 }
 
 #learnmore, #getlauren {
-  float: left;
-  margin: 0.5em 0 0 1em;
-  font-size: 1em;
+  margin: 0.5em 0;
+  font-size: 1.2em;
 }
 
-#getlauren {
-/*  -ms-transform: rotate(20deg);
-  -webkit-transform: rotate(20deg);
-  transform: rotate(20deg);*/
-}
 
 #greeting {
   max-width: 1200px;
@@ -107,7 +145,7 @@ h1 {
 
 .close {
   position: absolute;
-  bottom: 0.25em;
+  bottom: 0;
   left: 0;
   width: 100%;
   text-align: center;
@@ -118,7 +156,10 @@ h1 {
 
 .content {
   margin: 1em;
+  padding: 1em;
   color: black;
+  overflow: scroll;
+  height: 80%;
 }
 
 

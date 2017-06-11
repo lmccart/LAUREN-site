@@ -17,7 +17,6 @@ AFRAME.registerComponent('set-image', {
     var el = this.el;
 
     el.addEventListener('record', function () {
-      // Wait for fade to complete.
       data.target.setAttribute('material', 'src', data.src);
     });
 
@@ -25,14 +24,17 @@ AFRAME.registerComponent('set-image', {
       if (el.id === '#passthroughVideo-sphere') {
         getLauren();
       } else {
-        // Wait for fade to complete.
+        data.target.setAttribute('src', data.src);
         data.target.setAttribute('material', 'shader: flat; color: #ffffff; src: '+data.src);
         toggleHomes(false);
-        // Pop in close button
         $('#closeHome').show();
-        console.log(data.target)
-
       }
+    });
+
+    el.addEventListener('close', function() {
+      console.log('CLOSE')
+      console.log(el.components.sound)
+      el.components.sound.stopSound();
     });
   }
 });

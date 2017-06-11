@@ -12,10 +12,14 @@ function toggleHomes(val) {
 }
 
 function closeHome() {
+  var sky = document.querySelector('#image-360');
+  var currentId = sky.getAttribute('src');
+  var currentHome = $('#links').find('[data-src="' + currentId + '"]')[0].children[0];
+  currentHome.emit('close');
+  sky.setAttribute('material', 'shader: standard; src: #lauren-video');
   $('#closeHome').hide();
   toggleHomes(true);
-  var sky = document.querySelector('#image-360');
-  sky.setAttribute('material', 'shader: standard; src: #lauren-video');
+
 }
 
 function getLauren(val) {
@@ -42,7 +46,7 @@ function startRecording() {
   setTimeout(function() {
     $('#record').hide();
     $('#submit').show();
-    $('#plate').animate({ top: '10%' });
+    $('#plate').animate({ top: '5%' });
     links.children[1].children[0].emit('click');
   }, 5000);
 }
@@ -50,6 +54,8 @@ function startRecording() {
 function hideVideo() {
   $('#video-top').hide();
   $('#overlay').hide();
+  $('nav').show();
+  $('#overlay-gradient').show();
   $('a-scene').removeClass('blur');
   $('#video').animate({ top: -h }, function() {
     $('#video').remove();
@@ -57,22 +63,12 @@ function hideVideo() {
 }
 
 $(document).ready(function() {
-  //$('#video-top').show(0).delay(3000).hide(0);
 
-  var w = document.documentElement.clientWidth;
-  $('iframe').width(w);
-  h = w*360/640;
-  $('iframe').height(h);
+  //hideVideo();
 
-  $('#video .close').click(function() {
-    hideVideo();
-  });
+  //startPassthrough();
 
-  $('#overlay').click(function() {
-    hideVideo();
-  });
-
-  startPassthrough();
+  $('#lauren').click(function() { window.location = './'; });
 
   $('#learnmore').click(function() {
     if (plate == 1) {
@@ -83,7 +79,7 @@ $(document).ready(function() {
         getLauren(false);
         $('#getlauren-plate').animate({ top: -$('#getlauren-plate').height() });
       }
-      $('#learnmore-plate').animate({ top:'10%' });
+      $('#learnmore-plate').animate({ top:'5%' });
       plate = 1;
     }
   });
@@ -98,7 +94,7 @@ $(document).ready(function() {
       if (plate == 1) {
         $('#learnmore-plate').animate({ top: -$('#getlauren-plate').height() });
       }
-      $('#getlauren-plate').animate({ top:'10%' });
+      $('#getlauren-plate').animate({ top:'5%' });
       plate = 2;
     }
   });
@@ -130,5 +126,43 @@ $(document).ready(function() {
     closeHome();
   });
 
+  // VIMEO STUFF
+  var iframe = document.querySelector('iframe');
+  var player = new Vimeo.Player(iframe);
+
+  player.on('ended', function() {
+    console.log('ended the video!');
+    hideVideo();
+  });
+
+  var w = document.documentElement.clientWidth;
+  $('iframe').width(w);
+  h = w*360/640;
+  $('iframe').height(h);
+
+  $('#video-close-button').click(function() {
+    hideVideo();
+  });
+
+  $('#overlay').click(function() {
+    hideVideo();
+  });
+
+  $('a-scene').click(function() {
+    if (plate == 1) {
+
+    } else if (plate == 2) {
+
+    }
+  });
+
+  $('#video-close').css('top', $('iframe').height()*0.55);
+  $('#video-close').css('height', Math.min($('iframe').height()*0.45, window.innerHeight - $('iframe').height()*0.55));
+  $('#video-close-button').css('margin-top', $('#video-close').height() - $('#video-close-button').height());
+
+  $('.popper').show(0).delay(8000).hide(0);
+  $('#video-close').mousemove(function() {
+    if ($('.popper').is(':hidden')) $('.popper').show(0).delay(3000).hide(0);
+  });
 });
 

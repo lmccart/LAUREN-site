@@ -92,19 +92,32 @@
       <img id='kristen' crossorigin='anonymous' src='img/kristen.jpg'>
       <audio id='kristen-audio' crossorigin='anonymous' src='vid/ruthstanley.ogg'></audio>
 
-      <img id='megan' crossorigin='anonymous' src='img/megan.jpg'>
-      <img id='amber' crossorigin='anonymous' src='img/amber.jpg'>
-
-      <img id='jennystu' crossorigin='anonymous' src='img/jennystu.jpg'>
-      <audio id='jennystu-audio' crossorigin='anonymous' src='vid/jennystu.ogg'></audio>
       <img id='alex' crossorigin='anonymous' src='img/alex.jpg'>
+      <img id='alex-thumb' crossorigin='anonymous' src='img/alex-thumb.jpg'>
       <audio id='alex-audio' crossorigin='anonymous' src='vid/alex.ogg'></audio>
+      <img id='amber' crossorigin='anonymous' src='img/amber.jpg'>
+      <img id='amber-thumb' crossorigin='anonymous' src='img/amber-thumb.jpg'>
+      <img id='jackmark' crossorigin='anonymous' src='img/jackmark.jpg'>
+      <img id='jackmark-thumb' crossorigin='anonymous' src='img/jackmark-thumb.jpg'>
+      <img id='jennystu' crossorigin='anonymous' src='img/jennystu.jpg'>
+      <img id='jennystu-thumb' crossorigin='anonymous' src='img/jennystu-thumb.jpg'>
+      <audio id='jennystu-audio' crossorigin='anonymous' src='vid/jennystu.ogg'></audio>
+      <img id='kristen' crossorigin='anonymous' src='img/kristen.jpg'>
+      <img id='kristen-thumb' crossorigin='anonymous' src='img/kristen-thumb.jpg'>
+      <img id='megan' crossorigin='anonymous' src='img/megan.jpg'>
+      <img id='megan-thumb' crossorigin='anonymous' src='img/megan-thumb.jpg'>
+      <img id='ruthstanley' crossorigin='anonymous' src='img/ruthstanley.jpg'>
+      <img id='ruthstanley-thumb' crossorigin='anonymous' src='img/ruthstanley-thumb.jpg'>
+      <audio id='ruthstanley-audio' crossorigin='anonymous' src='vid/ruthstanley.ogg'></audio>
       <img id='sean' crossorigin='anonymous' src='img/sean.jpg'>
-      <audio id='sean-audio' crossorigin='anonymous' src='vid/sean.ogg'></audio>
+      <img id='sean-thumb' crossorigin='anonymous' src='img/sean-thumb.jpg'>
+      <img id='xiuling' crossorigin='anonymous' src='img/xiuling.jpg'>
+      <img id='xiuling-thumb' crossorigin='anonymous' src='img/xiuling-thumb.jpg'>
+
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #bababa; src: ${src}' set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #ffffff;' event-set__2='_event: mouseleave; material.color: #bababa;' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: ${src}-audio; volume: 5'>
+        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #bababa; src: ${src}-thumb' set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #ffffff;' event-set__2='_event: mouseleave; material.color: #bababa;' sound='on: click; src: ${src}-audio; volume: 5'>
           <a-animation attribute='rotation' dur='20000' easing='linear' to='0 360 0' repeat='indefinite'></a-animation>
           <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
           <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1.2 1.2 1'></a-animation>
@@ -130,10 +143,9 @@
         <a-entity template='src: #link' data-src='#megan'></a-entity>
         <a-entity template='src: #link' data-src='#sean'></a-entity>
         <a-entity template='src: #link' data-src='#kristen'></a-entity>
-        <a-entity template='src: #link' data-src='#amber'></a-entity>
-        <a-entity template='src: #link' data-src='#megan'></a-entity>
-        <a-entity template='src: #link' data-src='#sean'></a-entity>
-        <a-entity template='src: #link' data-src='#kristen'></a-entity>
+        <a-entity template='src: #link' data-src='#xiuling'></a-entity>
+        <a-entity template='src: #link' data-src='#ruthstanley'></a-entity>
+        <a-entity template='src: #link' data-src='#jackmark'></a-entity>
       </a-entity>
 
       <a-entity id='passthroughVideo-sphere' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #ffffff;' position='0 0 -2' rotation='0 -90 0' scale='0 0 0'>

@@ -64,6 +64,10 @@ function hideVideo() {
 
 $(document).ready(function() {
 
+  $('video').on('error', function() {
+    $(this)[0].load();
+  });
+
   //hideVideo();
   //setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
   startPassthrough();
@@ -157,8 +161,8 @@ $(document).ready(function() {
     h = w*360/640;
     $('iframe').height(h);
 
-    $('#video-close').css('top', $('iframe').height()*0.55);
-    $('#video-close').css('height', Math.min($('iframe').height()*0.45, window.innerHeight - $('iframe').height()*0.55));
+    $('#video-close').css('top', $('iframe').height()*0.65);
+    $('#video-close').css('height', Math.min($('iframe').height()*0.35, window.innerHeight - $('iframe').height()*0.65));
     $('#video-close-button').css('margin-top', $('#video-close').height() - $('#video-close-button').height());
 
     var lw = $('#learnmore-plate').width();

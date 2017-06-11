@@ -11,6 +11,9 @@ function startPassthrough() {
   var assets = document.getElementsByTagName('a-assets')[0];
   assets.appendChild(video);
 
+  document.querySelector('#passthroughVideo-sphere').setAttribute('src', '#passthroughVideo');
+  document.querySelector('#passthroughVideo-sphere').setAttribute('material', 'src', '#passthroughVideo');
+
   var mediaConfig = {
     video: {
       width: {min: 1280, ideal: 1280, max: 1920},

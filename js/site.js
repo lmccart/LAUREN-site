@@ -64,9 +64,9 @@ function hideVideo() {
 
 $(document).ready(function() {
 
-  //hideVideo();
-  //setTimeout(function() { $('#learnmore').trigger('click'); }, 1000);
-  //startPassthrough();
+  hideVideo();
+  setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
+  startPassthrough();
 
   $('#lauren').click(function() { window.location = './'; });
 

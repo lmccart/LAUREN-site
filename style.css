@@ -175,14 +175,26 @@ p {
 }
 
 
+
 #getlauren-thankyou {
   line-height: 1.5;
 }
 
 #submit, #record {
-  font-family: 'calder-dark-outline', sans-serif;
-  font-weight: 300;
-  cursor: pointer;
+  font-family: 'calder-dark', sans-serif;
+  font-size: 1.5em;
+  color: #ff002f;
+  display: block;
+  font-size: 1.5em;
+}
+
+#write {
+  color: #00ada0;
+}
+
+
+#getlauren-content p {
+  margin: 0 0 1em 0;
 }
 
 
@@ -191,9 +203,10 @@ input {
   border-bottom: 2px solid black;
   outline: 0 !important;
   background: none;
-  width: 500px;
+  width: 100%;
   font-size: 1em;
-  font-family: 'calder-lc', sans-serif;
+  font-family: 'Frank Ruhl Libre';
+  color: #00ada0;
 }
 
 

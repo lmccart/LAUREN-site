@@ -11,7 +11,7 @@
   <script src="https://use.typekit.net/heg8frm.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel='stylesheet' href='style.css'>
+  <link rel='stylesheet' href='style.css'><link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre" rel="stylesheet">
 
   <!-- other libraries -->
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
@@ -53,19 +53,14 @@
 
   <div id='learnmore-plate' class='plate'>
     <div id='learnmore-content' class='content'>
-      <p>LAUREN is a human intelligent smart home. LAUREN will visit your home, deploy a series of devices, and watch over you. LAUREN will control your home for you, attempting to be better than an AI, understanding you as a person. She will learn faster than an algorithm, adapting to your desires and anticipating your needs.</p>
+      <p>LAUREN is a human intelligent smart home. Lauren will visit your home, deploy a series of smart devices, and watch over you remotely 24/7. Lauren will control your home for you, attempting to be better than an AI, understanding you as a person. You will be able to interact with her by calling her name, but she will also do things for you without your asking. She will learn faster than an algorithm, adapting to your desires and anticipating your needs.</p>
 
       <h2>How do I get LAUREN?</h2>
-      <p>You can sign up for LAUREN by clicking the "GET LAUREN" link. You will be asked to record a short video explaining why you want to try LAUREN. Lauren will follow up with you to talk with you more about it, and if you like, schedule a time to try LAUREN. The experience will take place in your own home and will last three days.</p>
+      <p>You can sign up for LAUREN by clicking the "GET LAUREN" link below. You will be asked to record a short video explaining why you want to try LAUREN. Lauren will follow up with you to talk more about it, and if you like, schedule a time to try LAUREN. The experience will take place in your own home and will last three days.</p>
 
       <h2>What?</h2>
-      <p>LAUREN is a performance art piece by <a href='http://lauren-mccarthy.com' target='_blank'>Lauren McCarthy</a>. It is interactive, meaning you can participate by inviting Lauren into your home. The performance lasts three days.</p>
+      <p>LAUREN is a performance art piece created by <a href='http://lauren-mccarthy.com' target='_blank'>Lauren McCarthy</a>. It grows from her interest in <a href='http://lauren-mccarthy.com/follower' target='_blank'>following people</a> and <a href='http://lauren-mccarthy.com/Social-Turkers' target='_blank'>following commands</a>. The artwork is interactive, meaning you can participate by inviting LAUREN into your home for a three day long performance. The video is by <a href='http://davidleonard.tv' target='_blank'>David Leonard</a>.</p>
 
-      <h2>Credits</h2>
-      <p>Created by <a href='http://lauren-mccarthy.com' target='_blank'>Lauren McCarthy</a>.
-      Video by <a href='http://davidleonard.tv' target='_blank'>David Leonard</a> in collaboration with Lauren McCarthy.
-      </p>
- 
       <div class='close button'>x</div>
     </div>
   </div>
@@ -108,7 +103,7 @@
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #ffffff; src: ${src}' set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #FFF3A8;' event-set__2='_event: mouseleave; material.color: #ffffff;' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: ${src}-audio; volume: 5'>
+        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #bababa; src: ${src}' set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #ffffff;' event-set__2='_event: mouseleave; material.color: #bababa;' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: ${src}-audio; volume: 5'>
           <a-animation attribute='rotation' dur='20000' easing='linear' to='0 360 0' repeat='indefinite'></a-animation>
           <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
           <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1.2 1.2 1'></a-animation>

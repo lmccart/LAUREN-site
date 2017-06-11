@@ -237,6 +237,7 @@ input {
   top: 0;
   width: 100%
 }
+
 .a-canvas.a-grab-cursor:hover {
   cursor: grab;
   cursor: -moz-grabbing;

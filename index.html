@@ -29,6 +29,7 @@
   <!-- custom js -->
   <script src='js/setup.js'></script>
   <script src='js/set-image.js'></script>
+  <script src='js/change-cursor.js'></script>
   <script src='js/passthrough.js'></script>
   <script src='js/site.js'></script>
 </head>
@@ -118,10 +119,12 @@
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #bababa; src: ${src}-thumb' set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #ffffff;' event-set__2='_event: mouseleave; material.color: #bababa;' sound='on: click; src: ${src}-audio; volume: 5'>
-          <a-animation attribute='rotation' dur='20000' easing='linear' to='0 360 0' repeat='indefinite'></a-animation>
-          <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
-          <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1.2 1.2 1'></a-animation>
+        <a-entity id='${src}-outline' geometry='primitive: sphere; radius: 0.71; segmentsHeight: 50;' material='color: #00ada0; side: back' event-set__1='_event: mouseenter; geometry.radius: 0.72;' event-set__2='_event: mouseleave; geometry.radius: 0.71;'>
+          <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;' material='shader: flat; color: #bababa; src: ${src}-thumb; side: back;' cursor-pointer='on: mouseenter;' cursor-grabber='on: mouseleave;'  set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #ffffff;' event-set__2='_event: mouseleave; material.color: #bababa;' sound='on: click; src: ${src}-audio; volume: 5'>
+            <a-animation attribute='rotation' dur='20000' easing='linear' to='0 360 0' repeat='indefinite'></a-animation>
+            <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
+            <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1.2 1.2 1'></a-animation>
+          </a-entity>
         </a-entity>
       </script>
     </a-assets>
@@ -149,7 +152,7 @@
         <a-entity template='src: #link' data-src='#jackmark'></a-entity>
       </a-entity>
 
-      <a-entity id='passthroughVideo-sphere' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #ffffff;' position='0 0 -2' rotation='0 -90 0' scale='0 0 0'>
+      <a-entity id='passthroughVideo-sphere' geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;' material='shader: flat; color: #ffffff; side: back;' position='0 0 -2' rotation='0 -90 0' scale='0 0 0'>
         <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
         <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1 1 1'></a-animation>
       </a-entity>

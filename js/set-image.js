@@ -26,6 +26,8 @@ AFRAME.registerComponent('set-image', {
       } else {
         data.target.setAttribute('src', data.src);
         data.target.setAttribute('material', 'shader: flat; color: #ffffff; src: '+data.src);
+        data.target.emit('stopRotateSky');
+        data.target.emit('startRotateHome');
         toggleHomes(false);
         $('#closeHome').show();
       }
@@ -35,6 +37,9 @@ AFRAME.registerComponent('set-image', {
       console.log('CLOSE')
       console.log(el.components.sound)
       el.components.sound.stopSound();
+      data.target.setAttribute('material', 'shader: standard; src: #lauren-video');
+      data.target.emit('startRotateSky');
+      data.target.emit('stopRotateHome');
     });
   }
 });

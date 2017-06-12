@@ -5,8 +5,14 @@ function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
   for (var i=0; i<links.length; i++) {
     if(links[i].tagName === 'A-ENTITY') {
-      if (val) links[i].getChildren()[0].emit('scaleIn');
-      else links[i].getChildren()[0].emit('scaleOut');
+      var obj = links[i].getChildren()[0];
+      if (val) {
+        obj.emit('scaleIn');
+        obj.getChildren()[0].emit('scaleIn');
+      } else {
+        obj.emit('scaleOut');
+        obj.getChildren()[0].emit('scaleOut');
+      }
     }
   }
 }
@@ -14,9 +20,8 @@ function toggleHomes(val) {
 function closeHome() {
   var sky = document.querySelector('#image-360');
   var currentId = sky.getAttribute('src');
-  var currentHome = $('#links').find('[data-src="' + currentId + '"]')[0].children[0];
+  var currentHome = $('#links').find('[data-src="' + currentId + '"]')[0].children[0].getChildren()[0];
   currentHome.emit('close');
-  sky.setAttribute('material', 'shader: standard; src: #lauren-video');
   $('#closeHome').hide();
   toggleHomes(true);
 

@@ -60,7 +60,7 @@
       <p>You can sign up for LAUREN by clicking the "GET LAUREN" link below. You will be asked to record a short video explaining why you want to try LAUREN. Lauren will follow up with you to talk more about it, and if you like, schedule a time to try LAUREN. The experience will take place in your own home and will last three days.</p>
 
       <h2>What?</h2>
-      <p>LAUREN is a performance art piece created by <a href='http://lauren-mccarthy.com' target='_blank'>Lauren McCarthy</a>. It grows from her interest in <a href='http://lauren-mccarthy.com/follower' target='_blank'>following people</a> and <a href='http://lauren-mccarthy.com/Social-Turkers' target='_blank'>following commands</a>. The artwork is interactive, meaning you can participate by inviting LAUREN into your home for a three day long performance. The video is by <a href='http://davidleonard.tv' target='_blank'>David Leonard</a>.</p>
+      <p>LAUREN is a performance art piece created by <a href='http://lauren-mccarthy.com' target='_blank'>Lauren McCarthy</a>. It grows from her interest in <a href='http://lauren-mccarthy.com/follower' target='_blank'>following people</a> and <a href='http://lauren-mccarthy.com/Social-Turkers' target='_blank'>following commands</a>. The artwork is interactive, meaning you can participate by inviting LAUREN into your home for a three day long performance. The film is by <a href='http://davidleonard.tv' target='_blank'>David Leonard</a>. For more information, contact <a href='mailto:lauren@get-lauren.com' target='_blank'>lauren@get-lauren.com</a>.</p>
 
       <div class='close button'>x</div>
     </div>
@@ -119,12 +119,14 @@
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
-        <a-entity id='${src}-outline' geometry='primitive: sphere; radius: 0.71; segmentsHeight: 50;' material='color: #00ada0; side: back' event-set__1='_event: mouseenter; geometry.radius: 0.72;' event-set__2='_event: mouseleave; geometry.radius: 0.71;'>
+        <a-entity id='${src}-outline' geometry='primitive: sphere; radius: 0.71; segmentsHeight: 50;' material='color: #0DFFCF; side: back' event-set__1='_event: mouseenter; geometry.radius: 0.718;' event-set__2='_event: mouseleave; geometry.radius: 0.71;'>
           <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;' material='shader: flat; color: #bababa; src: ${src}-thumb; side: back;' cursor-pointer='on: mouseenter;' cursor-grabber='on: mouseleave;'  set-image='on: click; target: #image-360; src: ${src}' event-set__1='_event: mouseenter; material.color: #ffffff;' event-set__2='_event: mouseleave; material.color: #bababa;' sound='on: click; src: ${src}-audio; volume: 5'>
             <a-animation attribute='rotation' dur='20000' easing='linear' to='0 360 0' repeat='indefinite'></a-animation>
             <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
-            <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1.2 1.2 1'></a-animation>
+            <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1 1 1'></a-animation>
           </a-entity>
+          <a-animation begin='scaleOut' attribute='material.opacity' dur='0' to='0'></a-animation>
+          <a-animation begin='scaleIn' attribute='material.opacity' delay='500' dur='0' to='1'></a-animation>
         </a-entity>
       </script>
     </a-assets>
@@ -132,13 +134,15 @@
 
     <a-entity id='scene' setup>
       <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
-      <a-videosphere id='image-360' radius='10' src='#lauren-video' 
-                     animation='property: rotation; dur: 100000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
-                     animation='property: rotation; dur: 500; easing: linear; to: 0 -40 0; startEvents: rotateRecordSky;'>
+      <a-videosphere id='image-360' radius='15' src='#lauren-video' rotation='0 -90 0'
+                     animation='property: rotation; dur: 100000; easing: linear; from: 0 -160 0; to: 0 20 0; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
+                     animation__1='property: rotation; dur: 10000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateHome; pauseEvents: stopRotateHome;' 
+                     animation__2='property: rotation; dur: 500; easing: linear; to: 0 -40 0; startEvents: rotateRecordSky;'>
       </a-videosphere>
 
+
       <!-- Image links. -->
-      <a-entity id='links' layout='type: circle; radius: 3' position='0 0 0' rotation='0 0 0' scale='' visible=''
+      <a-entity id='links' layout='type: circle; radius: 2.8' position='0 0 0' rotation='0 0 0' scale='' visible=''
                 animation='property: rotation; dur: 1000; easing: linear; to: 0 0 0; startEvents: startRotateHomes; pauseEvents: stopRotateHomes'>
           
         <a-entity template='src: #link' data-src='#jennystu'></a-entity>

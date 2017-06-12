@@ -73,9 +73,10 @@ $(document).ready(function() {
     $(this)[0].load();
   });
 
-  //hideVideo();
-  //setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
-  startPassthrough();
+  hideVideo();
+  setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
+  initWebcam();
+  //startPassthrough();
 
   $('#lauren').click(function() { window.location = './'; });
 
@@ -106,6 +107,16 @@ $(document).ready(function() {
       $('#getlauren-plate').animate({ top:'5%' });
       plate = 2;
     }
+  });
+
+  $('#write-switch').click(function() {
+    $('#write-content').show();
+    $('#record-content').hide();
+  });
+
+  $('#record-switch').click(function() {
+    $('#record-content').show();
+    $('#write-content').hide();
   });
 
 

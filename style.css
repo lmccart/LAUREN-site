@@ -24,7 +24,7 @@ iframe {
 }
 
 a {
-  color: #0DFFCF;
+  color: #c045ff;
   text-decoration: none;
 }
 
@@ -180,16 +180,17 @@ p {
   line-height: 1.5;
 }
 
-#submit, #record {
+#submit, #submit-write, #record {
   font-family: 'calder-dark', sans-serif;
   font-size: 1.5em;
   color: #ff002f;
   display: block;
   font-size: 1.5em;
+  text-align: center;
 }
 
-#write {
-  color: #0DFFCF;
+#write-switch, #record-switch {
+  color: #c045ff;
 }
 
 
@@ -198,7 +199,7 @@ p {
 }
 
 
-input {
+input, textarea {
   border: 0;
   border-bottom: 2px solid black;
   outline: 0 !important;
@@ -206,9 +207,18 @@ input {
   width: 100%;
   font-size: 1em;
   font-family: 'Frank Ruhl Libre';
-  color: #0DFFCF;
+  color: #c045ff;
 }
 
+textarea {
+  border: 0;
+  background: white;
+  height: 5em;
+}
+
+#webcam {
+  z-index: 5;
+}
 
 .a-html {
   bottom: 0;

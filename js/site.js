@@ -73,10 +73,9 @@ $(document).ready(function() {
     $(this)[0].load();
   });
 
-  hideVideo();
-  setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
-  initWebcam();
-  //startPassthrough();
+  // hideVideo();
+  // setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
+  startPassthrough();
 
   $('#lauren').click(function() { window.location = './'; });
 

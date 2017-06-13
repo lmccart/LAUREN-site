@@ -173,7 +173,7 @@ $(document).ready(function() {
   function resizeDOM() {
     var w = document.documentElement.clientWidth;
     $('iframe').width(w);
-    h = w*360/640;
+    h = w*320/640;
     $('iframe').height(h);
 
     $('#video-close').css('top', $('iframe').height()*0.65);

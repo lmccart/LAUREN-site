@@ -35,11 +35,10 @@ AFRAME.registerComponent('set-image', {
 
     el.addEventListener('close', function() {
       console.log('CLOSE')
-      console.log(el.components.sound)
       el.components.sound.stopSound();
       data.target.setAttribute('material', 'shader: standard; src: #lauren-video');
-      data.target.emit('startRotateSky');
       data.target.emit('stopRotateHome');
+      data.target.emit('startRotateSky');
     });
   }
 });

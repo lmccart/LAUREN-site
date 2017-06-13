@@ -141,7 +141,6 @@ $(document).ready(function() {
     console.log('ended the video!');
     hideVideo();
   });
-  player.play();
 
   $(window).resize(function() {
     resizeDOM();
@@ -178,5 +177,6 @@ $(document).ready(function() {
   }
 
   resizeDOM();
+  player.play();
 });
 

@@ -21,33 +21,19 @@ function startPassthrough() {
     }
   }
 
-  var errBack = function(e) {
-    console.log('An error has occurred!', e)
-  };
-
-  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+  var errBack = function(e) { console.log('An error has occurred!', e) };
+  var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+  if (getUserMedia) {
+    getUserMedia = getUserMedia.bind(navigator);
+    getUserMedia(mediaConfig, function(stream) {
       passthroughStream = stream;
-      video.src = window.URL.createObjectURL(stream);
-      video.play();
-    });
-  }
-  else if(navigator.getUserMedia) { // Standard
-    navigator.getUserMedia(mediaConfig, function(stream) {
-      passthroughStream = stream;
-      video.src = stream;
-      video.play();
-    }, errBack);
-  } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-    navigator.webkitGetUserMedia(mediaConfig, function(stream){
-      passthroughStream = stream;
-      video.src = window.webkitURL.createObjectURL(stream);
-      video.play();
-    }, errBack);
-  } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
-    navigator.mozGetUserMedia(mediaConfig, function(stream){
-      passthroughStream = stream;
-      video.src = window.URL.createObjectURL(stream);
+      if (window.webkitURL) {
+        video.src = window.webkitURL.createObjectURL(stream);
+      } else if (window.URL) {
+        video.src = window.URL.createObjectURL(stream);
+      } else {
+        video.src = stream;
+      }
       video.play();
     }, errBack);
   }
@@ -63,13 +49,14 @@ function endPassthrough() {
 }
 
 function startRecording() {
-    var mediaRecorder = new MediaStreamRecorder(passthroughStream);
-    mediaRecorder.mimeType = 'video/webm';
-    mediaRecorder.ondataavailable = function (blob) {
-        // POST/PUT "Blob" using FormData/XHR2
-        var blobURL = URL.createObjectURL(blob);
-        document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
-        console.log(blobURL);
-    };
-    mediaRecorder.start(3000);
+  console.log('start')
+  var mediaRecorder = new MediaStreamRecorder(passthroughStream);
+  mediaRecorder.mimeType = 'video/webm';
+  mediaRecorder.ondataavailable = function (blob) {
+    // POST/PUT "Blob" using FormData/XHR2
+    var blobURL = URL.createObjectURL(blob);
+    $('#getlauren-content').append('<a href="' + blobURL + '">' + blobURL + '</a>');
+    console.log(blobURL);
+  };
+  mediaRecorder.start(3000);
 }

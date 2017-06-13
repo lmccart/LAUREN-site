@@ -44,18 +44,6 @@ function getLauren(val) {
   }
 }
 
-
-function startRecording() {
-  var links = document.querySelector('#links');
-  links.children[3].children[0].emit('record');
-  setTimeout(function() {
-    $('#record').hide();
-    $('#submit').show();
-    $('#plate').animate({ top: '5%' });
-    links.children[1].children[0].emit('click');
-  }, 5000);
-}
-
 function hideVideo() {
   $('#video-top').hide();
   $('#overlay').hide();
@@ -153,6 +141,7 @@ $(document).ready(function() {
     console.log('ended the video!');
     hideVideo();
   });
+  player.play();
 
   $(window).resize(function() {
     resizeDOM();
@@ -163,12 +152,16 @@ $(document).ready(function() {
   });
 
   $('#video-close').mousemove(function() {
-    if ($('.popper').is(':hidden')) $('.popper').show(0).delay(3000).hide(0);
+    if ($('.popper').is(':hidden')) $('.popper').show(0).delay(1000).hide(0);
   });
 
-  $('#overlay').click(function() {
-    hideVideo();
+  $('#video-close').mouseout(function() {
+    $('.popper').stop().hide(0);
   });
+
+  // $('#overlay').click(function() {
+  //   hideVideo();
+  // });
 
   function resizeDOM() {
     var w = document.documentElement.clientWidth;
@@ -185,6 +178,5 @@ $(document).ready(function() {
   }
 
   resizeDOM();
-  $('.popper').show(0).delay(8000).hide(0);
 });
 

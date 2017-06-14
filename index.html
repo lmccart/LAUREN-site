@@ -15,8 +15,10 @@
 
   <!-- other libraries -->
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
-  <script src='https://cdn.webrtc-experiment.com/MediaStreamRecorder.js'> </script>
   <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="https://cdn.webrtc-experiment.com/gumadapter.js"></script>
+  <script src="js/RecordRTC.min.js"></script>
+  <script src='js/s3upload.js'></script>
 
   <!-- aframe and components -->
   <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
@@ -76,26 +78,28 @@
 
       
       <div id='record-content'>
-        <p>Please record a short video explaining why you want to try LAUREN, and describing what is unique about your home. Click "RECORD" when you are ready.<br><span id='write-switch' class='button'>Or, write your response instead.</span></p>
+        <p>Please record a 20 second video explaining why you want to try LAUREN, and describing what is unique about your home. Click "RECORD" when you are ready.<br><span id='write-switch' class='button'>Or, write your response instead.</span></p>
+        <span id='time' style='display: none'>TIME REMAINING: <span id='remaining'>30</span></span>
         <span id='record' class='button'>RECORD</span><br>
-        <span id='submit-write' class='button' style='display:none'>SUBMIT</span>
+        <span id='submit-record' class='button' style='display:none'>SUBMIT</span>
       </div>
       
       <div id='write-content' style='display: none;'>
         <p>Please explain why you want to try LAUREN, and describe what is unique about your home.<br><span id='record-switch' class='button'>Or, record a video response instead.</span></p>
         <textarea id='input_response'></textarea>
-        <br><br>
+        <br>
         <span id='submit-write' class='button'>SUBMIT</span>
       </div>
 
       <span id='submit' class='button' style='display:none'>SUBMIT</span>
       <div class='close button'>x</div>
     </div>
-  </div>
-<!--     <div id='getlauren-thankyou' style='display: none'>
-      Thank you for your interest! If selected, we will follow up with you via email to schedule your Lauren installation.
+
+    <div id='getlauren-thankyou'  class='content' style='display: none'>
+      Thank you for your interest! Due to the limitations of being just one person, LAUREN may not be able to install herself in every home requested. However, LAUREN is hoping to be able to follow up with you soon via email to schedule your installation.
+      <div class='close button'>x</div>
     </div>
-    <div id='close' class='button' style='display: none'>x</div> -->
+  </div>
 
 
 

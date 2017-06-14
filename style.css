@@ -180,13 +180,23 @@ p {
   line-height: 1.5;
 }
 
-#submit, #submit-write, #record {
+#submit-record, #submit-write, #record, #time {
   font-family: 'calder-dark', sans-serif;
   font-size: 1.5em;
   color: #ff002f;
   display: block;
   font-size: 1.5em;
   text-align: center;
+  margin-top: 0.5em;
+}
+
+#time {
+  color: #000000;
+}
+
+#remaining {
+  width: 40px;
+  display: inline-block;
 }
 
 #write-switch, #record-switch {

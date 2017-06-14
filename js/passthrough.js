@@ -1,4 +1,7 @@
 var passthroughStream;
+var recordRTC;
+var countdownInterval;
+var submission_file;
 
 function startPassthrough() {
   var video = document.createElement('video');
@@ -6,37 +9,35 @@ function startPassthrough() {
   video.setAttribute('autoplay', true);
   video.setAttribute('width', '1280');
   video.setAttribute('height', '720');
+  video.volume = 0;
   video.setAttribute('src', '');
 
   var assets = document.getElementsByTagName('a-assets')[0];
   assets.appendChild(video);
 
-  document.querySelector('#passthroughVideo-sphere').setAttribute('src', '#passthroughVideo');
-  document.querySelector('#passthroughVideo-sphere').setAttribute('material', 'src', '#passthroughVideo');
+  var sphere = document.querySelector('#passthroughVideo-sphere');
+  sphere.setAttribute('src', '#passthroughVideo');
+  sphere.setAttribute('material', 'src', '#passthroughVideo');
 
-  var mediaConfig = {
+  var mediaConstraints = {
     video: {
-      width: {min: 1280, ideal: 1280, max: 1920},
-      height: {min: 720, ideal: 720, max: 1080}
-    }
+      width: {min: 1280, ideal: 1280, max: 1280},
+      height: {min: 720, ideal: 720, max: 720}
+    },
+    audio: true
   }
 
-  var errBack = function(e) { console.log('An error has occurred!', e) };
-  var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-  if (getUserMedia) {
-    getUserMedia = getUserMedia.bind(navigator);
-    getUserMedia(mediaConfig, function(stream) {
-      passthroughStream = stream;
-      if (window.webkitURL) {
-        video.src = window.webkitURL.createObjectURL(stream);
-      } else if (window.URL) {
-        video.src = window.URL.createObjectURL(stream);
-      } else {
-        video.src = stream;
-      }
-      video.play();
-    }, errBack);
+  function successCallback(stream) {
+    passthroughStream = stream;
+    video.src = window.URL ? window.URL.createObjectURL(stream) : stream;
+    video.play();
   }
+
+  function errorCallback(error) {
+    console.log('An error has occurred!', error);
+  }
+
+  navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
 }
 
 
@@ -49,14 +50,82 @@ function endPassthrough() {
 }
 
 function startRecording() {
-  console.log('start')
-  var mediaRecorder = new MediaStreamRecorder(passthroughStream);
-  mediaRecorder.mimeType = 'video/webm';
-  mediaRecorder.ondataavailable = function (blob) {
-    // POST/PUT "Blob" using FormData/XHR2
-    var blobURL = URL.createObjectURL(blob);
-    $('#getlauren-content').append('<a href="' + blobURL + '">' + blobURL + '</a>');
-    console.log(blobURL);
+  $('#record').text('STOP');
+  $('#remaining').text('20');
+  $('#time').show();
+
+  $('#passthroughVideo')[0].volume = 0;
+  $('#passthroughVideo')[0].src = window.URL ? window.URL.createObjectURL(passthroughStream) : passthroughStream;
+
+  var record_options = {
+    mimeType: 'video/webm', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+    videoBitsPerSecond: 512000,
+    audioBitsPerSecond: 128000,
+    video: {
+      width: 1280,
+      height: 720
+    },
+    canvas: {
+      width: 1280,
+      height: 720
+    }
   };
-  mediaRecorder.start(3000);
+  recordRTC = RecordRTC(passthroughStream, record_options);
+  recordRTC.startRecording();
+  setTimeout(stopRecording, 20000);
+  countdownInterval = setInterval(function() {
+    var cur = parseInt($('#remaining').text(), 10);
+    $('#remaining').text(Math.max(cur - 1, 0));
+  }, 1000);
 }
+
+function stopRecording() {
+  if (recordRTC) {
+    $('#record').text('RERECORD');
+    $('#time').hide();
+    $('#submit-record').show();
+    clearInterval(countdownInterval);
+    recordRTC.stopRecording(function (audioVideoWebMURL) {
+      $('#passthroughVideo').attr('src', audioVideoWebMURL);
+      $('#passthroughVideo')[0].volume = 1;
+      $('#passthroughVideo')[0].play();
+
+      var recordedBlob = recordRTC.getBlob();
+      recordRTC.getDataURL(function(dataURL) { });
+      recordRTC = null;
+
+      submission_file = new File([recordedBlob], 'LAUREN_'+new Date().getTime() +'.webm', { type: 'video/webm' });
+    });
+  }
+}
+
+function submitRecording() {
+  s3_upload(submission_file, submission_file.name, function(err1) {
+   if (err1) {
+      alert('Problem uploading video: '+err1+'. Please try again.');
+      return;
+    }
+  });
+}
+
+
+function s3_upload(s3_file, s3_object_name, cb){
+  var s3upload = new S3Upload({
+    file: s3_file,
+    s3_object_name: s3_object_name,
+    s3_sign_put_url: 'https://buyafollower.herokuapp.com/sign_s3',
+    onProgress: function(percent, message) {
+      console.log('Upload progress: ' + percent + '% ' + message);
+      $('#percent').html(percent + '%');
+    },
+    onFinishS3Put: function(public_url) {
+      console.log('Upload completed. Uploaded to: '+ public_url);
+      if (cb) cb()
+    },
+    onError: function(status) {
+      console.log(status);
+      if (cb) cb(status)
+    }
+  });
+}
+

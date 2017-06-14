@@ -36,6 +36,9 @@ function getLauren(val) {
     sky.emit('rotateRecordSky');
     document.querySelector('#camera').emit('rotateRecordCamera');
     document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
+    if ($('#getlauren-thankyou').is(":visible")) {
+      resetForm();
+    }
   } else {
     sky.setAttribute('material', 'shader: flat; src: #lauren-video');
     sky.emit('startRotateSky');
@@ -53,6 +56,29 @@ function hideVideo() {
   $('#video').animate({ top: -h }, function() {
     $('#video').remove();
   });
+}
+
+function resetForm() {
+  passthroughStream = null;
+  recordRTC = null;
+  countdownInterval = null;
+  submission_file = null;
+  $('#input_name').val('');
+  $('#input_email').val('');
+  $('#input_city').val('');
+  $('#input_response').val('');
+  $('#record').text('RECORD');
+  $('#time').hide();
+  $('#getlauren-content').show();
+  $('#getlauren-thankyou').hide();
+  $('#passthroughVideo')[0].src = window.URL ? window.URL.createObjectURL(passthroughStream) : passthroughStream;
+}
+
+function submit() {
+  $('#getlauren-content').hide();
+  $('#getlauren-thankyou').show();
+  submitRecording();
+  // submit form data
 }
 
 $(document).ready(function() {
@@ -108,14 +134,18 @@ $(document).ready(function() {
 
 
   $('#record').click(function() {
-    startRecording();
+    if (!recordRTC) {
+      startRecording();
+    } else {
+      stopRecording();
+    }
   });
 
-  $('#submit').click(function() {
-    $('#getlauren-content').hide();
-    $('#record').show();
-    $('#submit').hide();
-    $('#getlauren-thankyou').show();
+  $('#submit-record').click(function() {
+    submit();
+  });
+  $('#submit-write').click(function() {
+    submit();
   });
 
   $('.close').click(function() {
@@ -179,4 +209,5 @@ $(document).ready(function() {
   resizeDOM();
   player.play();
 });
+
 

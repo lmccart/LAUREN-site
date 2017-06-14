@@ -100,12 +100,15 @@ function stopRecording() {
 }
 
 function submitRecording() {
-  s3_upload(submission_file, submission_file.name, function(err1) {
-   if (err1) {
-      alert('Problem uploading video: '+err1+'. Please try again.');
-      return;
-    }
-  });
+  if (submission_file) {
+    s3_upload(submission_file, submission_file.name, function(err1) {
+     if (err1) {
+        alert('Problem uploading video: '+err1+'. Please try again.');
+        return;
+      }
+    });
+    return 'https://lmccart-lauren.s3.amazonaws.com/'+submission_file.name;
+  }
 }
 
 
@@ -113,7 +116,7 @@ function s3_upload(s3_file, s3_object_name, cb){
   var s3upload = new S3Upload({
     file: s3_file,
     s3_object_name: s3_object_name,
-    s3_sign_put_url: 'https://buyafollower.herokuapp.com/sign_s3',
+    s3_sign_put_url: 'https://lauren-server.herokuapp.com/sign_s3',
     onProgress: function(percent, message) {
       console.log('Upload progress: ' + percent + '% ' + message);
       $('#percent').html(percent + '%');

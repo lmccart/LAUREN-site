@@ -75,10 +75,38 @@ function resetForm() {
 }
 
 function submit() {
-  $('#getlauren-content').hide();
-  $('#getlauren-thankyou').show();
-  submitRecording();
-  // submit form data
+  if (validate()) {
+    $('#getlauren-content').hide();
+    $('#getlauren-thankyou').show();
+    var video_url = submitRecording();
+    var s = {
+      name: $('#input_name').val(),
+      email: $('#input_email').val(),
+      city: $('#input_city').val(),
+      written: $('#input_response').val(),
+      video: video_url 
+    }
+    $.post('https://lmccart-lauren.herokuapp.com/submit', s, function(res) {
+      console.log(res);
+    });
+  }
+}
+
+function validate() {
+  if (!$('#input_name').val()) {
+    alert('Please enter your name.');
+  }
+  else if (!$('#input_email').val()) {
+    alert('Please enter your email.');
+  }
+  else if (!$('#input_city').val()) {
+    alert('Please enter the city you live in.');
+  }
+  else if (!$('#input_response').val() && !submission_file) {
+    alert('Please write or record a response explaining why you want to get LAUREN.');
+  } else {
+    return true;
+  }
 }
 
 $(document).ready(function() {
@@ -207,7 +235,7 @@ $(document).ready(function() {
   }
 
   resizeDOM();
-  player.play();
+  //player.play();
 });
 
 

@@ -59,7 +59,6 @@ function hideVideo() {
 }
 
 function resetForm() {
-  passthroughStream = null;
   recordRTC = null;
   countdownInterval = null;
   submission_file = null;
@@ -86,7 +85,7 @@ function submit() {
       written: $('#input_response').val(),
       video: video_url 
     }
-    $.post('https://lmccart-lauren.herokuapp.com/submit', s, function(res) {
+    $.post('https://lauren-server.herokuapp.com/submit', s, function(res) {
       console.log(res);
     });
   }

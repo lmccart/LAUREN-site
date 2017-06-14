@@ -67,6 +67,7 @@ function resetForm() {
   $('#input_city').val('');
   $('#input_response').val('');
   $('#record').text('RECORD');
+  $('#submit-record').hide();
   $('#time').hide();
   $('#getlauren-content').show();
   $('#getlauren-thankyou').hide();

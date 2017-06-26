@@ -2,139 +2,78 @@
 <html class='a-html'>
 
 <head>
+  <title>LAUREN</title>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-  <meta name='description' content='360° Image Gallery - A-Frame'>
-  <meta aframe-injected='' name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'>
+  <meta name='description' content='the human intelligent smart home'>
+  <meta aframe-injected='' name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no'>
   <meta aframe-injected='' name='mobile-web-app-capable' content='yes'>
   <meta aframe-injected='' name='theme-color' content='black'>
-
-  <script src='https://use.typekit.net/epy8gek.js'></script>
+  <script src="https://use.typekit.net/heg8frm.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
-  <link rel='stylesheet' href='style.css'>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel='stylesheet' href='style2.css'><link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre" rel="stylesheet">
 
   <!-- other libraries -->
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
-  <script src="https://cdn.webrtc-experiment.com/MediaStreamRecorder.js"> </script>
-
-  <!-- aframe and components -->
-  <script src='js/aframe.min.js'></script>
-  <script src='https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js'></script>
-  <script src='https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js'></script>
-  <script src='https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js'></script>
-  <script src='https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js'></script>
-  <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
-
-  <!-- custom js -->
-  <script src='js/set-image.js'></script>
-  <script src='js/passthrough.js'></script>
-  <script src='js/site.js'></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src='js/site2.js'></script>
 </head>
 
 <body class='a-body'>
   <nav>
+    <span id='learnmore' class='button'>LEARN MORE</span>
     <h1 id='lauren' class='button'>LAUREN</h1>
-    <div id='options'>
-      <div id='getlauren' class='button'>GET LAUREN&nbsp;</div>
-      <div id='learnmore' class='button'>LEARN MORE</div>
-    </div>
+    <span id='getlauren' class='button'>GET LAUREN</span>
   </nav>
 
-  <div id='intro'>
-    <div id='greeting'></div>
+  <div id='video'>
+    <iframe src="https://player.vimeo.com/video/222252399/" width="640" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   </div>
 
-  <div id='plate'>
-    <div id='learnmore-content'></div>
-    <div id='getlauren-content'>
-      <span>Name</span>&nbsp;<input type='text'><br><br>
-      <span>Email</span>&nbsp;<input type='text'><br><br>
-      <span>Where do you live?</span>&nbsp;<input type='text'><br><br>
-      <span id='record' class='button'>RECORD</span>
-      <span id='submit' class='button' style='display: none'>SUBMIT</span>
+  <div id='learnmore-plate' class='plate'>
+    <div id='learnmore-content' class='content'>
+      <p>LAUREN is a human intelligent smart home. Lauren will visit your home, deploy a series of smart devices, and watch over you remotely 24/7. Lauren will control your home for you, attempting to be better than an AI, understanding you as a person. You will be able to interact with her by calling her name, but she will also do things for you without your asking. She will learn faster than an algorithm, adapting to your desires and anticipating your needs.</p>
+
+      <h2>How do I get LAUREN?</h2>
+      <p>You can sign up for LAUREN by clicking the "GET LAUREN" link below. You will be asked to record a short video explaining why you want to try LAUREN. Lauren will follow up with you to talk more about it, and if you like, schedule a time to try LAUREN. The experience will take place in your own home and will last three days.</p>
+
+      <h2>What?</h2>
+      <p>LAUREN is a performance art piece created by <a href='http://lauren-mccarthy.com' target='_blank'>Lauren McCarthy</a>. It grows from her interest in <a href='http://lauren-mccarthy.com/follower' target='_blank'>following people</a> and <a href='http://lauren-mccarthy.com/Social-Turkers' target='_blank'>following commands</a>. The artwork is interactive, meaning you can participate by inviting LAUREN into your home for a three day long performance. <i>A Film About LAUREN</i> is by <a href='http://davidleonard.tv' target='_blank'>David Leonard</a>.<br>For more information, contact <a href='mailto:lauren@get-lauren.com' target='_blank'>lauren@get-lauren.com</a>.</p>
+
     </div>
-    <div id='getlauren-thankyou' style='display: none'>
-    Thank you for your interest! If selected, we will follow up with you via email to schedule your Lauren installation.
-    </div>
-    <div id='close' class='button' style='display: none'>x</div>
   </div>
 
-<!--   <section id='whatis'>
-    <div>When you get Lauren, I will come over and install a collection of Lauren devices to interface with your home. Then, using the software system I've built, I'll be able to remotely manage everything from your electronic devices to your thermostat, lights, kitchen, door locks, and shower head. Cameras will enable me to watch over you and anticipate your needs and desires. You'll also be able to communicate with me directly by speaking out loud -- asking me to look things up, directing me, and helping me learn how to be a smarter home for you.</div>
-  </section> -->
-  <a-scene class='fullscreen' canvas='' inspector='' keyboard-shortcuts='' screenshot='' vr-mode-ui='' auto-enter-vr=''>
-    <a-assets>
-      <img id='kristen' crossorigin='anonymous' src='img/kristen.png'>
-      <img id='kristen-thumb' crossorigin='anonymous' src='img/kristen-thumb.png'>
-<!--       <video id="kristen-video" src="vid/kristen-sms.mov" autoplay="true" loop muted> -->
-      <img id='sean' crossorigin='anonymous' src='img/sean.png'>
-      <img id='sean-thumb' crossorigin='anonymous' src='img/sean-thumb.png'>
-      <img id='amber' crossorigin='anonymous' src='img/amber.png'>
-      <img id='amber-thumb' crossorigin='anonymous' src='img/amber-thumb.png'>
-      <img id='jennystu' crossorigin='anonymous' src='img/jennystu.png'>
-      <img id='jennystu-thumb' crossorigin='anonymous' src='img/jennystu-thumb.png'>
-      <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-      <a-asset-item id="calderDarkFont" src="Calder_Dark_Regular.json"></a-asset-item>
+  <div id='getlauren-plate' class='plate'>
+    <div id='getlauren-content' class='content'>
+      <span>Name</span>&nbsp;<input id='input_name' type='text'><br><br>
+      <span>Email</span>&nbsp;<input id='input_email' type='text'><br><br>
+      <span>What city do you live in?</span>&nbsp;<input  id='input_city' type='text'><br><br>
 
-      <!-- Image link template to be reused. -->
-      <script id='link' type='text/html'>
-        <a-entity id='${src}-sphere' class='link' geometry='primitive: sphere; radius: 0.7' material='shader: flat; color: #b3ffff; src: ${thumb}' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: ${src}' sound='on: click; src: #click-sound'>
-          <a-entity text-geometry='value: ${text}; font: #calderDarkFont; size: 0.2;' material='color: #ff002f;' position='-1.1 0.4 0' rotation='0 0 20' visible='${text}'></a-entity>
-          <a-animation attribute='rotation'
-             dur='20000'
-             easing='linear'
-             fill='none'
-             to='0 360 0'
-             repeat='indefinite'></a-animation>
-        </a-entity>
-      </script>
-    </a-assets>
-
-
-    <a-entity id='scene'>
-      <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
-      <!-- 360-degree image. -->
-
-      <a-sky id='image-360' radius='10' src='#kristen' position='' rotation='' scale='' visible='true' material='' geometry='' data-set-image-fade-setup='true' animation__fade=''>
-        <a-animation attribute='rotation'
-         dur='200000'
-         easing='linear'
-         fill='none'
-         to='0 -360 0'
-         repeat='indefinite'></a-animation>
-      </a-sky>
-
-      <!-- Image links. -->
-      <a-entity id='links' layout='type: line; margin: 1.5' position='0 -1 -4' rotation='' scale='' visible=''>
-        <a-entity template='src: #link' data-src='#sean' data-thumb='#sean-thumb' data-text='false' position='' rotation='0 270 0' scale='' visible=''>
-          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #sean-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #sean' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
-        </a-entity>
-        <a-entity template='src: #link' data-src='#jennystu' data-thumb='#jennystu-thumb' data-text='false' position='' rotation='0 270 0' scale='' visible=''>
-          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #jennystu-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #jennystu' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
-        </a-entity>
-        <a-entity template='src: #link' data-src='#amber' data-thumb='#amber-thumb' data-text='false' position='' rotation='0 270 0' scale='' visible=''>
-          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; src: #amber-thumb' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #amber' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
-        </a-entity>
-        <a-entity template='src: #link' data-src='#passthroughVideo' data-thumb='#passthroughVideo' data-text='GET LAUREN' position='' rotation='0 270 0' scale='' visible=''>
-          <a-entity class='link' geometry='primitive: plane; height: 1; width: 1' material='shader: flat; metalness: 1; src: #passthroughVideo' event-set__1='_event: mousedown; scale: 1 1 1' event-set__2='_event: mouseup; scale: 1.2 1.2 1' event-set__3='_event: mouseenter; scale: 1.2 1.2 1' event-set__4='_event: mouseleave; scale: 1 1 1' set-image='on: click; target: #image-360; src: #passthroughVideo' sound='on: click; src: #click-sound' position='' rotation='' scale='' visible=''></a-entity>
-        </a-entity>
-      </a-entity>
-
-      <!-- Camera + cursor. -->
-      <a-entity camera='' look-controls='' position='' rotation='' scale='' visible=''  mouse-cursor>
-        <a-cursor id='cursor' animation__click='property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150' animation__fusing='property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500' event-set__1='_event: mouseenter; color: springgreen' event-set__2='_event: mouseleave; color: black' fuse='true' raycaster='objects: .link' position='' rotation='' scale='' visible='' material='' cursor='' geometry='' color='springgreen' fusing='0.09999999999999998 0.09999999999999998 0.09999999999999998 '></a-cursor>
-      </a-entity>
-      <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>
-      <div class='a-enter-vr' aframe-injected=''>
-        <button class='a-enter-vr-button' aframe-injected=''></button>
+      <div id='write-content'>
+        <p>Please explain why you want to try LAUREN, and describe what is unique about your home.</p>
+        <textarea id='input_response'></textarea>
+        <br>
+        <span id='submit-write' class='button'>SUBMIT</span>
       </div>
-      <div class='a-orientation-modal a-hidden' aframe-injected=''>
-        <button aframe-injected=''>Exit VR</button>
-      </div>
-      <a-entity light='' data-aframe-default-light='' aframe-injected='' position='' rotation='' scale='' visible=''></a-entity>
-      <a-entity light='' position='' data-aframe-default-light='' aframe-injected='' rotation='' scale='' visible=''></a-entity>
-    </a-entity>
-  </a-scene>
-  
+
+    </div>
+
+    <div id='getlauren-thankyou'  class='content' style='display: none'>
+      Thank you for your interest! Due to the limitations of being just one person, LAUREN may not be able to install herself in every home requested. However, LAUREN is hoping to be able to follow up with you soon via email to schedule your installation.
+    </div>
+  </div>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-101225100-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
 </body>
 

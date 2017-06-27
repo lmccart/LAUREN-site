@@ -182,7 +182,7 @@
       </a-entity>
 
       <!-- Camera + cursor. -->
-      <a-entity id='camera' camera='' look-controls='' position='' rotation='' scale='' visible='' mouse-cursor>
+      <a-entity id='camera' camera='' look-controls='reverseMouseDrag: true' position='' rotation='' scale='' visible='' mouse-cursor >
         <a-animation begin='rotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
         <a-animation begin='unrotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 0 0'></a-animation>
       </a-entity>

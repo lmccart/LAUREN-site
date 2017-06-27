@@ -40,6 +40,7 @@ a {
 #video-close {
   left: 5%;
   width: 90%;
+  f
 }
 
 #overlay {
@@ -133,9 +134,9 @@ p {
 
 #closeHome {
   position: absolute;
-  top: -0.25em;
-  right: 0.25em;
-  font-size: 4em;
+  top: -0.2em;
+  right: 0.3em;
+  font-size: 3em;
   display: none;
   cursor: pointer;
   z-index: 2;

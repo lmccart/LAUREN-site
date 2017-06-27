@@ -17,13 +17,13 @@ function toggleHomes(val) {
   }
 }
 
-function closeHome() {
+function closeHome(force) {
   var sky = document.querySelector('#image-360');
   var currentId = sky.getAttribute('src');
   var currentHome = $('#links').find('[data-src="' + currentId + '"]')[0].children[0].getChildren()[0];
   currentHome.emit('close');
   $('#closeHome').hide();
-  toggleHomes(true);
+  if (!force) toggleHomes(true);
 
 }
 
@@ -31,6 +31,7 @@ function getLauren(val) {
   toggleHomes(!val);
   var sky = document.querySelector('#image-360');
   if (val) {
+    $('#closeHome').hide();
     sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
     sky.emit('stopRotateSky');
     sky.emit('rotateRecordSky');

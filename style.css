@@ -254,7 +254,9 @@ textarea {
   .close {
     bottom: 0.5em;
   }
-
+  input, textarea {
+    width: 96%;
+  }
 }
 
 

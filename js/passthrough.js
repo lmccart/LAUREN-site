@@ -4,40 +4,42 @@ var countdownInterval;
 var submission_file;
 
 function startPassthrough() {
-  var video = document.createElement('video');
-  video.setAttribute('id', 'passthroughVideo');
-  video.setAttribute('autoplay', true);
-  video.setAttribute('width', '1280');
-  video.setAttribute('height', '720');
-  video.volume = 0;
-  video.setAttribute('src', '');
+  if (hasGetUserMedia()) {
+    var video = document.createElement('video');
+    video.setAttribute('id', 'passthroughVideo');
+    video.setAttribute('autoplay', true);
+    video.setAttribute('width', '1280');
+    video.setAttribute('height', '720');
+    video.volume = 0;
+    video.setAttribute('src', '');
 
-  var assets = document.getElementsByTagName('a-assets')[0];
-  assets.appendChild(video);
+    var assets = document.getElementsByTagName('a-assets')[0];
+    assets.appendChild(video);
 
-  var sphere = document.querySelector('#passthroughVideo-sphere');
-  sphere.setAttribute('src', '#passthroughVideo');
-  sphere.setAttribute('material', 'src', '#passthroughVideo');
+    var sphere = document.querySelector('#passthroughVideo-sphere');
+    sphere.setAttribute('src', '#passthroughVideo');
+    sphere.setAttribute('material', 'src', '#passthroughVideo');
 
-  var mediaConstraints = {
-    video: {
-      width: {min: 1280, ideal: 1280, max: 1280},
-      height: {min: 720, ideal: 720, max: 720}
-    },
-    audio: true
+    var mediaConstraints = {
+      video: {
+        width: {min: 1280, ideal: 1280, max: 1280},
+        height: {min: 720, ideal: 720, max: 720}
+      },
+      audio: true
+    }
+
+    function successCallback(stream) {
+      passthroughStream = stream;
+      video.src = window.URL ? window.URL.createObjectURL(stream) : stream;
+      video.play();
+    }
+
+    function errorCallback(error) {
+      console.log('An error has occurred!', error);
+    }
+
+    navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
   }
-
-  function successCallback(stream) {
-    passthroughStream = stream;
-    video.src = window.URL ? window.URL.createObjectURL(stream) : stream;
-    video.play();
-  }
-
-  function errorCallback(error) {
-    console.log('An error has occurred!', error);
-  }
-
-  navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
 }
 
 
@@ -132,3 +134,7 @@ function s3_upload(s3_file, s3_object_name, cb){
   });
 }
 
+function hasGetUserMedia() {
+  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}

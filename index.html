@@ -78,14 +78,14 @@
 
       
       <div id='record-content'>
-        <p>Please record a 20 second video explaining why you want to try LAUREN, and describing what is unique about your home. Click "RECORD" when you are ready.<br><span id='write-switch' class='button'>Or, write your response instead.</span></p>
+        <p>Please record a 20 second video explaining why you want to try LAUREN, and describing what is unique about your home. Click "RECORD" when you are ready. <span id='write-switch' class='button'>Or, write your response instead.</span></p>
         <span id='time' style='display: none'>TIME REMAINING: <span id='remaining'>30</span></span>
         <span id='record' class='button'>RECORD</span><br>
         <span id='submit-record' class='button' style='display:none'>SUBMIT</span>
       </div>
       
       <div id='write-content' style='display: none;'>
-        <p>Please explain why you want to try LAUREN, and describe what is unique about your home.<br><span id='record-switch' class='button'>Or, record a video response instead.</span></p>
+        <p>Please explain why you want to try LAUREN, and describe what is unique about your home. <span id='record-switch' class='button'>Or, record a video response instead.</span></p>
         <textarea id='input_response'></textarea>
         <br>
         <span id='submit-write' class='button'>SUBMIT</span>
@@ -155,7 +155,7 @@
     <a-entity id='scene' setup>
       <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
       <a-videosphere id='image-360' radius='15' src='#lauren-video' rotation='0 -90 0'
-                     animation='property: rotation; dur: 80000; easing: linear; from: 0 -160 0; to: 0 20 0; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
+                     animation='property: rotation; dur: 80000; easing: linear; from: 0 -110 0; to: 0 -70 0; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
                      animation__1='property: rotation; dur: 100000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateHome; pauseEvents: stopRotateHome;' 
                      animation__2='property: rotation; dur: 500; easing: linear; to: 0 -40 0; startEvents: rotateRecordSky;'>
       </a-videosphere>

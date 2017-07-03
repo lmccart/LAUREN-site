@@ -2,6 +2,9 @@ AFRAME.registerComponent('setup', {
   schema: {},
   init: function () {
     document.querySelector('#image-360').emit('startRotateSky');
+    if (AFRAME.utils.isMobile) {
+      //document.querySelector('scene-wrapper').setAttribute('rotation')
+    }
     var links = document.querySelector('#links');
     links.addEventListener('animationcomplete', function () {
       var mult = Math.random() > 0.5 ? 1 : -1;

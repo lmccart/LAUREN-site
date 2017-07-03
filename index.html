@@ -63,8 +63,15 @@
       <h2>How do I get LAUREN?</h2>
       <p>You can sign up for LAUREN by clicking the "GET LAUREN" link below. You will be asked to record a short video explaining why you want to try LAUREN. Lauren will follow up with you to talk more about it, and if you like, schedule a time to try LAUREN. The experience will take place in your own home and will last three days.</p>
 
+      <h2>How does it work?</h2>
+      <p>The three day performance begins with Lauren physically visiting your home and installing a collection of networked device objects, including cameras, sensors, outlets, faucets, door locks, lights, and other electronic devices. She will discuss with you what you hope to get from LAUREN.<br><br>
+      For the next three days, LAUREN remotely watches over you  24/7 using the installed cameras and sensors. You are able to direct via voice command as you would Siri or Alexa. However, she can also anticipate your needs and learn to accommodate their desires. LAUREN will control your home remotely using the installed networked switches and devices.<br><br>
+      At the end of the three day performance, Lauren deinstalls all the devices. She goes back through all the captured camera footage during the time together and chooses her favorite moment, and leaves you with a gif of that moment.</p>
+
+
       <h2>What?</h2>
       <p>LAUREN is a performance art piece created by <a href='http://lauren-mccarthy.com' target='_blank'>Lauren McCarthy</a>. It grows from her interest in <a href='http://lauren-mccarthy.com/follower' target='_blank'>following people</a> and <a href='http://lauren-mccarthy.com/Social-Turkers' target='_blank'>following commands</a>. The artwork is interactive, meaning you can participate by inviting LAUREN into your home for a three day long performance. <i>A Film About LAUREN</i> is by <a href='http://davidleonard.tv' target='_blank'>David Leonard</a>.<br>For more information, contact <a href='mailto:lauren@get-lauren.com' target='_blank'>lauren@get-lauren.com</a>.</p>
+      </div>
 
       <div class='close button'>x</div>
     </div>
@@ -152,44 +159,46 @@
     </a-assets>
 
 
-    <a-entity id='scene' setup>
-      <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
-      <a-videosphere id='image-360' radius='15' src='#lauren-video' rotation='0 -90 0'
-                     animation='property: rotation; dur: 80000; easing: linear; from: 0 -110 0; to: 0 -70 0; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
-                     animation__1='property: rotation; dur: 100000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateHome; pauseEvents: stopRotateHome;' 
-                     animation__2='property: rotation; dur: 500; easing: linear; to: 0 -40 0; startEvents: rotateRecordSky;'>
-      </a-videosphere>
+    <a-entity scale='1 1 2'>
+      <a-entity id='scene' setup>
+        <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
+        <a-videosphere id='image-360' radius='15' src='#lauren-video' rotation='0 -90 0'
+                       animation='property: rotation; dur: 80000; easing: linear; from: 0 -110 0; to: 0 -70 0; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
+                       animation__1='property: rotation; dur: 100000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateHome; pauseEvents: stopRotateHome;' 
+                       animation__2='property: rotation; dur: 500; easing: linear; to: 0 -40 0; startEvents: rotateRecordSky;'>
+        </a-videosphere>
 
 
-      <!-- Image links. -->
-      <a-entity id='links' layout='type: circle; radius: 2.8' position='0 0 0' rotation='0 0 0' scale='' visible=''
-                animation='property: rotation; dur: 1000; easing: linear; to: 0 0 0; startEvents: startRotateHomes; pauseEvents: stopRotateHomes'>
-          
-        <a-entity template='src: #link' data-src='#jennystu'></a-entity>
-        <a-entity template='src: #link' data-src='#alex'></a-entity>
-        <a-entity template='src: #link' data-src='#amber'></a-entity>
-        <a-entity template='src: #link' data-src='#megan'></a-entity>
-        <a-entity template='src: #link' data-src='#sean'></a-entity>
-        <a-entity template='src: #link' data-src='#kristen'></a-entity>
-        <a-entity template='src: #link' data-src='#xiuling'></a-entity>
-        <a-entity template='src: #link' data-src='#ruthstanley'></a-entity>
-        <a-entity template='src: #link' data-src='#jackmark'></a-entity>
+        <!-- Image links. -->
+        <a-entity id='links' layout='type: circle; radius: 2.8' position='0 0 0' rotation='0 0 0' scale='' visible=''
+                  animation='property: rotation; dur: 1000; easing: linear; to: 0 0 0; startEvents: startRotateHomes; pauseEvents: stopRotateHomes'>
+            
+          <a-entity template='src: #link' data-src='#jennystu'></a-entity>
+          <a-entity template='src: #link' data-src='#alex'></a-entity>
+          <a-entity template='src: #link' data-src='#amber'></a-entity>
+          <a-entity template='src: #link' data-src='#megan'></a-entity>
+          <a-entity template='src: #link' data-src='#sean'></a-entity>
+          <a-entity template='src: #link' data-src='#kristen'></a-entity>
+          <a-entity template='src: #link' data-src='#xiuling'></a-entity>
+          <a-entity template='src: #link' data-src='#ruthstanley'></a-entity>
+          <a-entity template='src: #link' data-src='#jackmark'></a-entity>
+        </a-entity>
+
+        <a-entity id='passthroughVideo-sphere' geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;' material='shader: flat; color: #666666; opacity: 0.5; side: back;' position='0 0 -2' rotation='0 -90 0' scale='0 0 0'>
+          <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
+          <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1 1 1'></a-animation>
+        </a-entity>
+
+        <!-- Camera + cursor. -->
+        <a-entity id='camera' camera='' look-controls='reverseMouseDrag: true' position='' rotation='' scale='' visible='' mouse-cursor >
+          <a-animation begin='rotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
+          <a-animation begin='unrotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 0 0'></a-animation>
+        </a-entity>
+
+        <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>
+        <a-entity light='' data-aframe-default-light='' aframe-injected='' position='' rotation='' scale='' visible=''></a-entity>
+        <a-entity light='' position='' data-aframe-default-light='' aframe-injected='' rotation='' scale='' visible=''></a-entity>
       </a-entity>
-
-      <a-entity id='passthroughVideo-sphere' geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;' material='shader: flat; color: #666666; opacity: 0.5; side: back;' position='0 0 -2' rotation='0 -90 0' scale='0 0 0'>
-        <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
-        <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1 1 1'></a-animation>
-      </a-entity>
-
-      <!-- Camera + cursor. -->
-      <a-entity id='camera' camera='' look-controls='reverseMouseDrag: true' position='' rotation='' scale='' visible='' mouse-cursor >
-        <a-animation begin='rotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
-        <a-animation begin='unrotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 0 0'></a-animation>
-      </a-entity>
-
-      <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>
-      <a-entity light='' data-aframe-default-light='' aframe-injected='' position='' rotation='' scale='' visible=''></a-entity>
-      <a-entity light='' position='' data-aframe-default-light='' aframe-injected='' rotation='' scale='' visible=''></a-entity>
     </a-entity>
   </a-scene>
   <script>

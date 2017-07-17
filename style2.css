@@ -92,7 +92,6 @@ a {
 }
 
 #overlay-gradient {
-  display: none;
   pointer-events: none;
   position: absolute;
   bottom: 0;

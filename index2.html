@@ -11,7 +11,7 @@
   <script src="https://use.typekit.net/heg8frm.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel='stylesheet' href='style.css'><link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre" rel="stylesheet">
+  <link rel='stylesheet' href='style2.css'><link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre" rel="stylesheet">
 
   <!-- other libraries -->
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
@@ -33,10 +33,15 @@
   <script src='js/set-image.js'></script>
   <script src='js/change-cursor.js'></script>
   <script src='js/passthrough.js'></script>
-  <script src='js/site.js'></script>
+  <script src='js/site2.js'></script>
 </head>
 
 <body class='a-body' id='container'>
+
+  <iframe src="https://player.vimeo.com/video/222252399/" width="640" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+  <img src='img/volume-on.png' id='volume'>
+
   <nav>
     <span id='learnmore' class='button'>LEARN MORE</span>
     <h1 id='lauren' class='button'>LAUREN</h1>
@@ -44,16 +49,12 @@
   </nav>
   <div id='closeHome' class='button'>x</div>
 
-  <div id='video'>
-    <iframe src="https://player.vimeo.com/video/222252399/" width="640" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    <div id='video-top'>
-      <div id='video-close' class='close'>
-        <div id='video-close-button' class='popper button' style='display: none'>x</div>
-      </div>
+  <div id='overlay'>
+    <div id='overlay-text'>
+      <span id='tagline'>THE HUMAN INTELLIGENT SMART HOME</span><br>
+      <span id='title'>LAUREN</span>
     </div>
   </div>
-
-  <div id='overlay'></div>
   <div id='overlay-gradient'></div>
 
   <div id='learnmore-plate' class='plate'>
@@ -110,7 +111,7 @@
 
 
 
-  <a-scene class='fullscreen blur' canvas keyboard-shortcuts screenshot vr-mode-ui='enabled: false'>
+  <a-scene class='fullscreen' canvas keyboard-shortcuts screenshot vr-mode-ui='enabled: false'>
     <a-assets>
       <video id='lauren-video' src='vid/lauren-broll.mp4' autoplay loop='true' muted></video>
       <video id='lauren-listening' src='vid/lauren-listening.mp4' autoplay loop='true' muted></video>
@@ -166,6 +167,8 @@
                        animation='property: rotation; dur: 80000; easing: linear; from: 0 -110 0; to: 0 -70 0; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
                        animation__1='property: rotation; dur: 100000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateHome; pauseEvents: stopRotateHome;' 
                        animation__2='property: rotation; dur: 500; easing: linear; to: 0 -40 0; startEvents: rotateRecordSky;'>
+          <a-animation begin='hide360' attribute='material.opacity' dur='0' to='0'></a-animation>
+          <a-animation begin='show360' attribute='material.opacity' dur='0' to='1.0'></a-animation>
         </a-videosphere>
 
 

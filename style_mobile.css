@@ -1,0 +1,166 @@
+body {
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  font-family: 'calder-lc', sans-serif;
+  font-size: 2vmin;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+#video {
+  margin-top: 3em;
+}
+
+@media(max-height:800px){
+  body,input,textarea{
+    font-size:19px !important;
+  }
+}
+
+@media(max-width:1200px){
+  body,input,textarea{
+    font-size:19px !important;
+  }
+}
+
+
+iframe {
+  z-index: 3;
+}
+
+a {
+  color: #c045ff;
+  text-decoration: none;
+}
+
+
+
+.plate {
+  width: 45%;
+  height: 85%;
+  background-color: #f9f5e7;
+  z-index: 3;
+}
+
+#learnmore-plate {
+  width: 90%;
+  max-width: 1000px;
+}
+
+nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1em 0;
+  z-index: 3;
+  color: #ff002f;
+  height: 3em;
+  text-align: center;
+}
+
+#lauren-top {
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+}
+
+h1 {
+  font-family: 'calder-dark-outline', sans-serif;
+  margin: 0 0.5em;
+  padding: 0;
+  font-size: 2.5em;
+  font-weight: 300;
+  color: #ff002f !important;
+  text-decoration: none;
+  display: inline;
+}
+
+h2 {
+  margin: 0 0 0.5em 0;
+  font-family: 'calder-lc', sans-serif;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0 0 2.5em 0;
+}
+
+
+
+.button:hover {
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#learnmore, #getlauren {
+  margin: 0.5em 0;
+  font-size: 1.2em;
+}
+
+.content {
+  margin: 1.5em;
+  padding: 1.5em;
+  color: black;
+  overflow: scroll;
+  height: 78%;
+  line-height: 1.75em;
+  font-family: 'Frank Ruhl Libre';
+}
+
+
+
+#getlauren-thankyou {
+  line-height: 1.5;
+}
+
+#submit-record, #submit-write, #record, #time {
+  font-family: 'calder-dark', sans-serif;
+  font-size: 1.5em;
+  color: #ff002f;
+  display: block;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+#time {
+  color: #000000;
+}
+
+#remaining {
+  width: 40px;
+  display: inline-block;
+}
+
+
+#getlauren-content p {
+  margin: 0 0 1em 0;
+}
+
+
+input, textarea {
+  border: 0;
+  border-bottom: 2px solid black;
+  outline: 0 !important;
+  background: none;
+  width: 100%;
+  font-size: 1em;
+  font-family: 'Frank Ruhl Libre';
+  color: #c045ff;
+}
+
+textarea {
+  border: 0;
+  background: white;
+  height: 5em;
+}
+

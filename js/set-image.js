@@ -25,18 +25,21 @@ AFRAME.registerComponent('set-image', {
         getLauren();
       } else {
         data.target.setAttribute('src', data.src);
-        data.target.setAttribute('material', 'shader: flat; color: #ffffff; src: '+data.src);
+        data.target.setAttribute('material', 'shader: flat; color: #ffffff; opacity: 1.0; src: '+data.src);
         data.target.emit('stopRotateSky');
         data.target.emit('startRotateHome');
         toggleHomes(false);
         $('#closeHome').show();
+        if (videoPlaying) el.setAttribute('sound', 'volume', '0');
+        else el.setAttribute('sound', 'volume', '5');
       }
     });
 
     el.addEventListener('close', function() {
       console.log('CLOSE')
       el.components.sound.stopSound();
-      data.target.setAttribute('material', 'shader: standard; src: #lauren-video');
+      var opac = videoPlaying ? 0 : 1;
+      data.target.setAttribute('material', 'shader: standard; src: #lauren-video; opacity:'+opac);
       data.target.emit('stopRotateHome');
       data.target.emit('startRotateSky');
     });

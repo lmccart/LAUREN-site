@@ -24,8 +24,8 @@ AFRAME.registerComponent('set-image', {
       if (el.id === '#passthroughVideo-sphere') {
         getLauren();
       } else {
+        data.target.setAttribute('material', 'shader: flat; opacity: 1.0; src: '+data.src);
         data.target.setAttribute('src', data.src);
-        data.target.setAttribute('material', 'shader: flat; color: #ffffff; opacity: 1.0; src: '+data.src);
         data.target.emit('stopRotateSky');
         data.target.emit('startRotateHome');
         toggleHomes(false);

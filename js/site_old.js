@@ -1,7 +1,5 @@
 var plate = 0; // 1 - learnmore, 2 - getlauren
 var h;
-var videoPlaying = true;
-var player;
 
 function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
@@ -26,13 +24,13 @@ function closeHome(force) {
   currentHome.emit('close');
   $('#closeHome').hide();
   if (!force) toggleHomes(true);
+
 }
 
 function getLauren(val) {
   toggleHomes(!val);
   var sky = document.querySelector('#image-360');
   if (val) {
-    player.pause();
     $('#closeHome').hide();
     sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
     sky.emit('stopRotateSky');
@@ -43,15 +41,23 @@ function getLauren(val) {
       resetForm();
     }
   } else {
-    player.play();
-    var opac = videoPlaying ? 0 : 1;
-    sky.setAttribute('material', 'shader: flat; src: #lauren-video; opacity:'+opac);
+    sky.setAttribute('material', 'shader: flat; src: #lauren-video');
     sky.emit('startRotateSky');
     document.querySelector('#camera').emit('unrotateRecordCamera');
     document.querySelector('#passthroughVideo-sphere').emit('scaleOut');
   }
 }
 
+function hideVideo() {
+  $('#video-top').hide();
+  $('#overlay').hide();
+  $('nav').show();
+  $('#overlay-gradient').show();
+  $('a-scene').removeClass('blur');
+  $('#video').animate({ top: -h }, function() {
+    $('#video').remove();
+  });
+}
 
 function resetForm() {
   recordRTC = null;
@@ -106,24 +112,15 @@ function validate() {
 
 $(document).ready(function() {
 
-
   $('video').on('error', function() {
     $(this)[0].load();
   });
 
+  // hideVideo();
+  // setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
   startPassthrough();
 
   $('#lauren').click(function() { window.location = './'; });
-
-  $('#volume').click(function() {
-    if ($(this).attr('src') === 'img/volume-on.png') {
-      $(this).attr('src', 'img/volume-off.png');
-      player.setVolume(0);
-    } else {
-      $(this).attr('src', 'img/volume-on.png');
-      player.setVolume(1);
-    }
-  });
 
   $('#learnmore').click(function() {
     if (plate == 1) {
@@ -197,16 +194,19 @@ $(document).ready(function() {
 
   // VIMEO STUFF
   var iframe = document.querySelector('iframe');
-  player = new Vimeo.Player(iframe);
+  var player = new Vimeo.Player(iframe);
 
   player.on('ended', function() {
-    videoPlaying = false;
-    document.querySelector('#image-360').emit('show360');
     console.log('ended the video!');
+    hideVideo();
   });
 
   $(window).resize(function() {
     resizeDOM();
+  });
+
+  $('#video-close-button').click(function() {
+    hideVideo();
   });
 
   $('#video-close').mousemove(function() {
@@ -221,13 +221,29 @@ $(document).ready(function() {
     if ($('.popper').is(':hidden')) $('.popper').show(0).delay(1000).hide(0);
   });
 
-  resizeDOM();
-  player.play();
+  swipedetect($('#video')[0], function(swipedir){
+    hideVideo();
+  });
 
-  setTimeout(function() { 
-    player.setCurrentTime(8.5);
-    document.querySelector('#image-360').emit('hide360');
-  }, 10000);
+  // $('#overlay').click(function() {
+  //   hideVideo();
+  // });
+
+  function resizeDOM() {
+    var w = document.documentElement.clientWidth;
+    $('iframe').width(w);
+    h = w*320/640;
+    $('iframe').height(h);
+
+    $('#video-close').css('top', $('iframe').height()*0.65);
+    $('#video-close').css('height', Math.min($('iframe').height()*0.35, window.innerHeight - $('iframe').height()*0.65));
+    $('#video-close-button').css('margin-top', $('#video-close').height() - $('#video-close-button').height());
+
+    var lw = $('#learnmore-plate').width();
+    $('#learnmore-plate').css('left', (window.innerWidth - lw)/2);
+  }
+
+  resizeDOM();
 
   if (!hasGetUserMedia() || document.documentElement.clientWidth <= 600) {
     $('#write-content').show();
@@ -236,29 +252,6 @@ $(document).ready(function() {
   }
 
 });
-
-function resizeDOM() {
-  var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;
-  if (minDir) {
-    var h = document.documentElement.clientHeight;
-    $('iframe').height(h);
-    var w = h*640/320;
-    var off = -0.5 * (w - document.documentElement.clientWidth);
-    $('iframe').width(w);
-    $('iframe').css('left', off);
-  } else {
-    var w = document.documentElement.clientWidth;
-    $('iframe').width(w);
-    var h = w*320/640;
-    var off = -0.5 * (h - document.documentElement.clientHeight);
-    $('iframe').height(h);
-    $('iframe').css('top', off);
-  }
-
-  var lw = $('#learnmore-plate').width();
-  $('#learnmore-plate').css('left', (window.innerWidth - lw)/2);
-}
-
 
 function swipedetect(el, callback){
   

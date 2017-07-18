@@ -1,5 +1,7 @@
 var plate = 0; // 1 - learnmore, 2 - getlauren
 var h;
+var videoPlaying = true;
+var player;
 
 function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
@@ -24,13 +26,13 @@ function closeHome(force) {
   currentHome.emit('close');
   $('#closeHome').hide();
   if (!force) toggleHomes(true);
-
 }
 
 function getLauren(val) {
   toggleHomes(!val);
   var sky = document.querySelector('#image-360');
   if (val) {
+    player.pause();
     $('#closeHome').hide();
     sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
     sky.emit('stopRotateSky');
@@ -41,23 +43,15 @@ function getLauren(val) {
       resetForm();
     }
   } else {
-    sky.setAttribute('material', 'shader: flat; src: #lauren-video');
+    player.play();
+    var opac = videoPlaying ? 0 : 1;
+    sky.setAttribute('material', 'shader: flat; src: #lauren-video; opacity:'+opac);
     sky.emit('startRotateSky');
     document.querySelector('#camera').emit('unrotateRecordCamera');
     document.querySelector('#passthroughVideo-sphere').emit('scaleOut');
   }
 }
 
-function hideVideo() {
-  $('#video-top').hide();
-  $('#overlay').hide();
-  $('nav').show();
-  $('#overlay-gradient').show();
-  $('a-scene').removeClass('blur');
-  $('#video').animate({ top: -h }, function() {
-    $('#video').remove();
-  });
-}
 
 function resetForm() {
   recordRTC = null;
@@ -116,11 +110,19 @@ $(document).ready(function() {
     $(this)[0].load();
   });
 
-  // hideVideo();
-  // setTimeout(function() { $('#getlauren').trigger('click'); }, 1000);
   startPassthrough();
 
   $('#lauren').click(function() { window.location = './'; });
+
+  $('#volume').click(function() {
+    if ($(this).attr('src') === 'img/volume-on.png') {
+      $(this).attr('src', 'img/volume-off.png');
+      player.setVolume(0);
+    } else {
+      $(this).attr('src', 'img/volume-on.png');
+      player.setVolume(1);
+    }
+  });
 
   $('#learnmore').click(function() {
     if (plate == 1) {
@@ -194,56 +196,28 @@ $(document).ready(function() {
 
   // VIMEO STUFF
   var iframe = document.querySelector('iframe');
-  var player = new Vimeo.Player(iframe);
+  player = new Vimeo.Player(iframe);
 
   player.on('ended', function() {
+    videoPlaying = false;
+    document.querySelector('#image-360').emit('show360');
+    document.querySelector('#links').emit('raise');
     console.log('ended the video!');
-    hideVideo();
   });
 
   $(window).resize(function() {
     resizeDOM();
   });
 
-  $('#video-close-button').click(function() {
-    hideVideo();
-  });
-
-  $('#video-close').mousemove(function() {
-    if ($('.popper').is(':hidden')) $('.popper').show(0).delay(1000).hide(0);
-  });
-
-  $('#video-close').mouseout(function() {
-    $('.popper').stop().hide(0);
-  });
-
-  $('#overlay').click(function() { 
-    if ($('.popper').is(':hidden')) $('.popper').show(0).delay(1000).hide(0);
-  });
-
-  swipedetect($('#video')[0], function(swipedir){
-    hideVideo();
-  });
-
-  // $('#overlay').click(function() {
-  //   hideVideo();
-  // });
-
-  function resizeDOM() {
-    var w = document.documentElement.clientWidth;
-    $('iframe').width(w);
-    h = w*320/640;
-    $('iframe').height(h);
-
-    $('#video-close').css('top', $('iframe').height()*0.65);
-    $('#video-close').css('height', Math.min($('iframe').height()*0.35, window.innerHeight - $('iframe').height()*0.65));
-    $('#video-close-button').css('margin-top', $('#video-close').height() - $('#video-close-button').height());
-
-    var lw = $('#learnmore-plate').width();
-    $('#learnmore-plate').css('left', (window.innerWidth - lw)/2);
-  }
 
   resizeDOM();
+  player.play();
+
+  setTimeout(function() { 
+    player.setCurrentTime(8.5);
+    document.querySelector('#image-360').emit('hide360');
+    document.querySelector('#links').emit('lower');
+  }, 10000);
 
   if (!hasGetUserMedia() || document.documentElement.clientWidth <= 600) {
     $('#write-content').show();
@@ -253,49 +227,24 @@ $(document).ready(function() {
 
 });
 
-function swipedetect(el, callback){
-  
-  var touchsurface = el,
-  swipedir,
-  startX,
-  startY,
-  distX,
-  distY,
-  threshold = 150, //required min distance traveled to be considered swipe
-  restraint = 100, // maximum distance allowed at the same time in perpendicular direction
-  allowedTime = 300, // maximum time allowed to travel that distance
-  elapsedTime,
-  startTime,
-  handleswipe = callback || function(swipedir){}
+function resizeDOM() {
+  var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;
+  if (minDir) {
+    var h = document.documentElement.clientHeight;
+    $('iframe').height(h);
+    var w = h*640/320;
+    var off = -0.5 * (w - document.documentElement.clientWidth);
+    $('iframe').width(w);
+    $('iframe').css('left', off);
+  } else {
+    var w = document.documentElement.clientWidth;
+    $('iframe').width(w);
+    var h = w*320/640;
+    var off = -0.5 * (h - document.documentElement.clientHeight);
+    $('iframe').height(h);
+    $('iframe').css('top', off);
+  }
 
-  touchsurface.addEventListener('touchstart', function(e){
-    var touchobj = e.changedTouches[0]
-    swipedir = 'none'
-    dist = 0
-    startX = touchobj.pageX
-    startY = touchobj.pageY
-    startTime = new Date().getTime() // record time when finger first makes contact with surface
-    e.preventDefault()
-  }, false)
-
-  touchsurface.addEventListener('touchmove', function(e){
-    e.preventDefault() // prevent scrolling when inside DIV
-  }, false)
-
-  touchsurface.addEventListener('touchend', function(e){
-    var touchobj = e.changedTouches[0]
-    distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
-    distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
-    elapsedTime = new Date().getTime() - startTime // get time elapsed
-    if (elapsedTime <= allowedTime){ // first condition for awipe met
-      if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
-        swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
-      }
-      else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
-        swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
-      }
-    }
-    handleswipe(swipedir)
-    e.preventDefault()
-  }, false)
+  var lw = $('#learnmore-plate').width();
+  $('#learnmore-plate').css('left', (window.innerWidth - lw)/2);
 }

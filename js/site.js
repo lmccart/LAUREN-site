@@ -28,13 +28,13 @@ function closeHome(force) {
   currentHome.emit('close');
   $('#closeHome').hide();
   if (!force) toggleHomes(true);
+  if (videoPlaying) player.play();
 }
 
 function getLauren(val) {
   toggleHomes(!val);
   var sky = document.querySelector('#image-360');
   if (val) {
-    player.pause();
     $('#closeHome').hide();
     sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
     sky.emit('stopRotateSky');
@@ -45,7 +45,7 @@ function getLauren(val) {
       resetForm();
     }
   } else {
-    player.play();
+    if (videoPlaying) player.play();
     var opac = videoPlaying ? 0 : 1;
     sky.setAttribute('material', 'shader: flat; src: #lauren-video; opacity:'+opac);
     sky.emit('startRotateSky');
@@ -205,13 +205,21 @@ $(document).ready(function() {
       setTimeout(function() { $('#overlay').hide(); }, 3000);
     }
   });
-  player.addCuePoint(184);
-  player.on('cuepoint', function() {
-    videoPlaying = false;
-    player.pause();
-    document.querySelector('#image-360').emit('show360');
-    document.querySelector('#links').emit('raise');
-    console.log('ended the video!');
+  player.addCuePoint(9, {type: 'show'});
+  player.addCuePoint(184, {type: 'end'});
+  player.on('cuepoint', function(e) {
+    console.log(e.data);
+    if (e.data.type === 'show') {
+      document.querySelector('#image-360').emit('hide360');
+      document.querySelector('#links').emit('lower');
+    }
+    else if (e.data.type === 'end') {
+      videoPlaying = false;
+      player.pause();
+      document.querySelector('#image-360').emit('show360');
+      document.querySelector('#links').emit('raise');
+      console.log('ended the video!');
+    }
   });
   player.play();
 
@@ -220,11 +228,6 @@ $(document).ready(function() {
   });
   resizeDOM();
 
-  setTimeout(function() { 
-    //player.setCurrentTime(9.5);
-    document.querySelector('#image-360').emit('hide360');
-    document.querySelector('#links').emit('lower');
-  }, 14000);
 
   if (!hasGetUserMedia() || document.documentElement.clientWidth <= 600) {
     $('#write-content').show();

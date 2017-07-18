@@ -214,7 +214,7 @@ $(document).ready(function() {
   player.play();
 
   setTimeout(function() { 
-    player.setCurrentTime(8.5);
+    //player.setCurrentTime(9.5);
     document.querySelector('#image-360').emit('hide360');
     document.querySelector('#links').emit('lower');
   }, 10000);

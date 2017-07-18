@@ -24,14 +24,15 @@ AFRAME.registerComponent('set-image', {
       if (el.id === '#passthroughVideo-sphere') {
         getLauren();
       } else {
-        data.target.setAttribute('material', 'shader: flat; opacity: 1.0; src: '+data.src);
         data.target.setAttribute('src', data.src);
         data.target.emit('stopRotateSky');
         data.target.emit('startRotateHome');
         toggleHomes(false);
         $('#closeHome').show();
-        if (videoPlaying) el.setAttribute('sound', 'volume', '0');
+        if (videoPlaying || $('#volume').attr('src') === 'img/volume-off.png') el.setAttribute('sound', 'volume', '0');
         else el.setAttribute('sound', 'volume', '5');
+        data.target.setAttribute('material', 'shader: flat; opacity: 0; src: '+data.src);
+        setTimeout(function() { data.target.setAttribute('material', 'opacity', '1.0'); }, 300);
       }
     });
 

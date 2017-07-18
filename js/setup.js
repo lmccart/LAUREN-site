@@ -16,6 +16,9 @@ AFRAME.registerComponent('setup', {
       setTimeout(function() { links.emit('startRotateHomes'); }, 3000 + 250*n);
     });
     links.emit('startRotateHomes');
-    setTimeout(function() { $('#overlay').hide(); }, 1000);
+    sceneSetup = true;
+    if (videoLoaded) {
+      setTimeout(function() { $('#overlay').hide(); }, 3000);
+    }
   }
 });

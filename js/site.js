@@ -2,6 +2,8 @@ var plate = 0; // 1 - learnmore, 2 - getlauren
 var h;
 var videoPlaying = true;
 var player;
+var videoLoaded = false;
+var sceneSetup = false;
 
 function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
@@ -197,27 +199,32 @@ $(document).ready(function() {
   // VIMEO STUFF
   var iframe = document.querySelector('iframe');
   player = new Vimeo.Player(iframe);
-
-  player.on('ended', function() {
+  player.on('loaded', function() {
+    videoLoaded = true;
+    if (sceneSetup) {
+      setTimeout(function() { $('#overlay').hide(); }, 3000);
+    }
+  });
+  player.addCuePoint(184);
+  player.on('cuepoint', function() {
     videoPlaying = false;
+    player.pause();
     document.querySelector('#image-360').emit('show360');
     document.querySelector('#links').emit('raise');
     console.log('ended the video!');
   });
+  player.play();
 
   $(window).resize(function() {
     resizeDOM();
   });
-
-
   resizeDOM();
-  player.play();
 
   setTimeout(function() { 
     //player.setCurrentTime(9.5);
     document.querySelector('#image-360').emit('hide360');
     document.querySelector('#links').emit('lower');
-  }, 10000);
+  }, 14000);
 
   if (!hasGetUserMedia() || document.documentElement.clientWidth <= 600) {
     $('#write-content').show();

@@ -31,8 +31,9 @@ AFRAME.registerComponent('set-image', {
         $('#closeHome').show();
         if (videoPlaying || $('#volume').attr('src') === 'img/volume-off.png') el.setAttribute('sound', 'volume', '0');
         else el.setAttribute('sound', 'volume', '5');
-        data.target.setAttribute('material', 'shader: flat; opacity: 0; src: '+data.src);
-        setTimeout(function() { data.target.setAttribute('material', 'opacity', '1.0'); }, 300);
+        var opac = videoPlaying ? 0 : 1;
+        data.target.setAttribute('material', 'shader: flat; opacity: '+opac+'; src: '+data.src);
+        if (videoPlaying) setTimeout(function() { data.target.setAttribute('material', 'opacity', '1.0'); }, 300);
       }
     });
 

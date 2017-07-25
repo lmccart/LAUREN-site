@@ -202,7 +202,7 @@ $(document).ready(function() {
   player.on('loaded', function() {
     videoLoaded = true;
     if (sceneSetup) {
-      setTimeout(function() { $('#overlay').hide(); }, 2000);
+      setTimeout(function() { $('#overlay').hide(); }, 2500);
     }
   });
   player.addCuePoint(9, {type: 'show'});

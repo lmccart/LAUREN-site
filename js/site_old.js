@@ -20,7 +20,7 @@ function toggleHomes(val) {
 function closeHome(force) {
   var sky = document.querySelector('#image-360');
   var currentId = sky.getAttribute('src');
-  var currentHome = $('#links').find('[data-src="' + currentId + '"]')[0].children[0].getChildren()[0];
+  var currentHome = $('#links').find('[data-src='' + currentId + '']')[0].children[0].getChildren()[0];
   currentHome.emit('close');
   $('#closeHome').hide();
   if (!force) toggleHomes(true);
@@ -37,7 +37,7 @@ function getLauren(val) {
     sky.emit('rotateRecordSky');
     document.querySelector('#camera').emit('rotateRecordCamera');
     document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
-    if ($('#getlauren-thankyou').is(":visible")) {
+    if ($('#getlauren-thankyou').is(':visible')) {
       resetForm();
     }
   } else {

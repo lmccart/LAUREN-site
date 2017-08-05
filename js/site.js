@@ -241,8 +241,7 @@ function resizeDOM() {
 
   if (AFRAME.utils.device.isMobile()) {
     if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
-      document.querySelector('#camera').setAttribute('rotation', '0 0 90');
-      $('body').style.transform = 'rotate(90deg)';
+      $('body').css('transform', 'rotate(90deg)');
     }
   } else {
     var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;

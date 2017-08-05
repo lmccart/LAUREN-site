@@ -242,6 +242,36 @@ function resizeDOM() {
   if (AFRAME.utils.device.isMobile()) {
     if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
       $('#non-scene').css('transform', 'rotate(90deg)');
+
+      var angle = angle_in_degrees * Math.PI / 180,
+          sin   = Math.sin(angle),
+          cos   = Math.cos(angle);
+
+      // (0,0) stays as (0, 0)
+
+      // (w,0) rotation
+      var x1 = cos * width,
+          y1 = sin * width;
+
+      // (0,h) rotation
+      var x2 = -sin * height,
+          y2 = cos * height;
+
+      // (w,h) rotation
+      var x3 = cos * width - sin * height,
+          y3 = sin * width + cos * height;
+
+      var minX = Math.min(0, x1, x2, x3),
+          maxX = Math.max(0, x1, x2, x3),
+          minY = Math.min(0, y1, y2, y3),
+          maxY = Math.max(0, y1, y2, y3);
+
+      var rotatedWidth  = maxX - minX,
+          rotatedHeight = maxY - minY;
+
+      $('#container').width(rotatedWidth);
+      $('#container').height(rotatedHeight);
+      console.log(rotatedWidth+' -- '+rotatedHeight)
     }
   } 
   var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;

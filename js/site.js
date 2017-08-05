@@ -245,7 +245,7 @@ function resizeDOM() {
       console.log('hi')
       $('#non-scene').css('transform', 'rotate(90deg)');
 
-      var angle = angle_in_degrees * Math.PI / 180,
+      var angle = 90 * Math.PI / 180,
           sin   = Math.sin(angle),
           cos   = Math.cos(angle);
 

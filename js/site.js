@@ -240,7 +240,9 @@ $(document).ready(function() {
 function resizeDOM() {
   console.log('ISMOBILE ='+AFRAME.utils.device.isMobile())
   if (AFRAME.utils.device.isMobile()) {
+      console.log('hi2')
     if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
+      console.log('hi')
       $('#non-scene').css('transform', 'rotate(90deg)');
 
       var angle = angle_in_degrees * Math.PI / 180,

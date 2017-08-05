@@ -239,7 +239,7 @@ $(document).ready(function() {
 
 function resizeDOM() {
 
-console.log(AFRAME.utils.device.isMobile())
+console.log('ISMOBILE ='+AFRAME.utils.device.isMobile())
   if (AFRAME.utils.device.isMobile()) {
     if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
       $('body').css('transform', 'rotate(90deg)');

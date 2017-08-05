@@ -238,23 +238,31 @@ $(document).ready(function() {
 });
 
 function resizeDOM() {
-  var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;
-  if (minDir) {
-    var h = document.documentElement.clientHeight;
-    $('iframe').height(h);
-    var w = h*640/320;
-    var off = -0.5 * (w - document.documentElement.clientWidth);
-    $('iframe').width(w);
-    $('iframe').css('left', off);
-  } else {
-    var w = document.documentElement.clientWidth;
-    $('iframe').width(w);
-    var h = w*320/640;
-    var off = -0.5 * (h - document.documentElement.clientHeight);
-    $('iframe').height(h);
-    $('iframe').css('top', off);
-  }
 
-  var lw = $('#learnmore-plate').width();
-  $('#learnmore-plate').css('left', (window.innerWidth - lw)/2);
+  if (AFRAME.utils.device.isMobile()) {
+    if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
+      document.querySelector('#camera').setAttribute('rotation', '0 0 90');
+      $('body').style.transform = 'rotate(90deg)';
+    }
+  } else {
+    var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;
+    if (minDir) {
+      var h = document.documentElement.clientHeight;
+      $('iframe').height(h);
+      var w = h*640/320;
+      var off = -0.5 * (w - document.documentElement.clientWidth);
+      $('iframe').width(w);
+      $('iframe').css('left', off);
+    } else {
+      var w = document.documentElement.clientWidth;
+      $('iframe').width(w);
+      var h = w*320/640;
+      var off = -0.5 * (h - document.documentElement.clientHeight);
+      $('iframe').height(h);
+      $('iframe').css('top', off);
+    }
+
+    var lw = $('#learnmore-plate').width();
+    $('#learnmore-plate').css('left', (window.innerWidth - lw)/2);
+  }
 }

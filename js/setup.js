@@ -1,6 +1,11 @@
 AFRAME.registerComponent('setup', {
   schema: {},
   init: function () {
+    if (AFRAME.utils.device.isMobile()) {
+      if (window.innerWidth < window.inenrHeight) {
+        document.querySelector('#camera').setAttribute('rotation', '0 0 90');
+      }
+    }
     document.querySelector('#image-360').emit('startRotateSky');
     if (AFRAME.utils.isMobile) {
       //document.querySelector('scene-wrapper').setAttribute('rotation')
@@ -17,7 +22,7 @@ AFRAME.registerComponent('setup', {
     });
     links.emit('startRotateHomes');
     sceneSetup = true;
-    if (videoLoaded) {
+    if (videoLoaded || AFRAME.utils.isMobile()) {
       setTimeout(function() { $('#overlay').hide(); }, 2500);
     }
   }

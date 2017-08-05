@@ -254,24 +254,6 @@ function resizeDOM() {
   if (AFRAME.utils.device.isMobile()) {
     videoPlaying = false;
     videoLoaded = true;
-    if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
-      $('#non-scene').css('transform', 'rotate(90deg)');
-      var newW = $('#non-scene').height();
-      var newH = $('#non-scene').width();
-      $('#non-scene').width(newW);
-      $('#non-scene').height(newH);
-      var top = (newW - newH)/2;
-      $('#non-scene').css('top', top+'px');
-      $('#non-scene').css('left', -1*top+'px');
-    } else {
-      $('#non-scene').css('transform', 'rotate(0deg)');
-      var newW = $('#non-scene').width();
-      var newH = $('#non-scene').height();
-      $('#non-scene').width(newW);
-      $('#non-scene').height(newH);
-      $('#non-scene').css('top', '0px');
-      $('#non-scene').css('left', '0px');
-    }
   } else {
     var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;
     if (minDir) {

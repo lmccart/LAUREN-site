@@ -31,16 +31,6 @@ a {
   text-decoration: none;
 }
 
-#non-scene {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-}
-
 #video {
   z-index: 4;
   position: absolute;
@@ -57,7 +47,6 @@ a {
   width: 2em;
   z-index: 4;
   cursor: pointer;
-  pointer-events:all;
 }
 
 #volume:hover {
@@ -124,7 +113,6 @@ a {
   left: 5%;
   background-color: #f9f5e7;
   z-index: 3;
-  pointer-events:all;
 }
 
 #learnmore-plate {
@@ -142,7 +130,6 @@ nav {
   color: #ff002f;
   height: 3em;
   text-align: center;
-  pointer-events:all;
 }
 
 #lauren-top {
@@ -182,14 +169,13 @@ p {
   cursor: pointer;
   z-index: 2;
   color: #ff002f;
-  pointer-events:all;
 }
 
 
 .button:hover {
   font-weight: 800;
   cursor: pointer;
-  pointer-events:all;
+  pointer-events: all;
 }
 
 #learnmore, #getlauren {
@@ -206,7 +192,6 @@ p {
   font-size: 2em;
   cursor: pointer;
   font-family: 'calder-dark', sans-serif;
-  pointer-events:all;
 }
 
 .content {

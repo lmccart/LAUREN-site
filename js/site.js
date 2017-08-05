@@ -241,7 +241,7 @@ function resizeDOM() {
   console.log('ISMOBILE ='+AFRAME.utils.device.isMobile())
   if (AFRAME.utils.device.isMobile()) {
     if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
-      $('body').css('transform', 'rotate(90deg)');
+      $('#non-scene').css('transform', 'rotate(90deg)');
     }
   } 
   var minDir = document.documentElement.clientWidth/document.documentElement.clientHeight > 640/320 ? 0 : 1;

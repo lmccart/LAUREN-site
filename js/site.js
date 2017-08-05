@@ -213,7 +213,7 @@ $(document).ready(function() {
   player = new Vimeo.Player(iframe);
 
 
-  if (AFRAME.utils.device.isMobile()) {
+  if (!AFRAME.utils.device.isMobile()) {
     player.on('loaded', function() {
       videoLoaded = true;
       if (sceneSetup) {

@@ -285,9 +285,14 @@ textarea {
     font-size: 3vmin;
   }
 
+  iframe {
+    display: none;
+  }
+
   .plate {
     width: 90%;
     font-size: 4vmin;
+  -webkit-overflow-scrolling: touch;
   }
 
   .content {

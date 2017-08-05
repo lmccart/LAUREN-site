@@ -2,7 +2,7 @@ AFRAME.registerComponent('setup', {
   schema: {},
   init: function () {
     document.querySelector('#image-360').emit('startRotateSky');
-    if (AFRAME.utils.isMobile) {
+    if (AFRAME.utils.isMobile()) {
       //document.querySelector('scene-wrapper').setAttribute('rotation')
     }
     var links = document.querySelector('#links');
@@ -16,9 +16,13 @@ AFRAME.registerComponent('setup', {
       setTimeout(function() { links.emit('startRotateHomes'); }, 3000 + 250*n);
     });
     links.emit('startRotateHomes');
-    sceneSetup = true;
-    if (videoLoaded) {
-      setTimeout(function() { $('#overlay').hide(); }, 2500);
-    }
+
+    document.querySelector('a-scene').addEventListener('loaded', function () {
+      sceneSetup = true;
+      if (videoLoaded || AFRAME.utils.isMobile()) {
+        setTimeout(function() { $('#overlay').hide(); }, 2000);
+      }
+    });
+
   }
 });

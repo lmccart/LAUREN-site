@@ -223,7 +223,6 @@ $(document).ready(function() {
     player.addCuePoint(9, {type: 'show'});
     player.addCuePoint(184, {type: 'end'});
     player.on('cuepoint', function(e) {
-      console.log(e.data);
       if (e.data.type === 'show') {
         document.querySelector('#image-360').emit('hide360');
         document.querySelector('#links').emit('lower');

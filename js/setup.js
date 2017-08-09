@@ -17,12 +17,10 @@ AFRAME.registerComponent('setup', {
     });
     links.emit('startRotateHomes');
 
-    document.querySelector('a-scene').addEventListener('loaded', function () {
-      sceneSetup = true;
-      if (videoLoaded || AFRAME.utils.isMobile()) {
-        setTimeout(function() { $('#overlay').hide(); }, 2000);
-      }
-    });
+    sceneSetup = true;
+    if (videoLoaded || AFRAME.utils.isMobile()) {
+      setTimeout(function() { $('#overlay').hide(); }, 2000);
+    }
 
   }
 });

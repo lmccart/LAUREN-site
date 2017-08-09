@@ -195,11 +195,11 @@ p {
 }
 
 .content {
-  margin: 1.5em;
-  padding: 1.5em;
+  margin: 2em;
+  padding: 2em;
   color: black;
   overflow: scroll;
-  height: 78%;
+  height: 70%;
   line-height: 1.75em;
   font-family: 'Frank Ruhl Libre';
 }

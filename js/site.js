@@ -111,6 +111,10 @@ function validate() {
 
 $(document).ready(function() {
 
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    window.location = './simple.html';
+  }
+
   if( window.history && window.history.pushState ){
 
     history.pushState("nohb", null, "");

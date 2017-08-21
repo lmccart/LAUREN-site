@@ -17,10 +17,11 @@
     $(document).ready(function() {
       $('#getlauren').click(function(){  
         $('#learnmore-content').hide();   
+        $('#getlauren-content').show();
         if ($('#getlauren-thankyou').is(':visible')) {
+        console.log('reset')
           resetForm();
         }
-        $('#getlauren-content').show();
       });
       $('#learnmore').click(function(){ 
         $('#getlauren-content').hide();
@@ -64,6 +65,7 @@
       }
 
       function resetForm() {
+        console.log('resetf')
         $('#input_name').val('');
         $('#input_email').val('');
         $('#input_city').val('');

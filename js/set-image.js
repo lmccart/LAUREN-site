@@ -21,21 +21,19 @@ AFRAME.registerComponent('set-image', {
     });
 
     el.addEventListener(data.on, function () {
+      homeOpen = true;
       player.pause();
-      if (el.id === '#passthroughVideo-sphere') {
-        getLauren();
-      } else {
-        data.target.setAttribute('src', data.src);
-        data.target.emit('stopRotateSky');
-        data.target.emit('startRotateHome');
-        toggleHomes(false);
-        $('#closeHome').show();
-        if ($('#volume').attr('src') === 'img/volume-off.png') el.setAttribute('sound', 'volume', '0');
-        else el.setAttribute('sound', 'volume', '5');
-        var opac = videoPlaying ? 0 : 1;
-        data.target.setAttribute('material', 'shader: flat; opacity: '+opac+'; src: '+data.src);
-        if (videoPlaying) setTimeout(function() { data.target.setAttribute('material', 'opacity', '1.0'); }, 300);
-      }
+      data.target.setAttribute('src', data.src);
+      data.target.emit('stopRotateSky');
+      data.target.emit('startRotateHome');
+      toggleHomes(false);
+      $('#closeHome').show();
+      if ($('#volume').attr('src') === 'img/volume-off.png') el.setAttribute('sound', 'volume', '0');
+      else el.setAttribute('sound', 'volume', '5');
+      var opac = videoPlaying ? 0 : 1;
+      data.target.setAttribute('material', 'shader: flat; opacity: '+opac+'; src: '+data.src);
+      if (videoPlaying) setTimeout(function() { data.target.setAttribute('material', 'opacity', '1.0'); }, 300);
+    
     });
 
     el.addEventListener('close', function() {

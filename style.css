@@ -66,6 +66,24 @@ a {
   font-weight: 300;
 }
 
+#loading {
+  font-family: 'calder-dark', sans-serif;
+  font-size: 2em;
+  font-weight: 300;
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#loadingdots {
+  min-width: 1em;
+  display: inline-block;
+  text-align: left;
+}
+
 #overlay-text {
   display: table-cell;
   vertical-align: middle;

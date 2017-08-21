@@ -15,28 +15,30 @@
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
   <script>
     $(document).ready(function() {
-      $('#getlauren').click(function(){ 
+      $('#getlauren').click(function(){  
+        $('#learnmore-content').hide();   
+        if ($('#getlauren-thankyou').is(':visible')) {
+          resetForm();
+        }
         $('#getlauren-content').show();
-        $('#learnmore-content').hide();
       });
       $('#learnmore').click(function(){ 
-        $('#learnmore-content').show();
         $('#getlauren-content').hide();
+        $('#learnmore-content').show();
       });
 
       $('#submit-write').click(submit);
 
       function submit() {
         if (validate()) {
-          $('#getlauren-content').hide();
+          $('#form-content').hide();
           $('#getlauren-thankyou').show();
-          var video_url = submitRecording();
           var s = {
             name: $('#input_name').val(),
             email: $('#input_email').val(),
             city: $('#input_city').val(),
             written: $('#input_response').val(),
-            video: video_url 
+            video: '' 
           }
           $.post('https://lauren-server.herokuapp.com/submit', s, function(res) {
             console.log(res);
@@ -54,11 +56,20 @@
         else if (!$('#input_city').val()) {
           alert('Please enter the city you live in.');
         }
-        else if (!$('#input_response').val() && !submission_file) {
+        else if (!$('#input_response').val()) {
           alert('Please write or record a response explaining why you want to get LAUREN.');
         } else {
           return true;
         }
+      }
+
+      function resetForm() {
+        $('#input_name').val('');
+        $('#input_email').val('');
+        $('#input_city').val('');
+        $('#input_response').val('');
+        $('#form-content').show();
+        $('#getlauren-thankyou').hide();
       }
 
     });
@@ -96,20 +107,21 @@
 
     <div id='getlauren-content' style='display:none'>
       <h2 style='margin-bottom:1em'>Get LAUREN</h2>
-      <p>Name</p><input id='input_name' type='text'><br><br>
-      <p>Email</p><input id='input_email' type='text'><br><br>
-      <p>What city do you live in?</p><input  id='input_city' type='text'><br><br>
-      
-      <div id='write-content'>
-        <p>Please explain why you want to try LAUREN, and describe what is unique about you and your home.</p>
-        <textarea id='input_response'></textarea>
-        <br>
-        <span id='submit-write' class='button'>SUBMIT</span>
+      <div id='form-content'>
+        <p>Name</p><input id='input_name' type='text'><br><br>
+        <p>Email</p><input id='input_email' type='text'><br><br>
+        <p>What city do you live in?</p><input  id='input_city' type='text'><br><br>
+        
+        <div id='write-content'>
+          <p>Please explain why you want to try LAUREN, and describe what is unique about you and your home.</p>
+          <textarea id='input_response'></textarea>
+          <br>
+          <span id='submit-write' class='button'>SUBMIT</span>
+        </div>
       </div>
 
-      <div id='getlauren-thankyou'  class='content' style='display: none'>
-        Thank you for your interest! Due to the limitations of being just one person, LAUREN may not be able to install herself in every home requested. However, LAUREN is hoping to be able to follow up with you soon via email to schedule your installation.
-        <div class='close button'>x</div>
+      <div id='getlauren-thankyou' style='display: none'>
+        <p>Thank you for your interest! Due to the limitations of being just one person, LAUREN may not be able to install herself in every home requested. However, LAUREN is hoping to be able to follow up with you soon via email to schedule your installation.</p>
       </div>
 
       <span id='learnmore' class='button'>LEARN MORE</span>

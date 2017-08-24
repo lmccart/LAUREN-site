@@ -7,7 +7,7 @@ body {
 }
 
 #container {
-  margin: 3em;
+  margin: 2em;
 }
 
 .embed-container { 
@@ -40,12 +40,12 @@ a {
 
 #tagline {
   font-family: 'calder-dark', sans-serif;
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
 #title {
   font-family: 'calder-dark-outline', sans-serif;
-  font-size: 7em;
+  font-size: 3em;
   font-weight: 500;
 }
 
@@ -74,7 +74,7 @@ h2 {
   color: black;
   overflow: scroll;
   height: 78%;
-  font-size: 2.4em;
+  font-size: 1.2em;
   line-height: 1.8em;
   font-family: 'Frank Ruhl Libre';
 }
@@ -108,13 +108,13 @@ h2 {
 
 
 input, textarea {
-  border: 0;
+  border: 0 !important;
   border-bottom: 2px solid black;
   outline: 0 !important;
   background: none;
   width: 100%;
   padding: 0 -0.25em;
-  font-size: 1.32em;
+  font-size: 1em;
   font-family: 'Frank Ruhl Libre';
   color: #c045ff;
 }

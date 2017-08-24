@@ -112,8 +112,12 @@ input, textarea {
   border: 0 !important;
   border-bottom: 2px solid black !important;
   outline: 0 !important;
+  margin: 0 !important;
   background: none;
   width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0 -0.25em !important;
   font-size: 1em;
   font-family: 'Frank Ruhl Libre';
@@ -125,6 +129,6 @@ textarea {
   border: 0 !important;
   background: white;
   height: 5em;
-  margin-top: 1em;
+  margin-top: 1em !important;
 }
 

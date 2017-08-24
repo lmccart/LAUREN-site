@@ -109,7 +109,7 @@ h2 {
 
 input, textarea {
   border: 0 !important;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid black !important;
   outline: 0 !important;
   background: none;
   width: 100%;

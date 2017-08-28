@@ -255,7 +255,7 @@ $(document).ready(function() {
     }
   });
   player.addCuePoint(9, {type: 'show'});
-  player.addCuePoint(184, {type: 'end'});
+  player.addCuePoint(221, {type: 'end'});
   player.on('cuepoint', function(e) {
     if (e.data.type === 'show') {
       document.querySelector('#image-360').emit('hide360');
@@ -263,7 +263,7 @@ $(document).ready(function() {
     }
     else if (e.data.type === 'end') {
       videoPlaying = false;
-      player.pause();
+      //player.pause();
       document.querySelector('#image-360').emit('show360');
       document.querySelector('#links').emit('raise');
       console.log('ended the video!');

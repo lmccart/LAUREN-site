@@ -23,10 +23,12 @@
         console.log('reset')
           resetForm();
         }
+        $(window).scrollTop(0);
       });
       $('#learnmore').click(function(){ 
         $('#getlauren-content').hide();
         $('#learnmore-content').show();
+        $(window).scrollTop(0);
       });
 
       $('#submit-write').click(submit);
@@ -92,11 +94,8 @@
       <div class='embed-container'>
         <iframe src="https://player.vimeo.com/video/222252399/" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
-        
-      <p>LAUREN is a human intelligent smart home. Lauren will visit your home, deploy a series of smart devices, and watch over you remotely 24/7. Lauren will control your home for you, attempting to be better than an AI, understanding you as a person. You will be able to interact with her by calling her name, but she will also do things for you without your asking. She will learn faster than an algorithm, adapting to your desires and anticipating your needs.</p>
 
-      <h2>How do I get LAUREN?</h2>
-      <p>You can sign up for LAUREN by clicking the "GET LAUREN" link below. You will be asked to record a short video explaining why you want to try LAUREN. Lauren will follow up with you to talk more about it, and if you like, schedule a time to try LAUREN. The experience will take place in your own home and will last three days.</p>
+      <p>LAUREN is a human intelligent smart home. Lauren will visit your home, deploy a series of smart devices, and watch over you remotely 24/7. Lauren will control your home for you, attempting to be better than an AI, understanding you as a person. You will be able to interact with her by calling her name, but she will also do things for you without your asking. She will learn faster than an algorithm, adapting to your desires and anticipating your needs.</p>
 
       <img src='img/alex.gif'>
 
@@ -104,11 +103,16 @@
       <p>The three day performance begins with Lauren physically visiting your home and installing a collection of networked device objects, including cameras, sensors, outlets, faucets, door locks, lights, and other electronic devices. She will discuss with you what you hope to get from LAUREN.<br><br>
       For the next three days, LAUREN remotely watches over you  24/7 using the installed cameras and sensors. You are able to direct via voice command as you would Siri or Alexa. However, she can also anticipate your needs and learn to accommodate their desires. LAUREN will control your home remotely using the installed networked switches and devices.<br><br>
       At the end of the three day performance, Lauren deinstalls all the devices. She goes back through all the captured camera footage during the time together and chooses her favorite moment, and leaves you with a gif of that moment.
+      </p>     
+
+      <img src='img/ruthstanley-dbl.gif'>
+
+      <h2>How do I get LAUREN?</h2>
+      <p>You can sign up for LAUREN by clicking the "GET LAUREN" link below. You will be asked to explain why you want to try LAUREN. Lauren will follow up with you to talk more about it, and if you like, schedule a time to try LAUREN. The experience will take place in your own home and will last three days.
       <br><br>
       <span id='getlauren' class='button animate-flicker'>GET LAUREN</span>
       </p>
       
-      <img src='img/ruthstanley-dbl.gif'>
 
 
       <h2>What?</h2>
@@ -120,7 +124,11 @@
 
       <img src='img/sean-dbl.gif'>
       <h2 style='margin-bottom:1em'>Get LAUREN</h2>
-      <div id='form-content'>
+
+      <div id='form-content'>      
+
+        <p>To get LAUREN, please fill out the form below. If available, Lauren will follow up with you to schedule a time to try LAUREN. The experience will take place in your own home and will last three days.</p><br>
+        
         <p>Name</p><input id='input_name' type='text'><br><br>
         <p>Email</p><input id='input_email' type='text'><br><br>
         <p>What city do you live in?</p><input  id='input_city' type='text'><br><br>

@@ -6,13 +6,18 @@ body {
   background-color: #f9f5e7;
 }
 
+img {
+  width: 100%;
+  margin: -1em 0 1em 0;
+}
+
 #container {
   margin: 2em;
 }
 
 .embed-container { 
   position: relative; 
-  margin: 2em 0;
+  margin: 0 0 1.5em 0;
   padding-bottom: 50%; 
   height: 0; 
   overflow: hidden; 
@@ -40,7 +45,7 @@ a {
 
 #tagline {
   font-family: 'calder-dark', sans-serif;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 #title {
@@ -70,7 +75,7 @@ h2 {
 
 
 #content {
-  margin-top: 2em;
+  margin-top: 1em;
   color: black;
   overflow: scroll;
   height: 78%;
@@ -130,5 +135,15 @@ textarea {
   background: white;
   height: 5em;
   margin-top: 1em !important;
+}
+
+@keyframes flickerAnimation { /* flame pulses */
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+.animate-flicker {
+  opacity:1;  
+  animation: flickerAnimation 3s infinite;
 }
 

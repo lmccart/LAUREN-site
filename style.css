@@ -221,7 +221,7 @@ p {
   padding: 2em;
   color: black;
   overflow: scroll;
-  height: 70%;
+  height: 78%;
   line-height: 1.75em;
   font-family: 'Frank Ruhl Libre';
 }
@@ -229,7 +229,7 @@ p {
 
 
 #getlauren-thankyou {
-  line-height: 1.5;
+  line-height: 1.75em;
 }
 
 #submit-record, #submit-write, #record, #time {
@@ -240,6 +240,10 @@ p {
   font-size: 1.5em;
   text-align: center;
   margin-top: 0.5em;
+}
+
+#record {
+  margin-top: 1.5em;
 }
 
 #time {

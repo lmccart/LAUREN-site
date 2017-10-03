@@ -4,7 +4,7 @@ var countdownInterval;
 var submission_file;
 
 function startPassthrough() {
-  if (hasGetUserMedia()) {
+  if (hasGetUserMedia() && !hideRecord) {
     var video = document.createElement('video');
     video.setAttribute('id', 'passthroughVideo');
     video.setAttribute('autoplay', true);

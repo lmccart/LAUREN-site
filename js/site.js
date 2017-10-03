@@ -7,7 +7,9 @@ var sceneSetup = false;
 var dotInterval;
 var homeOpen = false;
 
-var hideRecord = window.location.hash === '#!';
+var hideRecord = window.location.hash.indexOf('!') !== -1;
+var hideVideo = window.location.hash.indexOf('novid') !== -1;
+if (hideVideo) videoPlaying = false;
 
 function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
@@ -32,7 +34,7 @@ function closeHome(force) {
   currentHome.emit('close');
   $('#closeHome').hide();
   if (!force) toggleHomes(true);
-  if (videoPlaying) player.play();
+  if (videoPlaying && !hideVideo) player.play();
   homeOpen = false;
 }
 
@@ -45,12 +47,12 @@ function getLauren(val) {
     sky.emit('stopRotateSky');
     sky.emit('rotateRecordSky');
     document.querySelector('#camera').emit('rotateRecordCamera');
-    document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
+    if (!hideRecord) document.querySelector('#passthroughVideo-sphere').emit('scaleIn');
     if ($('#getlauren-thankyou').is(':visible')) {
       resetForm();
     }
   } else {
-    if (videoPlaying) player.play();
+    if (videoPlaying && !hideVideo) player.play();
     var opac = videoPlaying ? 0 : 1;
     sky.setAttribute('material', 'shader: flat; src: #lauren-video; opacity:'+opac);
     sky.emit('startRotateSky');
@@ -256,27 +258,29 @@ $(document).ready(function() {
       }, 2000);
     }
   });
-  player.addCuePoint(9, {type: 'show'});
-  player.addCuePoint(221, {type: 'end'});
-  player.on('cuepoint', function(e) {
-    if (e.data.type === 'show') {
-      document.querySelector('#image-360').emit('hide360');
-      document.querySelector('#links').emit('lower');
-    }
-    else if (e.data.type === 'end') {
-      videoPlaying = false;
-      //player.pause();
-      document.querySelector('#image-360').emit('show360');
-      document.querySelector('#links').emit('raise');
-      console.log('ended the video!');
-    }
-  });
-  player.play();
+  if (!hideVideo) {
+    player.addCuePoint(9, {type: 'show'});
+    player.addCuePoint(221, {type: 'end'});
+    player.on('cuepoint', function(e) {
+      if (e.data.type === 'show') {
+        document.querySelector('#image-360').emit('hide360');
+        document.querySelector('#links').emit('lower');
+      }
+      else if (e.data.type === 'end') {
+        videoPlaying = false;
+        //player.pause();
+        document.querySelector('#image-360').emit('show360');
+        document.querySelector('#links').emit('raise');
+        console.log('ended the video!');
+      }
+    });
+    player.play();
+  }
 
   resizeDOM();
 
 
-  if (!hasGetUserMedia() || document.documentElement.clientWidth <= 600 || hideRecord) {
+  if (hideRecord || !hasGetUserMedia() || document.documentElement.clientWidth <= 600) {
     $('#write-content').show();
     $('#record-content').hide();
     $('#record-switch').hide();

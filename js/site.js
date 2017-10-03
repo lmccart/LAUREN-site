@@ -7,6 +7,8 @@ var sceneSetup = false;
 var dotInterval;
 var homeOpen = false;
 
+var hideRecord = window.location.hash === '#!';
+
 function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
   for (var i=0; i<links.length; i++) {
@@ -274,7 +276,7 @@ $(document).ready(function() {
   resizeDOM();
 
 
-  if (!hasGetUserMedia() || document.documentElement.clientWidth <= 600) {
+  if (!hasGetUserMedia() || document.documentElement.clientWidth <= 600 || hideRecord) {
     $('#write-content').show();
     $('#record-content').hide();
     $('#record-switch').hide();
@@ -306,6 +308,7 @@ function resizeDOM() {
   $('#learnmore-plate').css('left', ($(window).width() - lw)/2);
   $('#learnmore-plate').css('top', -$('#learnmore-plate').height());
   $('#getlauren-plate').css('top', -$('#getlauren-plate').height());
+
 
 }
 

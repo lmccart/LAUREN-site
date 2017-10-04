@@ -8,7 +8,7 @@ var dotInterval;
 var homeOpen = false;
 
 var hideRecord = window.location.hash.indexOf('!') !== -1;
-var hideVideo = window.location.hash.indexOf('hidevid') !== -1;
+var hideVideo = window.location.hash.indexOf('?') !== -1;
 if (hideVideo) videoPlaying = false;
 
 function toggleHomes(val) {

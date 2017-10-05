@@ -69,6 +69,7 @@ function resetForm() {
   $('#input_name').val('');
   $('#input_email').val('');
   $('#input_city').val('');
+  $('#input_idfa').prop('checked', false);
   $('#input_response').val('');
   $('#record').text('RECORD');
   $('#submit-record').hide();
@@ -87,6 +88,7 @@ function submit() {
       name: $('#input_name').val(),
       email: $('#input_email').val(),
       city: $('#input_city').val(),
+      idfa: $('#input_idfa').prop('checked'),
       written: $('#input_response').val(),
       video: video_url 
     }

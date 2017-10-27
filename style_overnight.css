@@ -10,6 +10,10 @@ body {
   margin: 0 auto;
 }
 
+#intro {
+  margin-bottom: 1.5em;
+}
+
 table th {
   border: 5px solid transparent;
 }
@@ -62,15 +66,23 @@ section {
 
 #summary {
   display: inline-block;
-  width: 70%;
+  width: 72%;
+  margin-top: 0.5em;
 }
 
 #box {
   border: 1px solid #c045ff;
-  padding: 1.2em;
   display: inline-block;
   text-align: center;
   float: right;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin-bottom: 1.5em;
+}
+
+#box .inner {
+  margin: 1em 1.5em 1.5em 1.5em;
 }
 
 #tickets {
@@ -134,3 +146,40 @@ h2 {
 #getlauren-content p {
   margin: 0 0 0 0;
 }
+
+@media(max-width: 1068px) {
+  #summary {
+    width: 65%;
+  }
+}
+
+@media (max-width: 880px) {
+
+  #label {
+    display: inline-block !important;
+  }
+
+  #box {
+    float: left;
+    width: 100%;
+  }
+
+  #tickets {
+
+    width: 100%;
+  }
+
+  #summary {
+    width: 100%;
+    margin-top: 0em;
+  } 
+
+  #room1 {
+    display: none;
+  }
+
+  #room2 {
+    display: block !important;
+  }
+}
+

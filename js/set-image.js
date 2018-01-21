@@ -34,6 +34,11 @@ AFRAME.registerComponent('set-image', {
       data.target.setAttribute('material', 'shader: flat; opacity: '+opac+'; src: '+data.src);
       if (videoPlaying) setTimeout(function() { data.target.setAttribute('material', 'opacity', '1.0'); }, 300);
     
+      setTimeout(function() {
+        if (homeOpen) {
+          closeHome();
+        } 
+      }, 30*1000);
     });
 
     el.addEventListener('close', function() {

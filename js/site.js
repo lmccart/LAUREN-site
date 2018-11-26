@@ -1,6 +1,6 @@
 var plate = 0; // 1 - learnmore, 2 - getlauren
 var h;
-var videoPlaying = true;
+var videoPlaying = false;
 var player;
 var videoLoaded = false;
 var sceneSetup = false;
@@ -77,7 +77,7 @@ function resetForm() {
   $('#time').hide();
   $('#getlauren-content').show();
   $('#getlauren-thankyou').hide();
-  $('#passthroughVideo')[0].src = window.URL ? window.URL.createObjectURL(passthroughStream) : passthroughStream;
+  $('#passthroughVideo')[0].srcObject = passthroughStream;
 }
 
 function submit() {
@@ -277,7 +277,11 @@ $(document).ready(function() {
         console.log('ended the video!');
       }
     });
-    player.play();
+    $(document).click(function() {
+      console.log('play')
+      if (!videoPlaying) player.play();
+      videoPlaying = true;
+    });
   }
 
   resizeDOM();

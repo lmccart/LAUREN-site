@@ -30,8 +30,12 @@ function startPassthrough() {
 
     function successCallback(stream) {
       passthroughStream = stream;
-      video.src = window.URL ? window.URL.createObjectURL(stream) : stream;
-      video.play();
+      video.srcObject = stream;
+
+      $(document).click(function() {
+        console.log('play')
+        if (!videoPlaying) video.play();
+      });
     }
 
     function errorCallback(error) {
@@ -57,7 +61,7 @@ function startRecording() {
   $('#time').show();
 
   $('#passthroughVideo')[0].volume = 0;
-  $('#passthroughVideo')[0].src = window.URL ? window.URL.createObjectURL(passthroughStream) : passthroughStream;
+  $('#passthroughVideo')[0].srcObject = passthroughStream;
 
   var record_options = {
     mimeType: 'video/webm', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9

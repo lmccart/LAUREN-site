@@ -34,7 +34,7 @@ function startPassthrough() {
 
       $(document).click(function() {
         console.log('play')
-        if (!videoPlaying) video.play();
+        if (!videoPlaying && !videoEnded) video.play();
       });
     }
 

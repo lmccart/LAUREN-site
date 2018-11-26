@@ -1,6 +1,7 @@
 var plate = 0; // 1 - learnmore, 2 - getlauren
 var h;
 var videoPlaying = false;
+var videoEnded = false;
 var player;
 var videoLoaded = false;
 var sceneSetup = false;
@@ -271,6 +272,7 @@ $(document).ready(function() {
       }
       else if (e.data.type === 'end') {
         videoPlaying = false;
+        videoEnded = true;
         //player.pause();
         document.querySelector('#image-360').emit('show360');
         document.querySelector('#links').emit('raise');
@@ -279,7 +281,7 @@ $(document).ready(function() {
     });
     $(document).click(function() {
       console.log('play')
-      if (!videoPlaying) player.play();
+      if (!videoPlaying && !videoEnded) player.play();
       videoPlaying = true;
     });
   }

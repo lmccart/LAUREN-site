@@ -13,6 +13,7 @@ console.log(hideRecord);
 var hideVideo = window.location.hash.indexOf('?') !== -1;
 if (hideVideo) videoPlaying = false;
 
+
 function toggleHomes(val) {
   var links = document.querySelector('#links').getChildren();
   for (var i=0; i<links.length; i++) {
@@ -256,12 +257,19 @@ $(document).ready(function() {
   player.on('loaded', function() {
     videoLoaded = true;
     if (sceneSetup) {
-      setTimeout(function() { 
-        $('#overlay').hide(); 
-        clearInterval(dotInterval); 
-      }, 2000);
+      setTimeout(function() {
+        $('#loading').html('CLICK TO BEGIN');
+      }, 3000);
     }
   });
+
+  $('#overlay').click(function() {
+    $('#overlay').hide(); 
+    clearInterval(dotInterval); 
+    if (videoPlaying && !hideVideo) player.play();
+    $('#lauren-video')[0].play();
+  })
+
   if (!hideVideo) {
     player.addCuePoint(9, {type: 'show'});
     player.addCuePoint(221, {type: 'end'});
@@ -321,7 +329,6 @@ function resizeDOM() {
   $('#learnmore-plate').css('left', ($(window).width() - lw)/2);
   $('#learnmore-plate').css('top', -$('#learnmore-plate').height());
   $('#getlauren-plate').css('top', -$('#getlauren-plate').height());
-
 
 }
 

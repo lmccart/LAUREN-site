@@ -19,10 +19,9 @@ AFRAME.registerComponent('setup', {
 
     sceneSetup = true;
     if (videoLoaded || AFRAME.utils.isMobile()) {
-      setTimeout(function() { 
-        $('#overlay').hide(); 
-        clearInterval(dotInterval);
-      }, 2000);
+      setTimeout(function() {
+        $('#loading').html('CLICK TO BEGIN');
+      }, 3000);
     }
 
   }

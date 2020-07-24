@@ -157,8 +157,6 @@ $(document).ready(function() {
     $(this)[0].load();
   });
 
-  startPassthrough();
-
   $('#lauren').click(function() { 
     if (homeOpen) {
       closeHome();
@@ -264,11 +262,13 @@ $(document).ready(function() {
     }
   });
 
+  // ENTER!
   $('#overlay').click(function() {
     $('#overlay').hide(); 
     clearInterval(dotInterval); 
     if (videoPlaying && !hideVideo) player.play();
     $('#lauren-video')[0].play();
+    startPassthrough();
   })
 
   if (!hideVideo) {

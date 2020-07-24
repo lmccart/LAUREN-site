@@ -11,7 +11,7 @@ function startPassthrough() {
     video.setAttribute('width', '1280');
     video.setAttribute('height', '720');
     video.volume = 0;
-    video.setAttribute('src', '');
+    // video.setAttribute('src', '');
 
     var assets = document.getElementsByTagName('a-assets')[0];
     assets.appendChild(video);

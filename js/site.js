@@ -174,6 +174,9 @@ $(document).ready(function() {
       player.setVolume(1);
     }
   });
+  $('#reload').click(function() {
+    window.location.reload();
+  });
 
   $('#learnmore').click(function() {
     if (plate == 1) {

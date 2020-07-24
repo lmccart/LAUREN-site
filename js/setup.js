@@ -2,7 +2,7 @@ AFRAME.registerComponent('setup', {
   schema: {},
   init: function () {
     document.querySelector('#image-360').emit('startRotateSky');
-    if (AFRAME.utils.isMobile()) {
+    if (AFRAME.utils.device.isMobile()) {
       //document.querySelector('scene-wrapper').setAttribute('rotation')
     }
     var links = document.querySelector('#links');
@@ -18,7 +18,7 @@ AFRAME.registerComponent('setup', {
     links.emit('startRotateHomes');
 
     sceneSetup = true;
-    if (videoLoaded || AFRAME.utils.isMobile()) {
+    if (videoLoaded || AFRAME.utils.device.isMobile()) {
       setTimeout(function() {
         $('#loading').html('CLICK TO BEGIN');
       }, 3000);

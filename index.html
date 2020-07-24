@@ -160,9 +160,10 @@
                   geometry='primitive: sphere; radius: 0.71; segmentsHeight: 50;'
                   material='color: #c045ff; opacity: 0.75; side: back'
                   event-set__1='_event: mouseenter; geometry.radius: 0.718;'
-                  event-set__2='_event: mouseleave; geometry.radius: 0.71;'>
+                  event-set__2='_event: mouseleave; geometry.radius: 0.71;'
+                  class='collidable' >
           <a-entity id='${src}-sphere' 
-                    class='link' 
+                    class='link collidable' 
                     geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;'
                     rotation='-90 0 0'
                     material='shader: flat; color: #bababa; src: ${src}-thumb; side: back;'
@@ -172,7 +173,7 @@
                     event-set__1='_event: mouseenter; material.color: #ffffff;'
                     event-set__2='_event: mouseleave; material.color: #bababa;'
                     sound='on: click; src: ${src}-audio; volume: 5'
-                    animation='property: rotation; dur: 20000; easing: linear; from: 0 0 0; to: 0 360 0; loop: true;'>
+                    animation='property: rotation; dur: 20000; easing: linear; from: 0 0 0; to: 0 360 0; loop: true;' >
             <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
             <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1 1 1'></a-animation>
           </a-entity>
@@ -219,14 +220,11 @@
         </a-entity>
 
         <!-- Camera + cursor. -->
-        <a-entity id='camera' camera='' look-controls='reverseMouseDrag: true' cursor='rayOrigin: mouse' position='' rotation='' scale='' visible=''>
+        <a-entity id='camera' camera='' look-controls='reverseMouseDrag: true' cursor='rayOrigin: mouse' raycaster='objects: .collidable' position='' rotation='' scale='' visible=''>
           <a-animation begin='rotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
           <a-animation begin='unrotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 0 0'></a-animation>
         </a-entity>
 
-        <!-- <canvas class='a-canvas a-grab-cursor' data-aframe-canvas='true' width='3210' height='1818' style='width: 1605px; height: 909px;'></canvas>
-        <a-entity light='' data-aframe-default-light='' aframe-injected='' position='' rotation='' scale='' visible=''></a-entity>
-        <a-entity light='' position='' data-aframe-default-light='' aframe-injected='' rotation='' scale='' visible=''></a-entity> -->
       </a-entity>
     </a-entity>
   </a-scene>

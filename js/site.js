@@ -9,7 +9,6 @@ var dotInterval;
 var homeOpen = false;
 
 var hideRecord = window.location.hash.indexOf('!') !== -1 || window.location.hash.indexOf('s') !== -1;
-console.log(hideRecord);
 var hideVideo = window.location.hash.indexOf('?') !== -1;
 if (hideVideo) videoPlaying = false;
 

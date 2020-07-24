@@ -46,7 +46,7 @@
 
 <body class='a-body' id='container'>
 
-  <iframe src="https://player.vimeo.com/video/397068136/" width="640" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  <iframe src="https://player.vimeo.com/video/397068136/" width="640" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
 
   <img src='img/volume-on.png' id='volume'>
   <a href="./"><img src='img/restart.png' id='volume' style='margin-left: 3em; height: 1.5em; width: 1.5em; margin-top:.2em'></a>
@@ -161,7 +161,9 @@
                   material='color: #c045ff; opacity: 0.75; side: back'
                   event-set__1='_event: mouseenter; geometry.radius: 0.718;'
                   event-set__2='_event: mouseleave; geometry.radius: 0.71;'
-                  class='collidable' >
+                  class='collidable' 
+                  animation__scaleOut='property: scale; dur: 500; easing: linear; to: 0 0 0; startEvents: scaleOut'
+                  animation__scaleIn='property: scale; dur: 500; easing: linear; to: 1 1 1; startEvents: scaleIn'>
           <a-entity id='${src}-sphere' 
                     class='link collidable' 
                     geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;'
@@ -173,12 +175,8 @@
                     event-set__1='_event: mouseenter; material.color: #ffffff;'
                     event-set__2='_event: mouseleave; material.color: #bababa;'
                     sound='on: click; src: ${src}-audio; volume: 5'
-                    animation='property: rotation; dur: 20000; easing: linear; from: 0 0 0; to: 0 360 0; loop: true;' >
-            <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
-            <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1 1 1'></a-animation>
+                    animation__rotate='property: rotation; dur: 20000; easing: linear; from: 0 0 0; to: 0 360 0; loop: true;'>
           </a-entity>
-          <a-animation begin='scaleOut' attribute='material.opacity' dur='0' to='0'></a-animation>
-          <a-animation begin='scaleIn' attribute='material.opacity' delay='500' dur='0' to='0.5'></a-animation>
         </a-entity>
       </script>
     </a-assets>
@@ -186,20 +184,20 @@
 
     <a-entity scale='1 1 1'>
       <a-entity id='scene' setup>
-        <a-animation attribute='material.opacity' begin='fadeIn' to='1' duration='3000'></a-animation>
         <a-videosphere id='image-360' radius='15' src='#lauren-video' rotation='0 -90 0'
-                       animation='property: rotation; dur: 40000; easing: linear; from: 0 -110 -10; to: 0 -70 -10; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
-                       animation__1='property: rotation; dur: 100000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateHome; pauseEvents: stopRotateHome;' 
-                       animation__2='property: rotation; dur: 500; easing: linear; to: 0 -40 0; startEvents: rotateRecordSky;'>
-          <a-animation begin='hide360' attribute='material.opacity' dur='0' to='0'></a-animation>
-          <a-animation begin='show360' attribute='material.opacity' dur='0' to='1.0'></a-animation>
+                       animation__startRotateSky='property: rotation; dur: 40000; easing: linear; from: 0 -110 -10; to: 0 -70 -10; loop: true; dir: alternate; startEvents: startRotateSky; pauseEvents: stopRotateSky;' 
+                       animation__startRotateHome='property: rotation; dur: 100000; easing: linear; to: 0 -360 0; loop: true; startEvents: startRotateHome; pauseEvents: stopRotateHome;' 
+                       animation__rotateRecordSky='property: rotation; dur: 500; easing: linear; to: 0 -60 0; startEvents: rotateRecordSky;'
+                       animation__hide360='property: material.opacity; dur: 0; to: 0; startEvents: hide360'
+                       animation__show360='property: material.opacity; dur: 0; to: 1.0; startEvents: show360'>
         </a-videosphere>
 
 
         <!-- Image links. -->
-        <a-entity id='links' layout='type: circle;  plane: xz; radius: 2.8' position='0 0 0' rotation='0 0 0' scale='' visible=''
-                  animation='property: rotation; dur: 1000; easing: linear; to: 0 0 0; startEvents: startRotateHomes; pauseEvents: stopRotateHomes'>
-            
+        <a-entity id='links' layout='type: circle;  plane: xz; radius: 2.8' position='0 1 0' rotation='0 0 0' scale='' visible=''
+                  animation='property: rotation; dur: 1000; easing: linear; to: 0 0 0; startEvents: startRotateHomes; pauseEvents: stopRotateHomes'
+                  animation__lower='property: position; dur: 500; easing: linear; to: 0 -0.25 0; startEvents: lower'
+                  animation__raise='property: position; dur: 500; easing: linear; to: 0 1 0; startEvents: raise'> 
           <a-entity template='src: #link' data-src='#jennystu'></a-entity>
           <a-entity template='src: #link' data-src='#alex'></a-entity>
           <a-entity template='src: #link' data-src='#amber'></a-entity>
@@ -209,20 +207,17 @@
           <a-entity template='src: #link' data-src='#xiuling'></a-entity>
           <a-entity template='src: #link' data-src='#miriam'></a-entity>
           <a-entity template='src: #link' data-src='#jackmark'></a-entity>
-
-          <a-animation begin='lower' attribute='position' dur='500' easing='linear' to='0 -1.25 0'></a-animation>
-          <a-animation begin='raise' attribute='position' dur='500' easing='linear' to='0 0 0'></a-animation>
         </a-entity>
 
-        <a-entity id='passthroughVideo-sphere' geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;' material='shader: flat; color: #666666; opacity: 0.5; side: back;' position='0 0 -2' rotation='0 -90 0' scale='0 0 0'>
-          <a-animation begin='scaleOut' attribute='scale' dur='500' easing='linear' to='0 0 0'></a-animation>
-          <a-animation begin='scaleIn' attribute='scale' dur='500' easing='linear' to='1 1 1'></a-animation>
+        <a-entity id='passthroughVideo-sphere' geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;' material='shader: flat; color: #666666; opacity: 0.5; side: back;' position='1 2 -2' rotation='0 -90 0' scale='0 0 0'
+                  animation__scaleOut='property: scale; dur: 500; easing: linear; to: 0 0 0; startEvents: scaleOut'
+                  animation__scaleIn='property: scale; dur: 500; easing: linear; to: 1 1 1; startEvents: scaleIn'>
         </a-entity>
 
         <!-- Camera + cursor. -->
-        <a-entity id='camera' camera='' look-controls='reverseMouseDrag: true' cursor='rayOrigin: mouse' raycaster='objects: .collidable' position='' rotation='' scale='' visible=''>
-          <a-animation begin='rotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 30 0'></a-animation>
-          <a-animation begin='unrotateRecordCamera' attribute='rotation' dur='500' easing='linear' to='0 0 0'></a-animation>
+        <a-entity id='camera' camera='' look-controls='reverseMouseDrag: true' cursor='rayOrigin: mouse' raycaster='objects: .collidable' position='' rotation='' scale='' visible=''
+                  animation__rotateRecordCamera='property: rotation; dur: 500; easing: linear; to: 0 30 0; startEvents: rotateRecordCamera'
+                  animation__unrotateRecordCamera='property: rotation; dur: 500; easing: linear; to: 0 0 0; startEvents: unrotateRecordCamera'>
         </a-entity>
 
       </a-entity>

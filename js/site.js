@@ -46,6 +46,7 @@ function getLauren(val) {
   if (val) {
     $('#closeHome').hide();
     sky.setAttribute('material', 'shader: standard; src: #lauren-listening');
+    $('#lauren-listening')[0].play();
     sky.emit('stopRotateSky');
     sky.emit('rotateRecordSky');
     document.querySelector('#camera').emit('rotateRecordCamera');
@@ -152,7 +153,7 @@ $(document).ready(function() {
     $('#loadingdots').text(s);
   }, 500);
 
-  $('video').on('error', function() {
+  $('video').on('error', function(e) {
     $(this)[0].load();
   });
 
@@ -288,14 +289,12 @@ $(document).ready(function() {
       }
     });
     $(document).click(function() {
-      console.log('play')
       if (!videoPlaying && !videoEnded) player.play();
       videoPlaying = true;
     });
   }
 
   resizeDOM();
-
 
   if (hideRecord || !hasGetUserMedia() || document.documentElement.clientWidth <= 600) {
     $('#write-content').show();

@@ -7,7 +7,7 @@ function startPassthrough() {
   if (hasGetUserMedia() && !hideRecord) {
     var video = document.createElement('video');
     video.setAttribute('id', 'passthroughVideo');
-    video.setAttribute('autoplay', true);
+    video.setAttribute('autoplay', false);
     video.setAttribute('width', '1280');
     video.setAttribute('height', '720');
     video.volume = 0;
@@ -31,11 +31,6 @@ function startPassthrough() {
     function successCallback(stream) {
       passthroughStream = stream;
       video.srcObject = stream;
-
-      $(document).click(function() {
-        console.log('play')
-        if (!videoPlaying && !videoEnded) video.play();
-      });
     }
 
     function errorCallback(error) {

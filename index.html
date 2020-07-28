@@ -49,7 +49,7 @@
   <iframe src="https://player.vimeo.com/video/397068136/" width="640" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
 
   <img src='img/volume-on.png' id='volume' class='button'>
-  <img src='img/restart.png' id='reload' class='button'>
+  <!-- <img src='img/restart.png' id='reload' class='button'> -->
 
   <nav>
     <span id='learnmore' class='button'>LEARN MORE</span>
@@ -92,7 +92,7 @@
       <span>Email</span>&nbsp;<input id='input_email' type='text'><br><br>
       <span>What city do you live in?</span>&nbsp;<input  id='input_city' type='text'><br><br>
 
-      <p>From Nov 16-19, LAUREN will do a special version where participants can book a one night stay in LAUREN's apartment in LA. You will have a sleepover and wakeup experience remotely assisted by LAUREN. If you want to try this version, check here.<input type='checkbox' class='check' id='input_idfa'></p>
+      <!-- <p>From Nov 16-19, LAUREN will do a special version where participants can book a one night stay in LAUREN's apartment in LA. You will have a sleepover and wakeup experience remotely assisted by LAUREN. If you want to try this version, check here.<input type='checkbox' class='check' id='input_idfa'></p> -->
 
       <div id='record-content'>
         <p>Please record a short video explaining why you want to try LAUREN, and describing what is unique about your home. Click "RECORD" when you are ready. <span id='write-switch' class='button'>Or, write your response instead.</span></p>
@@ -124,6 +124,7 @@
       <video id='lauren-video' crossorigin='anonymous' src='vid/lauren-broll4.mp4' autoplay loop='true' muted></video>
       <video id='lauren-listening' crossorigin='anonymous' src='vid/lauren-listening4.mp4' autoplay loop='true' muted></video>
 
+
       <img id='alex' crossorigin='anonymous' src='img/alex.jpg'>
       <img id='alex-thumb' crossorigin='anonymous' src='img/alex-thumb.jpg'>
       <audio id='alex-audio' crossorigin='anonymous' src='vid/alex.ogg'></audio>
@@ -153,6 +154,8 @@
       <img id='xiuling-thumb' crossorigin='anonymous' src='img/xiuling-thumb.jpg'>
       <audio id='xiuling-audio' crossorigin='anonymous' src='vid/xiuling.ogg'></audio>
 
+      <img id='hall-thumb' crossorigin='anonymous' src='img/hall-thumb.jpg'>
+
 
       <!-- Image link template to be reused. -->
       <script id='link' type='text/html'>
@@ -179,6 +182,31 @@
           </a-entity>
         </a-entity>
       </script>
+     
+      <!-- Hall link template -->
+      <script id='exit' type='text/html'>
+        <a-entity id='${src}-outline'
+                  geometry='primitive: sphere; radius: 0.73; segmentsHeight: 50;'
+                  material='color: #ffffff; opacity: 0.77; side: back'
+                  event-set__1='_event: mouseenter; geometry.radius: 0.718;'
+                  event-set__2='_event: mouseleave; geometry.radius: 0.71;'
+                  class='collidable' 
+                  animation__scaleOut='property: scale; dur: 500; easing: linear; to: 0 0 0; startEvents: scaleOut'
+                  animation__scaleIn='property: scale; dur: 500; easing: linear; to: 1 1 1; startEvents: scaleIn'>
+          <a-entity id='${src}-sphere' 
+                    class='link collidable' 
+                    link='href: http://lauren-mccarthy.com'
+                    geometry='primitive: sphere; radius: 0.7; segmentsHeight: 50;'
+                    rotation='-90 0 0'
+                    material='shader: flat; color: #bababa; src: ${src}-thumb; side: back;'
+                    cursor-pointer='on: mouseenter;'
+                    cursor-grabber='on: mouseleave;' 
+                    event-set__1='_event: mouseenter; material.color: #ffffff;'
+                    event-set__2='_event: mouseleave; material.color: #bababa;'
+                    animation__rotate='property: rotation; dur: 4000; easing: linear; from: 0 24 0; to: 0 96 0; loop: true; dir: alternate;'>
+          </a-entity>
+        </a-entity>
+      </script>
     </a-assets>
 
 
@@ -191,7 +219,6 @@
                        animation__hide360='property: material.opacity; dur: 0; to: 0; startEvents: hide360'
                        animation__show360='property: material.opacity; dur: 0; to: 1.0; startEvents: show360'>
         </a-videosphere>
-
 
         <!-- Image links. -->
         <a-entity id='links' layout='type: circle;  plane: xz; radius: 2.8' position='0 1 0' rotation='0 0 0' scale='' visible=''
@@ -206,6 +233,7 @@
           <a-entity template='src: #link' data-src='#kristin'></a-entity>
           <a-entity template='src: #link' data-src='#xiuling'></a-entity>
           <a-entity template='src: #link' data-src='#miriam'></a-entity>
+          <a-entity template='src: #exit' data-src='#hall'></a-entity>
           <a-entity template='src: #link' data-src='#jackmark'></a-entity>
         </a-entity>
 

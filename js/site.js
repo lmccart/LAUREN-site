@@ -9,7 +9,7 @@ var dotInterval;
 var homeOpen = false;
 
 var hideRecord = true; // window.location.hash.indexOf('!') !== -1 || window.location.hash.indexOf('s') !== -1;
-var hideVideo = true; // window.location.hash.indexOf('?') !== -1;
+var hideVideo = false; // window.location.hash.indexOf('?') !== -1;
 if (hideVideo) videoPlaying = false;
 
 
